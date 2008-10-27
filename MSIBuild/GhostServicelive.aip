@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT type="Advanced Installer" CreateVersion="6.4" version="6.4" modules="enterprise" RootPath="." Language="en">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_MINDOTNETVERSION" MultiBuildValue="DefaultBuild:2.0" ValueLocId="-"/>
+    <ROW Property="ALLUSERS" Value="2" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="BannerBitmap" Value="AI_RES_default_banner.bmp" Type="1"/>
+    <ROW Property="DialogBitmap" Value="AI_RES_default_dialog.bmp" Type="1"/>
+    <ROW Property="Manufacturer" Value="Korbitec" ValueLocId="*"/>
+    <ROW Property="ProductCode" Value="1033:{460DB062-59B5-44B8-9741-58F15514AEC7} "/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="GhostService" ValueLocId="*"/>
+    <ROW Property="ProductVersion" Value="0.5.10.0"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{AC5AED54-D6AC-4BAF-AAFB-EBC3FA9EA40B}"/>
+    <ROW Property="WindowsFamily9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows XP x86 Service Pack 2" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="GhostService_DIR" Directory_Parent="Korbitec_DIR" DefaultDir="GhostS~1|GhostService"/>
+    <ROW Directory="Korbitec_DIR" Directory_Parent="ProgramMenuFolder" DefaultDir="Korbitec"/>
+    <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="Progra~1|ProgramMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="BackgroundCopyManager.dll" ComponentId="{13E3E28E-B302-46E9-BA5C-241A79D60672}" Directory_="APPDIR" Attributes="0" KeyPath="BackgroundCopyManager.dll"/>
+    <ROW Component="GhostService" ComponentId="{AEAF95A8-6C16-4294-955F-111BF4184B7F}" Directory_="GhostService_DIR" Attributes="0"/>
+    <ROW Component="GhostService.GhostServicePlugin.dll" ComponentId="{13619B3E-6B1E-4B4F-9439-87298CA43024}" Directory_="APPDIR" Attributes="0" KeyPath="GhostService.GhostServicePlugin.dll"/>
+    <ROW Component="GhostService.exe" ComponentId="{4BC99659-4731-40F4-A6AA-1C7C2029682B}" Directory_="APPDIR" Attributes="0" KeyPath="GhostService.exe"/>
+    <ROW Component="GhostServicePluginGCUpdates.dll" ComponentId="{9B9634E3-F480-4032-9E0C-876E5D37491A}" Directory_="APPDIR" Attributes="0" KeyPath="GhostServicePluginGCUpdates.dll"/>
+    <ROW Component="GhostServicePluginGSUpdates.dll" ComponentId="{95788475-C67D-4F9F-82D3-8FB3DD39702F}" Directory_="APPDIR" Attributes="0" KeyPath="GhostServicePluginGSUpdates.dll"/>
+    <ROW Component="GhostServiceSetup.exe" ComponentId="{35DC162E-5C2B-4EED-AA93-E16ED9BA3D51}" Directory_="APPDIR" Attributes="0" KeyPath="GhostServiceSetup.exe"/>
+    <ROW Component="ICSharpCode.SharpZipLib.dll" ComponentId="{27D01D13-5C06-4FFD-9C9B-D4AC1C32C522}" Directory_="APPDIR" Attributes="0" KeyPath="ICSharpCode.SharpZipLib.dll"/>
+    <ROW Component="Korbitec.AutoUpdate.Bits.dll" ComponentId="{210C8D85-DFAB-4D42-B735-8AAE984436A7}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.Bits.dll"/>
+    <ROW Component="Korbitec.AutoUpdate.ClientUpdates.dll" ComponentId="{B476E0C1-3E3B-4C7F-A022-A92D78971AF3}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.ClientUpdates.dll"/>
+    <ROW Component="Korbitec.AutoUpdate.Msi.dll" ComponentId="{2C13105F-4088-49A5-803B-F85E7801362A}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.Msi.dll"/>
+    <ROW Component="Korbitec.AutoUpdate.dll" ComponentId="{1DB42683-CCFE-463E-8D34-3B09B182CB7B}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.dll"/>
+    <ROW Component="Korbitec.Compression.dll" ComponentId="{027ACBA8-2897-4D38-BDA6-123C7A881D90}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Compression.dll"/>
+    <ROW Component="Korbitec.Utilities.dll" ComponentId="{9C175335-C02C-468C-84E6-10AC342DB3CB}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Utilities.dll"/>
+    <ROW Component="ManualUpdater.exe" ComponentId="{A17CCF96-4C16-4730-A468-35FB05A3F455}" Directory_="APPDIR" Attributes="0" KeyPath="ManualUpdater.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="Korbitec.AutoUpdate.Msi.dll BackgroundCopyManager.dll GhostService.exe GhostService.GhostServicePlugin.dll GhostServicePluginGSUpdates.dll GhostServiceSetup.exe Korbitec.AutoUpdate.Bits.dll Korbitec.AutoUpdate.ClientUpdates.dll Korbitec.AutoUpdate.dll GhostServicePluginGCUpdates.dll ICSharpCode.SharpZipLib.dll Korbitec.Utilities.dll Korbitec.Compression.dll GhostService ManualUpdater.exe"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="BackgroundCopyManager.dll" Component_="BackgroundCopyManager.dll" FileName="Backgr~1.dll|BackgroundCopyManager.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\BackgroundCopyManager.dll" SelfReg="false" Sequence="2"/>
+    <ROW File="GhostService.GhostServicePlugin.dll" Component_="GhostService.GhostServicePlugin.dll" FileName="GhostS~1.dll|GhostService.GhostServicePlugin.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\GhostService.GhostServicePlugin.dll" SelfReg="false" Sequence="4"/>
+    <ROW File="GhostService.exe" Component_="GhostService.exe" FileName="GhostS~1.exe|GhostService.exe" Attributes="0" SourcePath="..\GhostService\Assemblies\GhostService.exe" SelfReg="false" Sequence="3"/>
+    <ROW File="GhostServicePluginGCUpdates.dll" Component_="GhostServicePluginGCUpdates.dll" FileName="GhostS~3.dll|GhostServicePluginGCUpdates.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\GhostServicePluginGCUpdates.dll" SelfReg="false" Sequence="10"/>
+    <ROW File="GhostServicePluginGSUpdates.dll" Component_="GhostServicePluginGSUpdates.dll" FileName="GhostS~2.dll|GhostServicePluginGSUpdates.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\GhostServicePluginGSUpdates.dll" SelfReg="false" Sequence="5"/>
+    <ROW File="GhostServiceSetup.exe" Component_="GhostServiceSetup.exe" FileName="GhostS~2.exe|GhostServiceSetup.exe" Attributes="0" SourcePath="..\GhostService\Assemblies\GhostServiceSetup.exe" SelfReg="false" Sequence="6"/>
+    <ROW File="ICSharpCode.SharpZipLib.dll" Component_="ICSharpCode.SharpZipLib.dll" FileName="ICShar~1.dll|ICSharpCode.SharpZipLib.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\ICSharpCode.SharpZipLib.dll" SelfReg="false" Sequence="11"/>
+    <ROW File="Korbitec.AutoUpdate.Bits.dll" Component_="Korbitec.AutoUpdate.Bits.dll" FileName="Korbit~2.dll|Korbitec.AutoUpdate.Bits.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.Bits.dll" SelfReg="false" Sequence="7"/>
+    <ROW File="Korbitec.AutoUpdate.ClientUpdates.dll" Component_="Korbitec.AutoUpdate.ClientUpdates.dll" FileName="Korbit~3.dll|Korbitec.AutoUpdate.ClientUpdates.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.ClientUpdates.dll" SelfReg="false" Sequence="8"/>
+    <ROW File="Korbitec.AutoUpdate.Msi.dll" Component_="Korbitec.AutoUpdate.Msi.dll" FileName="Korbit~1.dll|Korbitec.AutoUpdate.Msi.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.Msi.dll" SelfReg="false" Sequence="1"/>
+    <ROW File="Korbitec.AutoUpdate.dll" Component_="Korbitec.AutoUpdate.dll" FileName="Korbit~4.dll|Korbitec.AutoUpdate.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.dll" SelfReg="false" Sequence="9"/>
+    <ROW File="Korbitec.Compression.dll" Component_="Korbitec.Compression.dll" FileName="Korbit~6.dll|Korbitec.Compression.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Compression.dll" SelfReg="false" Sequence="13"/>
+    <ROW File="Korbitec.Utilities.dll" Component_="Korbitec.Utilities.dll" FileName="Korbit~5.dll|Korbitec.Utilities.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Utilities.dll" SelfReg="false" Sequence="12"/>
+    <ROW File="ManualUpdater.exe" Component_="ManualUpdater.exe" FileName="Manual~1.exe|ManualUpdater.exe" Attributes="0" SourcePath="..\GhostService\Assemblies\ManualUpdater.exe" SelfReg="false" Sequence="14"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_FRAGS&gt;FolderDlg.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_FRAGS&gt;UI.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_DOTNET20_SEARCH" Signature_="AI_DotNet20SearchSgn" Builds="DefaultBuild"/>
+    <ROW Property="AI_DOTNET30_SEARCH" Signature_="AI_DotNet30SearchSgn" Builds="DefaultBuild"/>
+    <ROW Property="AI_DOTNET35_SEARCH" Signature_="AI_DotNet35SearchSgn" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="AI_CUSTACTS_aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="AI_RES_default_banner.bmp" SourcePath="&lt;AI_RES&gt;default-banner.bmp"/>
+    <ROW Name="AI_RES_default_dialog.bmp" SourcePath="&lt;AI_RES&gt;default-dialog.bmp"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ATTRIBUTE name="FixedSizeBitmaps" value="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="2"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="3"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="GhostService_DIR" Component_="GhostService"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="AI_CUSTACTS_aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="AI_CUSTACTS_aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="740"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="Not Installed" Sequence="1545"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1300"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="740"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(AI_DOTNET20_SEARCH = &quot;#1&quot;) OR (AI_DOTNET30_SEARCH = &quot;#1&quot;) OR (AI_DOTNET35_SEARCH = &quot;#1&quot;)" Description="[ProductName] cannot be installed on systems with .NET Framework version smaller than [AI_MINDOTNETVERSION]" DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="Version9X OR VersionNT64 OR ((VersionNT &gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &gt;= 2)))" Description="[ProductName] cannot be installed on systems earlier than [WindowsTypeNT]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsFamily9X]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_DotNet20SearchSgn" Root="2" Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727" Name="Install" Type="2"/>
+    <ROW Signature_="AI_DotNet30SearchSgn" Root="2" Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0\Setup" Name="InstallSuccess" Type="2"/>
+    <ROW Signature_="AI_DotNet35SearchSgn" Root="2" Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5" Name="Install" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
+    <ROW ServiceControl="ServiceName" Name="GhostService.exe" Event="139" Wait="1" Component_="GhostService.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
+    <ROW ServiceInstall="GhostService.exe" Name="GhostService.exe" DisplayName="GhostService.exe" ServiceType="272" StartType="2" ErrorControl="32769" Component_="GhostService.exe" Description="Korbitec&apos;s GhostService"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="GhostService_Setup" Directory_="GhostService_DIR" Name="GhostS~1|GhostService Setup" Component_="GhostServiceSetup.exe" Target="[#GhostServiceSetup.exe]" Description="Used to setup Kobitec&apos;s GhostService" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMax="[|ProductVersion]" Attributes="1025" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
+    <ROW Directory_="APPDIR" SourcePath="..\..\..\..\Program Files\Korbitec\GhostService" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+  </COMPONENT>
+</DOCUMENT>

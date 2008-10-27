@@ -1,0 +1,2463 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Korbitec.Utilities</name>
+    </assembly>
+    <members>
+        <member name="T:Korbitec.Utilities.FileUtils">
+            <summary>
+            A collection of utilities that can be used to manipulate files
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.FileUtils.ForceDirectories(System.String)">
+            <summary>
+            Ensures that the directory structure specified in the file path exists. Directories that do not already exist will be created.
+            </summary>
+            <param name="filePath">The path to the file.</param>
+            <returns>The directory path not including the file name.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.FileUtils.IncludeTrailingDirectorySeparator(System.String)">
+            <summary>
+            Ensures that the directory separator character is appended to the end of the file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns>A new file path including the directory separator character at the end.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.FileUtils.ExcludeTrailingDirectorySeparator(System.String)">
+            <summary>
+            Removes the directory separator character from the end of the file path if present.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns>The file path excluding the trailing directory separator character.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.FileUtils.IncludeLeadingDirectorySeparator(System.String)">
+            <summary>
+            Ensures that the directory separator character is appended to the begining of the file path.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns>A new file path including the directory separator character at the begining.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.FileUtils.ExcludeLeadingDirectorySeparator(System.String)">
+            <summary>
+            Removes the directory separator character from the begining of the file path if present.
+            </summary>
+            <param name="FilePath">The file path.</param>
+            <returns>The file path excluding the leading directory separator character.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.TopologicalSorter`1">
+            <summary>
+            Arranges a list of objects in topological order. This class is useful for resolving circular dependencies between objects.
+            </summary>
+            <typeparam name="T">The type that the topological sorter will sort.</typeparam>
+        </member>
+        <member name="M:Korbitec.Utilities.TopologicalSorter`1.AddVertex(`0)">
+            <summary>
+            Add a vertex to be sorted.
+            </summary>
+            <param name="vertex">The vertex to add.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.TopologicalSorter`1.AddEdge(`0,`0)">
+            <summary>
+            Add an edge (dependency) between vertices (objects)
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+        </member>
+        <member name="M:Korbitec.Utilities.TopologicalSorter`1.Sort">
+            <summary>
+            Perform the topological sort.
+            </summary>
+            <returns>A list of sorted verticies (objects).</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.TopologicalSorter`1.Test(System.Boolean)">
+            <summary>
+            Method to test the topological sorting algorithm.
+            </summary>
+            <param name="testError">If true, a case involving a topological sort is used, and an exception is raised.</param>
+        </member>
+        <member name="T:Korbitec.Utilities.ObjectUtils">
+            <summary>
+            A collection of utilities that can be used on objects.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ObjectUtils.Compare(System.Object,System.Object)">
+            <summary>
+            Compares two objects using compare methods offered by the objects.
+            </summary>
+            <param name="obj1">The first object to compare.</param>
+            <param name="obj2">The second object to compare.</param>
+            <returns>An integer representing the comparison result.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ObjectUtils.Differ(System.Object,System.Object)">
+            <summary>
+            Determines if two objects differ using the compare method.
+            </summary>
+            <param name="obj1">The first object to compare.</param>
+            <param name="obj2">The second object to compare.</param>
+            <returns>True if the objects differ.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ObjectUtils.Same(System.Object,System.Object)">
+            <summary>
+            Determines if two objects are the same using the compare method.
+            </summary>
+            <param name="obj1">The first object to compare.</param>
+            <param name="obj2">The second object to compare.</param>
+            <returns>True if the objects are the same.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.NameResolver">
+            <summary>
+            Returns a unique name for a list of objects. A best attempt is made to keep the name the same as the value passed in. In the case that the name already exists an integer is appended to the name.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.NameResolver.#ctor">
+            <summary>
+            Contructs a case sensitive instance of the NameResolver class
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.NameResolver.#ctor(System.Boolean)">
+            <summary>
+            Contructs a NameResolver instance which is case sensitive if ignoreCase is set to false
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.NameResolver.Resolve(System.String)">
+            <summary>
+            Returns a unique name for a list of objects. A best attempt is made to keep the name the same as the result of a .toString call on the object. In the case that the name already exists an integer is appended to the name.
+            </summary>
+            <param name="name">The desired name.</param>
+            <returns>The desired name if it has not been allocated, or a generated name if it has already been allocated.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.EnglishUtils">
+            <summary>
+            A collection of utilities that can be used to manipulate english text.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.EnglishUtils.Capitalize(System.String)">
+            <summary>
+            Capitalizes an english word.
+            </summary>
+            <param name="value">The word.</param>
+            <remarks>If the word is one character long, the original character is return</remarks>
+            <returns>The capitalized word</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EnglishUtils.Singular(System.String)">
+            <summary>
+            A best attempt at making an english word singular.
+            </summary>
+            <param name="value">The word.</param>
+            <returns>The singular form of the word.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EnglishUtils.TokenizeProperCase(System.String)">
+            <summary>
+            Divides a word that is written in propercase into tokens.
+            </summary>
+            <param name="value">The word.</param>
+            <returns>A list of tokens.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EnglishUtils.EnglishHash(System.Byte[])">
+            <summary>
+            Creates a hash of binary data using common english words.
+            </summary>
+            <param name="data">The data to hash.</param>
+            <returns>Common english words representing the data.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EnglishUtils.EnglishHash(System.Guid)">
+            <summary>
+            Creates a hash of binary data using common english words.
+            </summary>
+            <param name="data">The data to hash.</param>
+            <returns>Common english words representing the data.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.SomeEnglishWords">
+            <summary>
+            A class that provides access to a pool of common english words.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.SomeEnglishWords.Word(System.Int32)">
+            <summary>
+            Fetches a word from the pool.
+            </summary>
+            <param name="index">The index of the desired word.</param>
+            <returns>The word at the supplied index.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SomeEnglishWords.Index(System.String)">
+            <summary>
+            Determines the index of the supplied word.
+            </summary>
+            <param name="word">The word to search for.</param>
+            <returns>The index of the word, or -1 if the word does not exist.</returns>
+        </member>
+        <member name="P:Korbitec.Utilities.SomeEnglishWords.Count">
+            <summary>
+            The number of words in the pool.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.Scrambler">
+            <summary>
+            Silly algorithm used by WebConvey to perform symmetric encryption of passwords (The algorithm can be lossy).
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.Scrambler.Scramble(System.String)">
+            <summary>
+            Encrypt the supplied data.
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <returns>An encrypted form of the data.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.Scrambler.UnScramble(System.String)">
+            <summary>
+            Decrypt the supplied data.
+            </summary>
+            <param name="Data">The encrypted data to decrypt.</param>
+            <returns>The decrypted form of the data.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.EnumUtils">
+            <summary>
+            Contains utility methods for use with enumerations
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.EnumUtils.Parse``1(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+            </summary>
+            <typeparam name="T">The type of the enumeration</typeparam>
+            <param name="value">A string containing the name or value to convert.</param>
+            <exception cref="T:System.ArgumentNullException">The value is a null reference</exception>
+            <exception cref="T:System.ArgumentException">enumType is not an Enum.
+            -or-
+            value is either an empty string or only contains white space.
+            -or-
+            value is a name, but not one of the named constants defined for the enumeration.
+            </exception>
+            <remarks>The value parameter contains a value, a named constant, or a list of named constants delimited by commas (,). One or more blanks spaces can precede or follow each value, name, or comma in value. If value is a list, the return value is the value of the specified names combined with a bitwise OR operation.
+            This operation is case-sensitive.</remarks>
+            <returns>An object of type enumType whose value is represented by value.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EnumUtils.Parse``1(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
+            </summary>
+            <typeparam name="T">The type of the enumeration</typeparam>
+            <param name="value">A string containing the name or value to convert.</param>
+            <param name="ignoreCase">Specifies whether to use case when parsing the string</param>
+            <exception cref="T:System.ArgumentNullException">The value is a null reference</exception>
+            <exception cref="T:System.ArgumentException">enumType is not an Enum.
+            -or-
+            value is either an empty string or only contains white space.
+            -or-
+            value is a name, but not one of the named constants defined for the enumeration.
+            </exception>
+            <remarks>The value parameter contains a value, a named constant, or a list of named constants delimited by commas (,). One or more blanks spaces can precede or follow each value, name, or comma in value. If value is a list, the return value is the value of the specified names combined with a bitwise OR operation.</remarks>
+            <returns>An object of type enumType whose value is represented by value.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.StringUtils">
+            <summary>
+            A collection of utilites that can be used to manipulate strings.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.CR">
+            <summary>
+            A constant string containing the carriage return character.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.LF">
+            <summary>
+            A constant string containing the line feed return character.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.ENDL">
+            <summary>
+            A constant string containing the carriage return and line feed characters.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.ALPHA_CHARS">
+            <summary>
+            An array of characters representing the set of alpha characters (a-z, A-Z).
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.NUMERIC_CHARS">
+            <summary>
+            An array of characters representing the set of numeric characters (0-9).
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.ALPHA_NUMERIC_CHARS">
+            <summary>
+            An array of characters representing the set of alpha-numeric characters (a-z, A-Z, 0-9).
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.METHODNAME_CHARS">
+            <summary>
+            An array of characters representing the set of characters valid for C# method names.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.EMAIL_CHARS">
+            <summary>
+            An array of characters representing the set of characters valid for e-mail addresses.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ExcludeLeadingChar(System.String,System.Char)">
+            <summary>
+            Excludes the specified leading character from a string value if the character is at the start of the
+            string
+            </summary>
+            <param name="Value">The string with the leading character</param>
+            <param name="Char">The char to remove from the beginning of the string</param>
+            <remarks>If the character is not at the beginning of the string, it returns the 
+            original string</remarks>
+            <returns>The string ithout the leading character</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ExcludeTrailingChar(System.String,System.Char)">
+            <summary>
+            Excludes the specified trailing character from a string value if the character is at the end of the
+            string
+            </summary>
+            <param name="Value">The string with the trailing characters</param>
+            <param name="Char">The char to remove from the end of the string</param>
+            <remarks>If the character is not at the end of the string, it returns the 
+            original string</remarks>
+            <returns>The string without the trailing character</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.IncludeTrailingChar(System.String,System.Char)">
+            <summary>
+            Includes a character at the end of a string if the character doesn't already exist
+            </summary>
+            <param name="Value">The string that must have the added character</param>
+            <param name="Char">The character to add at the end of the string</param>
+            <remarks>If the character already exists at the end of the string, 
+            the original string is returned</remarks>
+            <returns>The string with the character added to the end of it</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.IncludeLeadingChar(System.String,System.Char)">
+            <summary>
+            Includes a character at the beginning of a string if the character doesn't already exist
+            </summary>
+            <param name="Value">The string that must have the added character</param>
+            <param name="Char">The character to add at the end of the string</param>
+            <remarks>If the character already exists at the end of the string, 
+            the original string is returned</remarks>
+            <returns>The string with the character added to the end of it</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.CaseInsensitiveCompare(System.String,System.String)">
+            <summary>
+            Compares two strings and determines if they're equal, ignoring case
+            </summary>
+            <param name="A">First string to compare</param>
+            <param name="B">Second string to compare</param>
+            <remarks>Will use the current culture's settings for the compare</remarks>
+            <returns><code>true</code> if the strings are equal, <code>false</code> if not equal</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.CaseSensitiveCompare(System.String,System.String)">
+            <summary>
+            Compares two strings and determines if they're equal
+            </summary>
+            <param name="A">First string to compare</param>
+            <param name="B">Second string to compare</param>
+            <remarks>Will use the current culture's settings for the compare</remarks>
+            <returns><code>true</code> if the strings are equal, <code>false</code> if not equal</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Load(System.String,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Loads a file and executes the specified transforms, then encoding it as a string
+            </summary>
+            <param name="FileName">The path to the file</param>
+            <param name="Transform">A list of transforms to apply in order when reading the file</param>
+            <exception cref="T:System.IO.FileNotFoundException">The file specified in path was not found.</exception>
+            <returns>The file data after the transforms have been applied and convert to a string
+            using the current culture's settings</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Load(System.String,System.Text.Encoding,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Loads a file and executes the specified transforms, then encoding it as a string
+            </summary>
+            <param name="FileName">The path to the file</param>
+            <param name="Encoding">The encoding to use when transforming it to a string</param>
+            <param name="Transform">A list of transforms to apply in order when reading the file</param>
+            <exception cref="T:System.IO.FileNotFoundException">The file specified in path was not found.</exception>
+            <returns>The file data after the transforms have been applied and convert to a string
+            using the current culture's settings</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Save(System.String,System.String,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Decodes the string to bytes, applies the list of transforms specified and saves to a file path
+            </summary>
+            <param name="FileName">The path to save the file to</param>
+            <param name="Data">The string to save</param>
+            <param name="Transform">A list of transforms to apply in order</param>
+            <remarks>If the file already exists, it will be overwritten</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Save(System.String,System.String,System.Text.Encoding,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Decodes the string to bytes, applies the list of transforms specified and saves to a file path
+            </summary>
+            <param name="FileName">The path to save the file to</param>
+            <param name="Data">The string to save</param>
+            <param name="Encoding">The encoding to use when decoding the string</param>
+            <param name="Transform">A list of transforms to apply in order</param>
+            <remarks>If the file already exists, it will be overwritten</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ToByteArray(System.String)">
+            <summary>
+            Decodes a string to a byte array using the default encoding
+            </summary>
+            <param name="Data">The string to decode</param>
+            <returns>The byte array of the decoded string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ToByteArray(System.String,System.Text.Encoding)">
+            <summary>
+            Decodes string to a byte array using the default encoding
+            </summary>
+            <param name="Data">The string to decode</param>
+            <param name="Encoding">The encoding to use to decode the string</param>
+            <returns>The byte array of the decoded string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Transform(System.String,System.Text.Encoding,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Transforms a string using the list of transforms specified
+            </summary>
+            <param name="Data">The string to transforms</param>
+            <param name="Encoding">The encoding to use when encoding/decoding the string before/after transformations</param>
+            <param name="Transform">A list of transforms to apply in order</param>
+            <returns>The transformed string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Transform(System.String,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Transforms a string using the list of transforms specified using the default encoding
+            </summary>
+            <param name="Data">The string to transforms</param>
+            <param name="Transform">A list of transforms to apply in order</param>
+            <remarks>Uses <see cref="P:System.Text.Encoding.Default"/> to encode/decode the string before/after transformations</remarks>
+            <returns>The transformed string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.FromStream(System.IO.Stream)">
+            <summary>
+            Converts a string from the specified stream
+            </summary>
+            <param name="Stream">The stream to convert</param>
+            <returns>The converted string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.FromStream(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Converts a string from the specified stream using the specified encoding
+            </summary>
+            <param name="Stream">The stream to convert</param>
+            <param name="Encoding">The encoding to use when converting</param>
+            <returns>The converted string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ToStream(System.String,System.IO.Stream)">
+            <summary>
+            Writes a string out to a stream
+            </summary>
+            <param name="Data">The string to write out</param>
+            <param name="Stream">The stream to write to</param>
+            <remarks>Uses <see cref="P:System.Text.Encoding.Default"/> to obtain the encoding</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ToStream(System.String,System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Writes a string out to a stream
+            </summary>
+            <param name="Data">The string to write out</param>
+            <param name="Stream">The stream to write to</param>
+            <param name="Encoding">The encoding to use when writing out the stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.IsQuoted(System.String)">
+            <summary>
+            Determines whether a string is quoted using double quotation marks (")
+            </summary>
+            <param name="Data">The string to examine</param>
+            <returns><code>true</code> if the string is quoted, <code>false</code> if it is not quoted</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.IsQuoted(System.String,System.Char)">
+            <summary>
+            Determines whether a string is quoted using double quotation marks (")
+            </summary>
+            <param name="Data">The string to examine</param>
+            <param name="QuoteChar">The quote character to check for</param>
+            <returns><code>true</code> if the string is quoted, <code>false</code> if it is not quoted</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.UnQuote(System.String)">
+            <summary>
+            Removes double quotes (") from a string if the string is quoted
+            </summary>
+            <param name="Data">The string to remove quotes from</param>
+            <remarks>If the string is not quoted, the original string is returned. Both sides of the 
+            string must be quoted in order for them to be removed</remarks>
+            <returns>The string without the quotes</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.UnQuote(System.String,System.Char)">
+            <summary>
+            Removes quotes from a quoted string
+            </summary>
+            <param name="Data">The string to remove quotes from</param>
+            <param name="QuoteChar">The type of quote to remove</param>
+            <remarks>If the string is not quoted, the original string is returned. Both sides of the 
+            string must be quoted in order for them to be removed</remarks>
+            <returns>The string without the quotes</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Quote(System.String)">
+            <summary>
+            Quotes a string with the double quotes (")
+            </summary>
+            <param name="Data">The string to quote</param>
+            <remarks>If the string is already quoted, the original string is returned</remarks>
+            <returns>The quote string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Quote(System.String,System.Char)">
+            <summary>
+            Quotes a string with the specified quote character
+            </summary>
+            <param name="Data">The string to quote</param>
+            <param name="QuoteChar">The quote character to use</param>
+            <remarks>If the string is already quoted, the original string is returned</remarks>
+            <returns>The quote string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.RepairCarriages(System.String)">
+            <summary>
+            Repairs strings with incorrect newline characters by replacing it with the windows
+             standard CR (<code>char</code> 13) and LF (<code>char</code> 11)
+            </summary>
+            <param name="Data">The string to repair</param>
+            <remarks>This method uses three passes to ensure the string is repaired correctly
+            1. Replace all CR+LF character cominbations with CR
+            2. Replace all LF characters with CR
+            3. Replace all CR characters with the CR+LF combination</remarks>
+            <returns>The repaired string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.CropAt(System.String,System.Int32)">
+            <summary>
+            Will crop a string to a maximum length and apply ellipsis as a suffix
+            </summary>
+            <param name="Data">The string to crop</param>
+            <param name="MaxLength">The maximum length wanted</param>
+            <remarks>If the maximum length is longer than the string, the original string is returned
+             with a suffix. The suffix will not be applied to the string if it would cause the string
+             to exceed its maximum length</remarks>
+            <returns>The cropped string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.CropAt(System.String,System.Int32,System.String)">
+            <summary>
+            Will crop a string to a maximum length and apply a suffix
+            </summary>
+            <param name="Data">The string to crop</param>
+            <param name="MaxLength">The maximum length wanted</param>
+            <param name="Suffix">The suffix to apply</param>
+            <remarks>If the maximum length is longer than the string, the original string is returned
+             with a suffix. The suffix will not be applied to the string if it would cause the string
+             to exceed its maximum length</remarks>
+            <returns>The cropped string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Range(System.Char,System.Char)">
+            <summary>
+            Returns an array of characters in a specific range
+            </summary>
+            <param name="Start">The inclusive start character</param>
+            <param name="End">The inclusive end character</param>
+            <remarks>This method only supports 2 byte unicode characters</remarks>
+            <returns>An array of characters including the start and end characters</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Merge(System.Char[][])">
+            <summary>
+            Merges multiple character arrays into one character array, removing duplicates
+            </summary>
+            <param name="Chars">The character arrays to remove to examine</param>
+            <returns>A character array will the unique characters</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.FilterChars(System.String,System.Nullable{System.Char},System.Char[][])">
+            <summary>
+            Filter's character out of a string, optionally 
+            </summary>
+            <param name="Data">The string to filter</param>
+            <param name="ReplaceChar">The character to use to replace filtered characters</param>
+            <param name="Chars">The character arrays that contain characters that must be 
+             used as filter criteria</param>
+            <remarks>If no replacement character is specified, the filtered is left out of
+             the filtered string</remarks>
+            <returns>The filtered string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ContainsChars(System.String,System.Char[][])">
+            <summary>
+            Determine whether a string contains a certain set of characters
+            </summary>
+            <param name="Data">The string to examine</param>
+            <param name="Chars">An array of character arrays of allowable characters</param>
+            <returns><code>true</code> if the string contains only the allowable characters, 
+             <code>false</code> if it contains other characters</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Occurrences(System.String,System.Char)">
+            <summary>
+            Counts the number of times a character appears in a string
+            </summary>
+            <param name="Data">The string to examine</param>
+            <param name="Value">The character to count</param>
+            <returns>The number of occurrences of the character</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Occurrences(System.String,System.String)">
+            <summary>
+            Searches a string for the number of occurrences of another string
+            </summary>
+            <param name="Data">The string to search</param>
+            <param name="Value">The string to search for</param>
+            <returns>The number of occurrences of the string to search for</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.TabCarriages(System.String)">
+            <summary>
+            Normalizes tabs in a string. This is done by repairing all broken carriage returns, removing all tabs
+            and adding a single tab to beginning of each individual line in the string
+            </summary>
+            <param name="Data">The string to normalize</param>
+            <returns>The normalized string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.TabCarriages(System.String,System.Int32)">
+            <summary>
+            Normalizes tabs in a string. This is done by repairing all broken carriage returns, removing all tabs
+            and adding a the specified amount of tabs to beginning of each individual line in the string
+            </summary>
+            <param name="Data">The string to normalize</param>
+            <param name="TabCount">The amount of tabs to add to the beginning of line</param>
+            <returns>The normalized string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.RemoveChar(System.String,System.Char)">
+            <summary>
+            Removes the specified character from a string
+            </summary>
+            <param name="Data">The string to search through looking for the specified character</param>
+            <param name="Char">The character to search for</param>
+            <returns>The string without the specified character</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.RepeatToken(System.String,System.Int32)">
+            <summary>
+            Concatenates a token with itself the specified number of times
+            </summary>
+            <param name="Token">The token to concatenate</param>
+            <param name="Count">The number of times to concatenate</param>
+            <returns>the concatenated string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.IO.TextWriter,System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Joins a collection of tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Writer">The writer where all joins are output</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.IO.TextWriter,System.Collections.Generic.IEnumerable{``0},System.String,Korbitec.Utilities.StringUtils.TokenToWriter{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Writer">The writer where all joins are output</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenWriter"/> delegate that specifies who the tokens are to be combined</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.IO.TextWriter,System.Collections.Generic.IEnumerable{``0},System.String,System.String)">
+            <summary>
+            Joins a collection of tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Writer">The writer where all joins are output</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.IO.TextWriter,System.Collections.Generic.IEnumerable{``0},System.String,System.String,Korbitec.Utilities.StringUtils.TokenToWriter{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Writer">The writer where all joins are output</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenWriter"/> delegate that specifies who the tokens are to be combined</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Joins a collection of tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Builder">The string builder where output is written</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.String,Korbitec.Utilities.StringUtils.TokenToBuilder{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Builder">The string builder where output is written</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenToBuilder"/> delegate that specifies who the tokens are to be combined</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.String,System.String)">
+            <summary>
+            Joins a collection of tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Builder">The string builder where output is written</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.String,System.String,Korbitec.Utilities.StringUtils.TokenToBuilder{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Builder">The string builder where output is written</param>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenToBuilder"/> delegate that specifies who the tokens are to be combined</param>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Joins a collection of tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <returns>A string that contains the joined tokens</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Collections.Generic.IEnumerable{``0},System.String,Korbitec.Utilities.StringUtils.TokenToBuilder{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenToBuilder"/> delegate that specifies who the tokens are to be combined</param>
+            <returns>A string that contains the joined tokens</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String)">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+            <returns>A string that contains the joined tokens</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.JoinTokens``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,Korbitec.Utilities.StringUtils.TokenToBuilder{``0})">
+            <summary>
+            Joins a collection of tokens, specifying a delegate that contains the logic of how to join the tokens
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Tokens">The collection of typed objects</param>
+            <param name="Separator">The separator to use between tokens</param>
+            <param name="FinalSeparator">The final separator to apply at the end of the join</param>
+            <param name="Append">A <see cref="T:Korbitec.Utilities.StringUtils.TokenToBuilder"/> delegate that specifies who the tokens are to be combined</param>
+            <returns>A string that contains the joined tokens</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.ByteCountToString(System.Int64,Korbitec.Utilities.StringUtils.ByteCountSuffixType)">
+            <summary>
+            Converts a count of bytes into a human readable string.
+            </summary>
+            <param name="byteCount">The number of bytes.</param>
+            <param name="suffixType">The output format that the function must use.</param>
+            <returns>A human readable string representation of a measurment of data size.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Right(System.String,System.Int32)">
+            <summary>
+            Returns a substring starting at the right.
+            </summary>
+            <param name="value">The source string.</param>
+            <param name="length">The number of characters.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.Left(System.String,System.Int32)">
+            <summary>
+            Returns a substring starting at the left.
+            </summary>
+            <param name="value">The source string.</param>
+            <param name="length">The number of characters.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.SameText(System.String,System.String)">
+            <summary>
+            Compares two strings using case insensitive ordinal comparison.
+            </summary>
+            <param name="value1">First value to compare.</param>
+            <param name="value2">Second value to compare.</param>
+            <returns>True if the strings are the same.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.StringUtils.WrapAt(System.String,System.Int32)">
+            <summary>
+            Wraps a block of text.
+            </summary>
+            <param name="Text">The text to wrap.</param>
+            <param name="MaxLength">The maximum length of the text lines.</param>
+            <returns>A wrapped block of text.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.StringUtils.TokenToWriter`1">
+            <summary>
+            Represents the method that writes out the collection of tokens and is used by <see cref="T:Korbitec.Utilities.StringUtils.JoinTokens"/>
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Writer">The writer to output to</param>
+            <param name="Token">The token to join</param>
+        </member>
+        <member name="T:Korbitec.Utilities.StringUtils.TokenToBuilder`1">
+            <summary>
+            Represents the method that writes out the collection of tokens and is used by <see cref="T:Korbitec.Utilities.StringUtils.JoinTokens"/>
+            </summary>
+            <typeparam name="TokenType">A type that defines the objects in the collection</typeparam>
+            <param name="Builder">The string builder where output is written</param>
+            <param name="Token">The token to join</param>
+        </member>
+        <member name="T:Korbitec.Utilities.StringUtils.ByteCountSuffixType">
+            <summary>
+            Enumeration to specify the format that the ByteCountToString returns data in
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.ByteCountSuffixType.Full">
+            <summary>
+            The full name of the data unit.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.StringUtils.ByteCountSuffixType.Abbreviation">
+            <summary>
+            The abbreviated name of the data unit.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.CaseInsensitiveComparer">
+            <summary>
+            Compares two objects for equivalence, ignoring the case of strings.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseInsensitiveComparer.Compare(System.String,System.String)">
+            <summary>
+            Performs a case-insensitive comparison of two objects of the same type and returns a value indicating whether one is less than, equal to, or greater than the other.  
+            </summary>
+            <param name="x">The first object to compare.</param>
+            <param name="y">The second object to compare.</param>
+            <returns> Return values
+              <list type="table">
+                <listheader>
+                  <term>Value</term>
+                  <description>Condition</description>
+                </listheader>
+                <item>
+                  <term>Less than zero</term>
+                  <description>a is less than b, with casing ignored.</description>
+                </item>
+                <item>
+                  <term>Zero</term>
+                  <description>a equals b, with casing ignored.</description>
+                </item>
+                </list>
+                  <item>
+                    <term>Greater than zero </term>
+                    <description>a is greater than b, with casing ignored.</description>
+                </item>
+            </returns>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseInsensitiveComparer.Equals(System.String,System.String)">
+            <summary>
+            Determines whether the specified objects are equal.  
+            </summary>
+            <param name="x">The first string to compare.</param>
+            <param name="y">The second string to compare.</param>
+            <returns><code>true</code> if the specified objects are equal; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseInsensitiveComparer.GetHashCode(System.String)">
+            <summary>
+            Returns a hash code for the specified object. 
+            </summary>
+            <param name="obj">The <see cref="T:System.String"/> for which a hash code is to be returned.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Korbitec.Utilities.CaseSensitiveComparer">
+            <summary>
+            Compares two objects for equivalence, taking the case of the strings into account
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseSensitiveComparer.Compare(System.String,System.String)">
+            <summary>
+            Performs a case-sensitive comparison of two objects of the same type and returns a value indicating whether one is less than, equal to, or greater than the other.  
+            </summary>
+            <param name="x">The first object to compare.</param>
+            <param name="y">The second object to compare.</param>
+            <returns> Return values
+              <list type="table">
+                <listheader>
+                  <term>Value</term>
+                  <description>Condition</description>
+                </listheader>
+                <item>
+                  <term>Less than zero</term>
+                  <description>a is less than b, with casing ignored.</description>
+                </item>
+                <item>
+                  <term>Zero</term>
+                  <description>a equals b, with casing ignored.</description>
+                </item>
+                </list>
+                  <item>
+                    <term>Greater than zero </term>
+                    <description>a is greater than b, with casing ignored.</description>
+                </item>
+            </returns>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseSensitiveComparer.Equals(System.String,System.String)">
+            <summary>
+            Determines whether the specified objects are equal.  
+            </summary>
+            <param name="x">The first string to compare.</param>
+            <param name="y">The second string to compare.</param>
+            <returns><code>true</code> if the specified objects are equal; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.CaseSensitiveComparer.GetHashCode(System.String)">
+            <summary>
+            Returns a hash code for the specified object. 
+            </summary>
+            <param name="obj">The <see cref="T:System.String"/> for which a hash code is to be returned.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Korbitec.Utilities.EventRaisingCollection`1.Add(`0)">
+            <summary>
+            Adds the specified item to the collection.
+            </summary>
+            <param name="item">The item to be added.</param>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.ItemAdded">
+            <summary>
+            Fires whenever an item is added to the collection.
+            </summary>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.ItemInserted">
+            <summary>
+            Fires whenever an item is inserted into the collection
+            </summary>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.ItemRemoved">
+            <summary>
+            Fires whenever an item is removed from the collection.
+            </summary>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.ItemSet">
+            <summary>
+            Fires whenever an item in the collection is set.
+            </summary>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.CollectionCleared">
+            <summary>
+            Fired whenever the collection is cleared.
+            </summary>
+        </member>
+        <member name="E:Korbitec.Utilities.EventRaisingCollection`1.CollectionChanged">
+            <summary>
+            Fired whenever the items in the collection change.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.MailUtils">
+            <summary>
+            Provides utility functions for simple operations on email addressess
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.MailUtils.RepairEMailAddress(System.String)">
+            <summary>
+            Removes whitespace between email addresses and replaces semi-colons with commas
+            </summary>
+            <param name="address">A semi-colon or comma separated list of email addresses</param>
+            <returns>A comma separated list of email addresses without whitespace</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.MailUtils.ValidEMailAddress(System.String)">
+            <summary>
+            Detects invalid email addresses in a string using a heuristic algorithm
+            </summary>
+            <param name="address">The email address to validate</param>
+            <remarks>This function will accept a comma separated list and evaluate each email address</remarks>
+            <returns><c>true</c> if all email addresses are valid, <c>false</c> if a single email address is invalid</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.MailUtils.OpenMailUsingMailtoSyntax(System.String[],System.String[],System.String[],System.String,System.String)">
+            <summary>
+            Uses the mailto protocol to start an e-mail message using the default mail client
+            </summary>
+            <param name="to">An array of e-mail addresses</param>
+            <param name="cc">An array of carbon copy e-mail addresses</param>
+            <param name="bcc">An array of blind carbon copy e-mail addresses</param>
+            <param name="subject">The message subject</param>
+            <param name="body">The message body</param>
+        </member>
+        <member name="T:Korbitec.Utilities.Fraction">
+            <summary>
+            Used for storing a fractional value in its original form
+            to avoid the rounding errors that would have occured if it
+            were stored as a decimal value.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.Fraction.#ctor(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Used to create a new instance of a fractional value by specifying the
+            whole portion, numerator portion and denominator portion.
+            </summary>
+            <param name="wholePart">The whole portion of the fractional value.</param>
+            <param name="numerator">The numerator portion of the fractional value.</param>
+            <param name="denominator">The denominator portion of the fractional value.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.Fraction.ToString">
+            <summary>
+            Displays the underlying fractional value as text.
+            </summary>
+            <returns>A string representation of the underlying
+            fractional value. For example: "1.5" = "1 1/2".</returns>
+        </member>
+        <member name="F:Korbitec.Utilities.Fraction.WholePart">
+            <summary>
+            The whole portion of the underlying fractional value.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.Fraction.Numerator">
+            <summary>
+            The numerator portion of the underlying fractional value.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.Fraction.Denominator">
+            <summary>
+            The denominator portion of the underlying fractional value.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.Fraction.Equals(System.Object)">
+            <summary>
+            Determines whether the specified System.Object is equal to the
+            current Korbitec.Utilities.MathUtils.Fraction.
+            </summary>
+            <param name="obj">The System.Object to compare with the current
+            Korbitec.Utilities.MathUtils.Fraction.</param>
+            <returns>true if the specified System.Object is equal to the current
+            Korbitec.Utilities.MathUtils.Fraction; otherwise, false.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.Fraction.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            System.Object.GetHashCode() is suitable for use in hashing
+            algorithms and data structures like a hash table.
+            </summary>
+            <returns>A hash code for the current
+            Korbitec.Utilities.MathUtils.Fraction.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.MathUtils">
+            <summary>
+            Provides methods for arbitrary mathematical manipulations.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.MathUtils.NumberToFraction(System.Decimal,System.Int32,System.Boolean)">
+            <summary>
+            Converts an incoming real number (decimal) to its fractional representation.
+            Covers well known "recurring-decimal" fractions (with denominators: 3,6,7,9,
+            11,12,13,14,15,17,18 or 19), with an accuracy specified by the
+            "decimalPlacesAccuracy" parameter.
+            </summary>
+            <param name="number">The real number to be converted to a fraction.</param>
+            <param name="decimalPlacesAccuracy">The number of decimal places to round to.</param>
+            <param name="isExact">Whether or not the incoming real number is exact.</param>
+            <returns>A <see cref="T:Korbitec.Utilities.Fraction"/> struct representing the resulting fraction.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If the <paramref name="decimalPlacesAccuracy"/>
+            parameter is less than 0 or greater than 28.</exception>
+            <exception cref="T:System.ArithmeticException">If the incoming number cannot be represented as
+            a fraction. This can happen if the incoming number is not a well known "recurring-decimal"
+            fraction, or is exact and has more than 18 decimal places.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.MathUtils.TruncateDecimal(System.Decimal,System.Int32)">
+            <summary>
+            Truncates a decimal value at the specified number of decimal places.
+            </summary>
+            <param name="value">The decimal value to truncate.</param>
+            <param name="decimalPlaces">The number of decimal places to keep.</param>
+            <returns>A truncated decimal value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If
+            <paramref name="decimalPlaces"/> is greater than 28.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.MathUtils.TruncateAtDigit(System.Decimal,System.Int32)">
+            <summary>
+            Truncates a decimal value at the specified digit. (1-based and
+            positive for integral and negative for fractional)
+            </summary>
+            <param name="value">The decimal value to truncate.</param>
+            <param name="digit">The place at which to truncate.</param>
+            <returns>A truncated decimal value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If the
+            <paramref name="digit"/> is less than -28 or greater than 29.</exception>
+        </member>
+        <member name="T:Korbitec.Utilities.Language">
+            <summary>
+            Used by <see cref="T:Korbitec.Utilities.LanguageUtils"/> for specifying which language to convert into.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.Language.English">
+            <summary>
+            Represents the Language "English"
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.Language.Afrikaans">
+            <summary>
+            Represents the Language "Afrikaans"
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.CurrencyNameOption">
+            <summary>
+            Used by <see cref="T:Korbitec.Utilities.LanguageUtils"/> for specifying whether to use Rand or Rands.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.CurrencyNameOption.Singular">
+            <summary>
+            Represents "Rand"
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.CurrencyNameOption.Plural">
+            <summary>
+            Represents "Rands"
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.LanguageUtils">
+            <summary>
+            Provides methods for converting numerical values to
+            their words representations in various languages.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.LanguageUtils.NumberToWords(System.Decimal,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.LanguageUtils.CurrencyToWords(System.Decimal,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter. Additionaly,
+            it includes the names of the currency denominations. Rounds incoming number
+            to two decimal places.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.LanguageUtils.CurrencyToWords(System.Decimal,Korbitec.Utilities.Language,Korbitec.Utilities.CurrencyNameOption)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter. Additionaly,
+            it includes the names of the currency denominations. Rounds incoming number
+            to two decimal places.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <param name="option">Whether or not the currency name will be pluralised.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.LanguageUtils.RankingToWords(System.Int64,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming positive whole number between 1 and 999999999999 represented as decimal
+            digits to the words representation of it as a "ranking" (ie. First, Second, Third, etc.),
+            in the language specified by the <paramref name="language"/> parameter.
+            </summary>
+            <param name="ranking">The whole number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation (as a "rank" ie. First, Second,
+            Third, etc.) of the whole number passed in.</returns>
+            <remarks>Can only handle numbers between 1 and 999999999999. Can only handle English and
+            Afrikaans languages.</remarks>
+            <exception cref="T:System.ArgumentException">If <paramref name="ranking"/> is negative.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="ranking"/> is less than
+            1 or greater than 999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.LanguageUtils.FractionToWords(Korbitec.Utilities.Fraction,Korbitec.Utilities.Language)">
+            <summary>
+            Converts a fractional value to its words representation in the language specified by the
+            <paramref name="language"/> parameter.
+            See Incident 19906 for more information.
+            </summary>
+            <param name="fraction">The fractional value to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the fractional value passed in.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If any part of the underlying fractional value
+            of <paramref name="fraction"/> is greater than 999999999999, or if the whole part of the underlying
+            fractional value of <paramref name="fraction"/> is less than -999999999999.</exception>
+        </member>
+        <member name="T:Korbitec.Utilities.LanguageUtils.ZACultures">
+            <summary>
+            Provides a type-safe way to get all the South African Cultures 
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.English">
+            <summary>
+            The culture representing English.
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.Afrikaans">
+            <summary>
+            The culture representing Afrikaans.
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.Zulu">
+            <summary>
+            The culture representing Zulu.
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.Xhosa">
+            <summary>
+            The culture representing Xhosa.
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.Tswana">
+            <summary>
+            The culture representing Tswana.
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.LanguageUtils.ZACultures.NorthernSotho">
+            <summary>
+            The culture representing Northern Sotho.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.NumbersToWordsConverter">
+            <summary>
+            Provides methods to convert incoming decimal number system values (integers and real numbers)
+            into their words representation in different languages. Caters for numbers in the range of
+            -999999999999.9999999999999999999999999999 and 999999999999.9999999999999999999999999999.
+            Can also handle RSA currency.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.NumbersToWordsConverter.NumberToWords(System.Decimal,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.NumbersToWordsConverter.CurrencyToWords(System.Decimal,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter. Additionaly,
+            it includes the names of the currency denominations. Rounds incoming number
+            to two decimal places.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.NumbersToWordsConverter.CurrencyToWords(System.Decimal,Korbitec.Utilities.Language,Korbitec.Utilities.CurrencyNameOption)">
+            <summary>
+            Converts an incoming real number between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999 represented as decimal digits to the
+            words representation of it (with the first letter of every word capitalised),
+            in the language specified by the <paramref name="language"/> parameter. Additionaly,
+            it includes the names of the currency denominations. Rounds incoming number
+            to two decimal places.
+            </summary>
+            <param name="number">The real number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <param name="option">Whether or not the currency name will be pluralised.</param>
+            <returns>A string containing the words representation of the real number passed in.</returns>
+            <remarks>Can only handle numbers between -999999999999.9999999999999999999999999999
+            and 999999999999.9999999999999999999999999999. Can only handle English and Afrikaans
+            languages.</remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="number"/>
+            is less than -999999999999.9999999999999999999999999999 or greater than
+            999999999999.9999999999999999999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.NumbersToWordsConverter.RankingToWords(System.Int64,Korbitec.Utilities.Language)">
+            <summary>
+            Converts an incoming positive whole number between 1 and 999999999999 represented as decimal
+            digits to the words representation of it as a "ranking" (ie. First, Second, Third, etc.),
+            in the language specified by the <paramref name="language"/> parameter.
+            </summary>
+            <param name="ranking">The whole number to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation (as a "rank" ie. First, Second,
+            Third, etc.) of the whole number passed in.</returns>
+            <remarks>Can only handle numbers between 1 and 999999999999. Can only handle English and
+            Afrikaans languages.</remarks>
+            <exception cref="T:System.ArgumentException">If <paramref name="ranking"/> is negative.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="ranking"/> is less than
+            1 or greater than 999999999999.</exception>
+        </member>
+        <member name="M:Korbitec.Utilities.NumbersToWordsConverter.FractionToWords(Korbitec.Utilities.Fraction,Korbitec.Utilities.Language)">
+            <summary>
+            Converts a fractional value to its words representation in the language specified by the
+            <paramref name="language"/> parameter.
+            See Incident 19906 for more information.
+            </summary>
+            <param name="fraction">The fractional value to be converted to words.</param>
+            <param name="language">The <see cref="T:Korbitec.Utilities.Language"/> to output.</param>
+            <returns>A string containing the words representation of the fractional value passed in.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">If any part of the underlying fractional value
+            of <paramref name="fraction"/> is greater than 999999999999, or if the whole part of the underlying
+            fractional value of <paramref name="fraction"/> is less than -999999999999.</exception>
+        </member>
+        <member name="T:Korbitec.Utilities.NumbersToWordsConverter.DecimalSeparatorNames">
+            <summary>
+            Used in <see cref="T:Korbitec.Utilities.NumbersToWordsConverter.LanguageData"/> to specify the
+            names of the different types of decimal separators.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.NumbersToWordsConverter.CurrencyNames">
+            <summary>
+            Used in <see cref="T:Korbitec.Utilities.NumbersToWordsConverter.LanguageData"/> to specify the
+            names of the different types of currency denominations.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.NumbersToWordsConverter.BinaryOrder">
+            <summary>
+            Used in <see cref="T:Korbitec.Utilities.NumbersToWordsConverter.LanguageData"/> to specify the
+            order of the "tens" and "units" words as in: "Twenty One"
+            or "Een en Twintig".
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.NumbersToWordsConverter.LanguageData">
+            <summary>
+            Used to hold all the hard-coded language-specific data.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.CompareList`2">
+            <summary>
+            Compares two lists, removing duplicate items and placing them in a separate list
+            </summary>
+            <typeparam name="TKey">The type to use for the key</typeparam>
+            <typeparam name="TValue">The type to use for the value</typeparam>
+        </member>
+        <member name="M:Korbitec.Utilities.CompareList`2.Compare">
+            <summary>
+            Performs a comparison on two lists, removing duplicated items and placing them a duplicate list.
+            </summary>
+            <remarks>If both lists contain the same key but with different values, the left value is 
+            used when its placed in the duplicate list.</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.CompareList`2.Reset">
+            <summary>
+            Clears all the lists of items and allows anothe comparison
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.CompareList`2.BothList">
+            <summary>
+            Contains all the duplicated items after a compare
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.CompareList`2.RightList">
+            <summary>
+            Contains all the items for the right list. After a compare is performed, it contains only the unique items
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.CompareList`2.LeftList">
+            <summary>
+            Contains all the items for the left list. After a compare is performed, it contains only the unique items
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.QuickSortCompare`1">
+            <summary>
+            A delegate that when called must compare items for the quicksort algorithm.
+            </summary>
+            <typeparam name="T">The type of the data structure that is to be sorted.</typeparam>
+            <param name="data">The instance of data that is to be sorted.</param>
+            <param name="dataL">The left index for the item to compare.</param>
+            <param name="dataR">The right index for the item to compare.</param>
+            <returns>An integer representing the result of the comparison.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.QuickSortExchange`1">
+            <summary>
+            A delegate that when called must exchange items for the quicksort algorithm.
+            </summary>
+            <typeparam name="T">The type of the data structure that is to be sorted.</typeparam>
+            <param name="data">The instance of data that is to be sorted.</param>
+            <param name="dataL">The left index for the item to exchange.</param>
+            <param name="dataR">The right index for the item to exchange.</param>
+        </member>
+        <member name="T:Korbitec.Utilities.QuickSortCompare">
+            <summary>
+            A delegate that when called must compare items for the quicksort algorithm.
+            </summary>    
+            <param name="dataL">The left index for the item to compare.</param>
+            <param name="dataR">The right index for the item to compare.</param>
+            <returns>An integer representing the result of the comparison.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.QuickSortExchange">
+            <summary>
+            A delegate that when called must exchange items for the quicksort algorithm.
+            </summary>    
+            <param name="dataL">The left index for the item to exchange.</param>
+            <param name="dataR">The right index for the item to exchange.</param>
+        </member>
+        <member name="T:Korbitec.Utilities.SortUtils">
+            <summary>
+            Miscelaneous sorting utillities
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.SortUtils.QuickSort``1(``0,System.Int32,Korbitec.Utilities.QuickSortCompare{``0},Korbitec.Utilities.QuickSortExchange{``0})">
+            <summary>
+            Quicksort the supplied data structure.
+            </summary>
+            <typeparam name="T">The type of the data structure that is to be sorted.</typeparam>
+            <param name="data">The instance of data that is to be sorted.</param>
+            <param name="count">The number of items in the data structure.</param>
+            <param name="compare">A delegate that when called must compare items for the quicksort algorithm.</param>
+            <param name="exchange">A delegate that when called must exchange items for the quicksort algorithm.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.SortUtils.QuickSort(System.Int32,Korbitec.Utilities.QuickSortCompare,Korbitec.Utilities.QuickSortExchange)">
+            <summary>
+            Quicksort the supplied data structure.
+            </summary>               
+            <param name="count">The number of items in the data structure.</param>
+            <param name="compare">A delegate that when called must compare items for the quicksort algorithm.</param>
+            <param name="exchange">A delegate that when called must exchange items for the quicksort algorithm.</param>
+        </member>
+        <member name="T:Korbitec.Utilities.XmlUtils">
+            <summary>
+            Provides some convenience functions for working with xml
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.XmlUtils.XML_SCHEMA_NAMESPACE">
+            <summary>
+            The XML Schema namespace
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.XmlUtils.GetTargetNamespace(System.String)">
+            <summary>
+            Returns the target namespace of the xsd
+            </summary>
+            <param name="Xsd">The xsd as a string</param>
+            <returns>The target namespace of the xsd</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.XmlUtils.GetTargetNamespace(System.Xml.XmlDocument)">
+            <summary>
+            Returns the target namespace of the xsd
+            </summary>
+            <param name="Xsd">The xsd as a xml document</param>
+            <returns>The target namespace of the xsd</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.ExtList`1">
+            <summary>
+            Extends List to provide operator overloads
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Korbitec.Utilities.ExtList`1.op_Addition(Korbitec.Utilities.ExtList{`0},`0)">
+            <summary>
+            Overload for adding an item to the list
+            </summary>
+            <param name="List">The list to add the item to</param>
+            <param name="Item">The item to add</param>
+            <returns>The list with the item added</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ExtList`1.op_Subtraction(Korbitec.Utilities.ExtList{`0},`0)">
+            <summary>
+            Overload for removing an item to the list
+            </summary>
+            <param name="List">The list to remove the item from</param>
+            <param name="Item">The item to remove</param>
+            <returns>The list with the item removed</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ExtList`1.op_Addition(Korbitec.Utilities.ExtList{`0},Korbitec.Utilities.ExtList{`0})">
+            <summary>
+            Overload for adding items to the list
+            </summary>
+            <param name="List">The list to add the item to</param>
+            <param name="Item">The items to add</param>
+            <returns>The list with the item added</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ExtList`1.op_Subtraction(Korbitec.Utilities.ExtList{`0},Korbitec.Utilities.ExtList{`0})">
+            <summary>
+            Overload for removing an item to the list
+            </summary>
+            <param name="List">The list to remove the item from</param>
+            <param name="Item">The item to remove</param>
+            <returns>The list with the item removed</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.ToSoap(System.Object)">
+            <summary>
+            Serializes an object using the <see cref="T:System.Runtime.Serialization.Formatters.Soap.SoapFormatter"/>.
+            </summary>
+            <param name="obj">The object to serialize</param>
+            <returns>A serialized version of the object, in SOAP format.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.FromSoap(System.String)">
+            <summary>
+            Deserializes an object using the <see cref="T:System.Runtime.Serialization.Formatters.Soap.SoapFormatter"/>.
+            </summary>				
+            <param name="xml">A serialized version of the object, in SOAP format</param>
+            <returns>The object, deserialized from the XML string</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.ToXml(System.Object)">
+            <summary>
+            Serializes an object using XML Serialization, and includes an XML Wrapper that captures the type of the serialized object
+            for use when deserializing.  If the serialized object's type is not included in the serialized XML, the serialized type
+            must be known when deserializing.
+            </summary>
+            <param name="obj">The object to serialize using XML Serialization.</param>
+            <returns>An XML Serialized version of <paramref name="obj"/> including a wrapper that captures the object's type.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.ToXml(System.Object,System.Boolean)">
+            <summary>
+            Serializes an object using XML Serialization, and optionally includes an XML Wrapper that captures the type of the serialized object
+            for use when deserializing.  If the serialized object's type is not included in the serialized XML, the serialized type
+            must be known when deserializing.
+            </summary>
+            <param name="obj">The object to serialize using XML Serialization.</param>
+            <param name="wrapper"><c>true</c> to include the wrapper.</param>
+            <returns>An XML Serialized version of <paramref name="obj"/> optionally including a wrapper that captures the object's type.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.FromXml(System.String)">
+            <summary>
+            Deserializes an object that was serialized using XML Serialization, and that included a wrapper that recorded the object type.
+            Therefore, it is not necessary to specify the type in cases where objects that were serialized using <see cref="M:Korbitec.Utilities.SerializationUtils.ToXml(System.Object)"/>
+            </summary>
+            <param name="xml">The serialized XML, including the wrapper that specifies the object type</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.FromXml(System.String,System.Type)">
+            <summary>
+            Deserializes an object that was serialized using XML Serialization. If <paramref name="type"/> is <c>null</c>
+            the <paramref name="xml"/> is expected to include a wrapper that recorded the object type, otherwise the supplied
+            <paramref name="type"/> is used.
+            Therefore, it is necessary to specify the <paramref name="type"/> in cases where objects that were not serialized using <see cref="M:Korbitec.Utilities.SerializationUtils.ToXml(System.Object)"/>
+            </summary>
+            <param name="xml">The serialized XML, possibly including the wrapper that specifies the object type.</param>
+            <param name="type"><c>null</c> if the <paramref name="xml"/> contains the object wrapper, otherwise 
+            specify the type to which to deserialize.</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.FromXml(System.String,Korbitec.Utilities.ResolveTypeFromName)">
+            <summary>
+            Deserializes an object that was serialized using XML Serialization. If <paramref name="type"/> is <c>null</c>
+            the <paramref name="xml"/> is expected to include a wrapper that recorded the object type, otherwise the supplied
+            <paramref name="type"/> is used.
+            Therefore, it is necessary to specify the <paramref name="type"/> in cases where objects that were not serialized using <see cref="M:Korbitec.Utilities.SerializationUtils.ToXml(System.Object)"/>
+            </summary>
+            <param name="xml">The serialized XML, possibly including the wrapper that specifies the object type.</param>
+            <param name="resolve">A delegate that can resolve the name of the object if it cannot be determined.</param>
+            <returns>The deserialized object</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.ToBytes(System.Object)">
+            <summary>
+            Serializes <paramref name="obj"/> using Binary serialization.  This uses the <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter"/>
+            </summary>
+            <param name="obj">The object to serialize.</param>
+            <returns>the binary serialized <paramref name="obj"/>.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.SerializationUtils.FromBytes(System.Byte[])">
+            <summary> 
+            Deserializes <paramref name="obj"/> using Binary serialization.  This uses the <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter"/>
+            </summary>
+            <param name="data">The binary serialized object</param>
+            <returns>the deserialized object</returns>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmHeight">
+            <summary>Specifies the height (ascent + descent) of characters</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmAscent">
+            <summary>Specifies the ascent (units above the base line) of characters</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmDescent">
+            <summary>Specifies the descent (units below the base line) of characters</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmInternalLeading">
+            <summary>Specifies the amount of leading (space) inside the bounds set by the tmHeight member</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmExternalLeading">
+            <summary>Specifies the amount of extra leading (space) that the application adds between rows</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmAveCharWidth">
+            <summary>Specifies the average width of characters in the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmMaxCharWidth">
+            <summary>Specifies the width of the widest character in the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmWeight">
+            <summary>Specifies the weight of the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmOverhang">
+            <summary>Specifies the extra width per string that may be added to some synthesized fonts</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmDigitizedAspectX">
+            <summary>Specifies the horizontal aspect of the device for which the font was designed</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmDigitizedAspectY">
+            <summary>Specifies the vertical aspect of the device for which the font was designed</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmFirstChar">
+            <summary>Specifies the value of the first character defined in the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmLastChar">
+            <summary>Specifies the value of the last character defined in the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmDefaultChar">
+            <summary>Specifies the value of the character to be substituted for characters not in the font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmBreakChar">
+            <summary>Specifies the value of the character that will be used to define word breaks for text justification</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmItalic">
+            <summary>Specifies an italic font if it is nonzero</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmUnderlined">
+            <summary>Specifies an underlined font if it is nonzero</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmStruckOut">
+            <summary>Specifies a strikeout font if it is nonzero</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmPitchAndFamily">
+            <summary>Specifies information about the pitch, the technology, and the family of a physical font</summary>
+        </member>
+        <member name="F:Korbitec.Utilities.PaintUtils.TEXTMETRIC.tmCharSet">
+            <summary>Specifies the character set of the font</summary>
+        </member>
+        <member name="T:Korbitec.Utilities.KeyboardUtils">
+            <summary>
+            A set of keyboard utilities.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.TypeCache">
+            <summary>
+            Keeps a cache of types that have been loaded by a specific name
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.TypeCache.FindType(System.String)">
+            <summary>
+            Finds a type using it's type name and returns it
+            </summary>
+            <param name="typeName">The fully qualified type name to look for.</param>
+            <remarks>If the type is found, it is cached making subsequent calls faster</remarks>
+            <returns>The type object that represents the type, <c>null</c> if the type could not be found</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.TypeCache.GetType(System.String)">
+            <summary>
+            Gets a type using it's type name
+            </summary>
+            <param name="typeName">The type name to look for</param>
+            <exception cref="T:System.Exception">Thrown when a type is not found</exception>
+            <returns>the type object that represents the type</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.ShowResults">
+            <summary>
+            An enumeration that specifies how to display the output
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ShowResults.MessageBox">
+            <summary>
+            Displays a windows form message box with the output
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ShowResults.Console">
+            <summary>
+            Displays the output to the Console
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ShowResults.Trace">
+            <summary>
+            Outputs the result to trace listeners
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.CodeDelegate">
+            <summary>
+            The delgate that is used to run the code for comparison
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.DebuggingUtils">
+            <summary>
+            Contains functions for debugging purposes
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.DebuggingUtils.TimeCode(Korbitec.Utilities.CodeDelegate[])">
+            <summary>
+            Time multiple segments of code when testing the execution time of certain segments of code using 1 iteration 
+            and showing the results in a message box
+            </summary>
+            <param name="code">An array of delegates that point to the functions to be timed</param>
+            <remarks>Code is executed once before the test to make sure that if any caching/jiting needs to take place
+            it is done before the test</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.DebuggingUtils.TimeCode(Korbitec.Utilities.ShowResults,Korbitec.Utilities.CodeDelegate[])">
+            <summary>
+            Time multiple segments of code when testing the execution time of certain segments of code using 1 iteration
+            </summary>
+            <param name="results">Specifies how to display the output</param>
+            <param name="code">An array of delegates that point to the functions to be timed</param>
+            <remarks>Code is executed once before the test to make sure that if any caching/jiting needs to take place
+            it is done before the test</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.DebuggingUtils.TimeCode(System.Int32,Korbitec.Utilities.CodeDelegate[])">
+            <summary>
+            Time multiple segments of code when testing the execution time of certain segments of code and displays the results
+            in a message box
+            </summary>
+            <param name="iterations">The amount of iterations to use for timing</param>
+            <param name="code">An array of delegates that point to the functions to be timed</param>
+            <remarks>Code is executed once before the test to make sure that if any caching/jiting needs to take place
+            it is done before the test</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.DebuggingUtils.TimeCode(Korbitec.Utilities.ShowResults,System.Int32,Korbitec.Utilities.CodeDelegate[])">
+            <summary>
+            Time multiple segments of code when testing the execution time of certain segments of code
+            </summary>
+            <param name="results">Specifies how to display the output</param>
+            <param name="iterations">The amount of iterations to use for timing</param>
+            <param name="code">An array of delegates that point to the functions to be timed</param>
+            <remarks>Code is executed once before the test to make sure that if any caching/jiting needs to take place
+            it is done before the test</remarks>
+        </member>
+        <member name="T:Korbitec.Utilities.NetworkUtils">
+            <summary>
+            Detects whether a specific port on a host is open
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.NetworkUtils.TestConnection(System.String,System.Int32)">
+            <summary>
+            Detects whether a specific port on a host is open
+            </summary>
+            <param name="hostname">The host name of the machine to connect to</param>
+            <param name="port">The port on the machine to connect to</param>
+            <returns><c>true</c> if the connection could be established, <c>false</c> if it couldn't connect or there was an error</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.IISUtils">
+            <summary>
+            Provides utilities for setting properties on IIS through Active Directory
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.IISUtils.SetAnonymousAccess(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Sets anonymous access permissions on an IIS folder
+            </summary>
+            <param name="Server">The name of the machine that is running IIS</param>
+            <param name="Site">The website name</param>
+            <param name="Directory">The directory to set the permission</param>
+            <param name="AnonymousAccess">A <c>boolean</c> value indicating whether to enable anonymous access or not</param>
+        </member>
+        <member name="M:Korbitec.Utilities.IISUtils.AddDefaultDocument(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Adds a default document to an IIS folder
+            </summary>
+            <param name="Server">The name of the machine that is running IIS</param>
+            <param name="Site">The website name</param>
+            <param name="Directory">The directory to set the permission</param>
+            <param name="DefaultDocument">Sets the first default document option on a IIS folder</param>
+        </member>
+        <member name="T:Korbitec.Utilities.VSUtils">
+            <summary>
+            Visual Studio Utillities
+            </summary>
+        </member>
+        <member name="P:Korbitec.Utilities.VSUtils.DesignMode">
+            <summary>
+            Determines whether the current appdomain is hosted in visual studio.
+            </summary>        
+        </member>
+        <member name="T:Korbitec.Utilities.ByteArrayUtils">
+            <summary>
+            A container class for utility methods for dealing with byte arrays
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ByteArrayUtils.BUFFER_SIZE">
+            <summary>
+            The size of the buffer to use when dealing with byte arrays
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Compare(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Compares two byte arrays and determines if their contents are equal
+            </summary>
+            <param name="Source">The source byte array</param>
+            <param name="Target">The target byte array</param>
+            <param name="StartIndex">The starting index of both arrays</param>
+            <param name="Count">The length to examine</param>
+            <returns><code>true</code>if both arrays contents are equal to one another, <code>false</code> if they are not</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Compare(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Compares two byte arrays and determines if their contents are equal
+            </summary>
+            <param name="Source">The source byte array</param>
+            <param name="Target">The target byte array</param>
+            <param name="Count">The length to examine</param>
+            <returns><code>true</code>if both arrays contents are equal to one another, <code>false</code> if they are not</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Compare(System.Byte[],System.Byte[])">
+            <summary>
+            Compares two byte arrays and determines if their contents are equal
+            </summary>
+            <param name="Source">The source byte array</param>
+            <param name="Target">The target byte array</param>
+            <returns><code>true</code>if both arrays contents are equal to one another, <code>false</code> if they are not</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Copy(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Copies a range of elements in one byte array to another byte
+            </summary>
+            <param name="Source">The byte array that contains the data to copy.</param>
+            <param name="SourceIndex">A 32-bit integer that represents the index in the source byte array at which copying begins.</param>
+            <param name="Target">The byte array that receives the data.</param>
+            <param name="TargetIndex">A 32-bit integer that represents the index in the destination byte array at which storing begins.</param>
+            <param name="Count">A 32-bit integer that represents the number of elements to copy.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Copy(System.Byte[],System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Copies a range of elements in one byte array to another byte
+            </summary>
+            <param name="Source">The byte array that contains the data to copy.</param>
+            <param name="SourceIndex">A 32-bit integer that represents the index in the source byte array at which copying begins.</param>
+            <param name="Target">The byte array that receives the data.</param>
+            <param name="TargetIndex">A 32-bit integer that represents the index in the destination byte array at which storing begins.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Clone(System.Byte[],System.Byte[])">
+            <summary>
+            Clones an entire array to the target
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Length is less than zero.</exception>
+            <param name="Source">The source of byte array to copy from</param>
+            <param name="Target">The target byte array to copy to</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Slice(System.Byte[],System.Int32)">
+            <summary>
+            Returns part of a byte array
+            </summary>
+            <param name="Source">The source byte array</param>
+            <param name="StartIndex">The index to start from in the source array</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Length is less than zero.</exception>
+            <remarks>This creates a new array and copies a section of bytes from the source array into the new array</remarks>
+            <returns>The slice of the source array</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Slice(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Returns part of a byte array
+            </summary>
+            <param name="Source">The source byte array</param>
+            <param name="StartIndex">The index to start from in the source array</param>
+            <param name="Length">The amount of bytes to slice from the source array </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Length is less than zero.</exception>
+            <remarks>This creates a new array and copies a section of bytes from the source array into the new array</remarks>
+            <returns>The slice of the source array</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.ToString(System.Byte[])">
+            <summary>
+            Converts a byte array to a string in the <see cref="P:System.Text.Encoding.Default"/> encoding
+            </summary>
+            <param name="Data">The byte array to convert</param>
+            <returns>The string represented by the bytes</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.ToString(System.Byte[],System.Text.Encoding)">
+            <summary>
+            Converts a byte array to string in a specific encoding
+            </summary>
+            <param name="Data">The byte array to convert</param>
+            <param name="Encoding">The encoding to use in the conversion</param>
+            <returns>The string represented by the bytes</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Transform(System.Byte[],Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Transforms a set of bytes from one format to another
+            </summary>
+            <param name="Data">The bytes to transform</param>
+            <param name="Transform">An array of transforms to perform on the bytes</param>
+            <returns>The transformed array of bytes</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Load(System.String,Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Performs transforms on file while reading it in
+            </summary>
+            <param name="FilePath">The full path to the file to read in</param>
+            <param name="Transform">An array of transforms to apply</param>
+            <returns>A byte array after the transforms have been applied</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Save(System.String,System.Byte[],Korbitec.Utilities.DataTransformType[])">
+            <summary>
+            Performs transforms on a byte array while saving it to a file
+            </summary>
+            <param name="FilePath">The full path to the file to save to</param>
+            <param name="Data">The byte array to save</param>
+            <param name="Transform">An array of transforms to apply to the data as it is being saved</param>
+            <remarks>If the file already exists, it will be overwritten</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.ByteArrayUtils.Random(System.Int32)">
+            <summary>
+            Creates a new random byte array.
+            </summary>
+            <param name="size">The size of the array to be returned.</param>
+            <returns>A new random byte array.</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.ResourceUtils">
+            <summary>
+            Provides functions for retrieving resources from an assembly
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.#ctor">
+            <summary>
+            Instantiates a <see cref="T:Korbitec.Utilities.ResourceUtils"/> object using the calling assembly as the resource container
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Instantiates a <see cref="T:Korbitec.Utilities.ResourceUtils"/> object using the specified assembly as the resource container
+            </summary>
+            <param name="assembly"></param>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.SaveFromResource(System.String,System.String)">
+            <summary>
+            Obtains a resource from an assembly and saves it to a file
+            </summary>
+            <param name="ResourcePath">The resource url</param>
+            <param name="FileName">The full path where to save the file</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.SaveFromResource(System.String,System.String,Korbitec.Utilities.DataTransformType)">
+            <summary>
+            Obtains a resource from an assembly, applying a transform while saving it as a file
+            </summary>
+            <param name="ResourcePath">The resource url</param>
+            <param name="FilePath">The full path where to save the file</param>
+            <param name="TransformType">The transform to apply</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResource(System.String)">
+            <summary>
+            Obtains a resource from an assembly and returns it as a byte array
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <returns>A byte array representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResource(System.String,Korbitec.Utilities.DataTransformType)">
+            <summary>
+            Obtains an embedded resource from an assembly, applies a transform and returns it as a byte array
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <param name="TransformType">The transform to apply during retrieval</param>
+            <returns>A byte array representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceStream(System.String)">
+            <summary>
+            Obtains an embedded resource from an assembly, applies a transform and returns it as a memory stream
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <returns>A memory stream representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceStream(System.String,Korbitec.Utilities.DataTransformType)">
+            <summary>
+            Obtains an embedded resource from an assembly, applies a transform and returns it as a memory stream
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <param name="TransformType">The transform to apply during retrieval</param>
+            <returns>A memory stream representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceString(System.String)">
+            <summary>
+            Obtains an embedded resource from an assembly and returns it as a string using the default encoding
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <returns>A string representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceString(System.String,Korbitec.Utilities.DataTransformType)">
+            <summary>
+            Obtains an embedded resource from an assembly, applies a transform and returns it as a string using the default encoding
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <param name="TransformType">The transform to apply during retrieval</param>
+            <returns>A string representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceString(System.String,System.Text.Encoding)">
+            <summary>
+            Obtains an embedded resource from an assembly and returns it as a string using the specified encoding
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <param name="Encoding">The encoding to use</param>
+            <returns>A string representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.GetResourceString(System.String,Korbitec.Utilities.DataTransformType,System.Text.Encoding)">
+            <summary>
+            Obtains an embedded resource from an assembly, applies a transform and returns it as a string using the specified encoding
+            </summary>
+            <param name="ResourcePath">The path to the resource</param>
+            <param name="TransformType">The transform to apply during retrieval</param>
+            <param name="Encoding">The encoding to use</param>
+            <returns>A string representing the embedded resource</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.ResourceUtils.ResourceList(System.String)">
+            <summary>
+            Obtains a filtered list of embedded resources paths and returns it as a dictionary
+            </summary>
+            <param name="FolderName">The folder to filter the resources by</param>
+            <returns>A dictionary of embedded resource paths with the key as the name, and the value as the full path</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.BaseEncoding">
+            <summary>
+            A container class for utility methods for converting to and from various other base encodings
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase16(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Encodes a stream as a base 16
+            </summary>
+            <param name="From">The stream to convert</param>
+            <param name="To">The stream to output the base 16 stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase16(Korbitec.Utilities.IByteIndexer,System.IO.Stream)">
+            <summary>
+            Encodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            as a base 16
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/></param>
+            <param name="To">The stream to output the base 16 stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase16(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Decodes a base 16 encoded stream
+            </summary>
+            <param name="From">The base 16 encoded stream</param>
+            <param name="To">The stream to output the decoded stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase16(Korbitec.Utilities.IByteIndexer,System.IO.Stream)">
+            <summary>
+            Decodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            which is base 16 encoded
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/>
+            and is base 16 encoded</param>
+            <param name="To">The stream to output the decoded stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase32(System.IO.Stream,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base32CharacterSet)">
+            <summary>
+            Encodes a stream as base 32
+            </summary>
+            <param name="From">The stream to encode</param>
+            <param name="To">The stream to output the encoded stream</param>
+            <param name="Ascii">Chooses whether to use the ASCII table or the top half of the ANSI table</param>
+            <remarks>Base 32 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase32(Korbitec.Utilities.IByteIndexer,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base32CharacterSet)">
+            <summary>
+            Encodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            as a base 32
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/></param>
+            <param name="To">The stream to output the base 32 stream</param>
+            <param name="Ascii">Chooses whether to use the ASCII table or the top half of the ANSI table</param>
+            <remarks>Base 32 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase32(System.IO.Stream,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base32CharacterSet)">
+            <summary>
+            Decodes a base 32 encoded stream
+            </summary>
+            <param name="From">The base 32 encoded stream</param>
+            <param name="To">The stream to output the decoded stream</param>
+            <remarks>Base 32 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase32(Korbitec.Utilities.IByteIndexer,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base32CharacterSet)">
+            <summary>
+            Decodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            which is base 32 encoded
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/>
+            and is base 32 encoded</param>
+            <param name="To">The stream to output the decoded stream</param>
+            <remarks>Base 32 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase64(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Encodes a stream as base 64
+            </summary>
+            <param name="From">The stream to encode</param>
+            <param name="To">The stream to output the encoded stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase64(Korbitec.Utilities.IByteIndexer,System.IO.Stream)">
+            <summary>
+            Encodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            as a base 64
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/></param>
+            <param name="To">The stream to output the base 64 stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase64(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Decodes a base 64 encoded stream
+            </summary>
+            <param name="From">The base 64 encoded stream</param>
+            <param name="To">The stream to output the decoded stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase64(Korbitec.Utilities.IByteIndexer,System.IO.Stream)">
+            <summary>
+            Decodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            which is base 64 encoded
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/>
+            and is base 64 encoded</param>
+            <param name="To">The stream to output the decoded stream</param>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase128(System.IO.Stream,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base128CharacterSet)">
+            <summary>
+            Encodes a stream as base 128
+            </summary>
+            <param name="From">The stream to encode</param>
+            <param name="To">The stream to output the encoded stream</param>
+            <param name="Ascii">Chooses whether to use the ASCII table or the top half of the ANSI table</param>
+            <remarks>Base 128 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.ToBase128(Korbitec.Utilities.IByteIndexer,System.IO.Stream,Korbitec.Utilities.BaseEncoding.Base128CharacterSet)">
+            <summary>
+            Encodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            as a base 128
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/></param>
+            <param name="To">The stream to output the base 128 stream</param>
+            <param name="Ascii">Chooses whether to use the ASCII table or the top half of the ANSI table</param>
+            <remarks>Base 128 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase128(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Decodes a base 128 encoded stream
+            </summary>
+            <param name="From">The base 128 encoded stream</param>
+            <param name="To">The stream to output the decoded stream</param>
+            <remarks>Base 128 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="M:Korbitec.Utilities.BaseEncoding.FromBase128(Korbitec.Utilities.IByteIndexer,System.IO.Stream)">
+            <summary>
+            Decodes an object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/> interface
+            which is base 128 encoded
+            </summary>
+            <param name="From">The object that implements the <see cref="T:Korbitec.Utilities.IByteIndexer"/>
+            and is base 128 encoded</param>
+            <param name="To">The stream to output the decoded stream</param>
+            <remarks>Base 128 represents the same range of bytes as ASCII</remarks>
+        </member>
+        <member name="T:Korbitec.Utilities.AssemblyUtils">
+            <summary>
+            A collection of utilites that can be used to obtain information about assemblies.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.IsLoaded(System.Reflection.AssemblyName)">
+            <summary>
+            Determines whether the assembly passed has been loaded by iterating through all the
+            assemblies that have been loaded in the execution context of the current application domain
+            </summary>
+            <param name="assemblyName">The assembly to compare</param>
+            <returns><code>true</code> if the assembly is loaded, <c>false</c> if it is not loaded</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.LoadReferencedAssemblies(System.Reflection.Assembly)">
+            <summary>
+            Attempts to load all the assembly references of an assembly
+            </summary>
+            <param name="assembly">The assembly to load</param>
+            <returns><c>true</c> if all referenced assemblies coudl be loaded, <c>false</c> if a referenced assembly failed to load </returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.GetReferencedAssemblies(System.Reflection.Assembly,System.Boolean)">
+            <summary>
+            Returns all the the assemblies referenced by an assembly
+            </summary>
+            <param name="assembly">The assembly references to obtain</param>
+            <param name="recurse">Specify whether to recursively obtain referenced assemblies</param>
+            <returns>An array of the referenced assemblies</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.ActivateObject(System.String,System.String)">
+            <summary>
+            Instantiates an object in assembly by it's type name
+            </summary>
+            <param name="AssemblyName">The assembly that contains the type</param>
+            <param name="TypeName">The type to instantiate</param>
+            <returns>The instantiated object</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.GetAllReferencedExportedTypes(System.Reflection.Assembly)">
+            <summary>
+            Enumerates all the types that are present in an assembly
+            </summary>
+            <param name="assembly">The assembly that contains all the types</param>
+            <returns>An array of all the types</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.IsReleaseAssembly(System.Reflection.Assembly)">
+            <summary>
+            Determinies if the specified assembly is compiled in release mode.
+            </summary>
+            <param name="assembly">The assembly that needs to be examinded.</param>
+            <returns>A bool value confirming the compile mode status.</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AssemblyUtils.IsDebugAssembly(System.Reflection.Assembly)">
+            <summary>
+            Determinies if the specified assembly is compiled in debug mode.
+            </summary>
+            <param name="assembly">The assembly that needs to be examinded.</param>
+            <returns>A bool value confirming the compile mode status.</returns>
+        </member>
+        <member name="P:Korbitec.Utilities.AssemblyUtils.ThisAssembly">
+             <summary>
+             Returns the <see cref="T:System.Reflection.Assembly"/> of the method that invoked the currently executing method. 
+             </summary>
+             <return>The <see cref="T:System.Reflection.Assembly"/> object of the method that invoked the currently executing method. </return>
+             <remarks>If the method that calls the GetCallingAssembly method is expanded inline by the compiler (that is, if the compiler 
+             inserts the function body into the emitted Microsoft intermediate language (MSIL), rather than emitting a function call), 
+             then the assembly returned by the GetCallingAssembly method is the assembly containing the inline code. This might be 
+             different from the assembly that contains the original method. To ensure that a method that calls the GetCallingAssembly 
+             method is not inlined by the compiler, you can apply the MethodImplAttribute attribute with MethodImplOptions.NoInlining. 
+            </remarks>
+        </member>
+        <member name="P:Korbitec.Utilities.AssemblyUtils.ThisAssemblyName">
+            <summary>
+            Returns the name of the calling assembly
+            </summary>
+            <returns>The name of the assembly as a string</returns>
+        </member>
+        <member name="T:Korbitec.Utilities.ConsoleAppWork">
+            <summary>
+            Represents the method that does the work in the console application
+            </summary>
+            <param name="Arguments">Represents the parsed command line arguments</param>
+            <remarks>If the method throws an <see cref="T:Korbitec.Utilities.ErrorCodeException"/>,
+            this will be returned to the user as an error code</remarks>
+        </member>
+        <member name="T:Korbitec.Utilities.ConsoleAppArg">
+            <summary>
+            Represents an argument required by the console application
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ConsoleAppArg.#ctor(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a structure that represents an argument required by the console application
+            </summary>
+            <param name="Name">The name of the argument to be passed through in the dictionary value of <see cref="T:Korbitec.Utilities.ConsoleAppArg"/></param>
+            <param name="ArgumentType">The type of argument expected e.g. number, string</param>
+            <param name="Description">A description of the argument used when there is an error parsing arguments</param>
+            <param name="Mandatory">Indicates whether this is a mandatory argument or not</param>
+        </member>
+        <member name="F:Korbitec.Utilities.ConsoleAppArg.Name">
+            <summary>
+            The name of the argument to be passed through in the dictionary value of <see cref="T:Korbitec.Utilities.ConsoleAppArg"/>
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ConsoleAppArg.ArgType">
+            <summary>
+            The type of argument
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ConsoleAppArg.Description">
+            <summary>
+            A description of the argument used when there is an error parsing arguments
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.ConsoleAppArg.Mandatory">
+            <summary>
+            Indicates whether this is a mandatory argument or not
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.AppUtils">
+            <summary>
+            Provides static methods for parsing the string arguments of a console application in a uniform way.
+            It also provides help screens when there's an error parsing arguments
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.ArgumentsToList(System.String[])">
+            <summary>
+            Takes the arguments from the command line application and parses them
+            </summary>
+            <param name="Args">The arguments received from the command line</param>
+            <exception cref="T:System.Exception">Will be thrown when required parameters are omitted</exception>
+            <returns>A <see cref="T:System.Collections.Generic.SortedDictionary"/> containing names/values of the arguments</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.ArgumentsToList(System.String[],System.String[])">
+            <summary>
+            Takes the arguments from the command line application and parses them
+            </summary>
+            <param name="Args">The arguments received from the command line</param>
+            <param name="RequiredParameters">A list of parameters to check for</param>
+            <exception cref="T:System.Exception">Will be thrown when required parameters are omitted</exception>
+            <returns>A <see cref="T:System.Collections.Generic.SortedDictionary"/> containing names/values of the arguments</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.RunConsoleApp(Korbitec.Utilities.ConsoleAppWork,System.String[],Korbitec.Utilities.ConsoleAppArg[])">
+            <summary>
+            Takes in parameters, parses the arguments and passes the parsed arguments to a work delegate.
+            It will also show help screens if there is an error parsing arguments
+            </summary>
+            <param name="Work">A delegate that represents the work to be performed</param>
+            <param name="Arguments">The arguments received from the command line of the application</param>
+            <param name="ArgumentDefinitions">The definition of arguments required by the application</param>
+            <returns>If a <see cref="T:Korbitec.Utilities.ErrorCodeException"/> is thrown inside
+            the <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate, the error value indicated
+            by the exception will be returned to the user. If an unhandled exception is thrown
+            a -1 is returned. If the application completes successfully, a 0 is returned</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.RunConsoleApp(Korbitec.Utilities.ConsoleAppWork,Korbitec.Utilities.ConsoleAppArg[])">
+            <summary>
+            Takes in parameters, parses the arguments and passes the parsed arguments to a work delegate.
+            It will also show help screens if there is an error parsing arguments
+            </summary>
+            <param name="Work">A delegate that represents the work to be performed</param>        
+            <param name="ArgumentDefinitions">The definition of arguments required by the application</param>
+            <returns>If a <see cref="T:Korbitec.Utilities.ErrorCodeException"/> is thrown inside
+            the <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate, the error value indicated
+            by the exception will be returned to the user. If an unhandled exception is thrown
+            a -1 is returned. If the application completes successfully, a 0 is returned</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.RunConsoleApp(System.String,System.String,Korbitec.Utilities.ConsoleAppWork,System.String[],Korbitec.Utilities.ConsoleAppArg[])">
+            <summary>
+            Takes in parameters, parses the arguments and passes the parsed arguments to a work delegate.
+            It will also show help screens if there is an error parsing arguments
+            </summary>
+            <param name="Title">The title of the application</param>
+            <param name="Description">The description of the application</param>
+            <param name="Work">A delegate that represents the work to be performed</param>
+            <param name="Arguments">The arguments received from the command line of the application</param>
+            <param name="ArgumentDefinitions">The definition of arguments required by the application</param>
+            <returns>If a <see cref="T:Korbitec.Utilities.ErrorCodeException"/> is thrown inside
+            the <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate, the error value indicated
+            by the exception will be returned to the user. If an unhandled exception is thrown
+            a -1 is returned. If the application completes successfully, a 0 is returned</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.RunConsoleApp(System.String,System.String,Korbitec.Utilities.LoggingMode,Korbitec.Utilities.ConsoleAppWork,System.String[],Korbitec.Utilities.ConsoleAppArg[])">
+            <summary>
+            Takes in parameters, parses the arguments and passes the parsed arguments to a work delegate.
+            It will also show help screens if there is an error parsing arguments
+            </summary>
+            <param name="Title">The title of the application</param>
+            <param name="Description">The description of the application</param>
+            <param name="Work">A delegate that represents the work to be performed</param>
+            <param name="Arguments">The arguments received from the command line of the application</param>
+            <param name="ArgumentDefinitions">The definition of arguments required by the application</param>
+            <returns>If a <see cref="T:Korbitec.Utilities.ErrorCodeException"/> is thrown inside
+            the <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate, the error value indicated
+            by the exception will be returned to the user. If an unhandled exception is thrown
+            a -1 is returned. If the application completes successfully, a 0 is returned</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.RunConsoleApp(System.String,System.String,Korbitec.Utilities.ConsoleAppWork,Korbitec.Utilities.ConsoleAppArg[])">
+            <summary>
+            Takes in parameters, parses the arguments and passes the parsed arguments to a work delegate.
+            It will also show help screens if there is an error parsing arguments
+            </summary>
+            <param name="Title">The title of the application</param>
+            <param name="Description">The description of the application</param>
+            <param name="Work">A delegate that represents the work to be performed</param>        
+            <param name="ArgumentDefinitions">The definition of arguments required by the application</param>
+            <returns>If a <see cref="T:Korbitec.Utilities.ErrorCodeException"/> is thrown inside
+            the <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate, the error value indicated
+            by the exception will be returned to the user. If an unhandled exception is thrown
+            a -1 is returned. If the application completes successfully, a 0 is returned</returns>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.Beep(Korbitec.Utilities.BeepType)">
+            <summary>
+            Performs a system beep.
+            </summary>
+            <param name="beepType">The type of beep to perform.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.ExecuteOrInvoke(System.Windows.Forms.Control,System.Windows.Forms.MethodInvoker)">
+            <summary>
+            Will invoke on the main thread if possible.
+            </summary>
+            <param name="control">The control that will invoke will be called on.</param>
+            <param name="methodInvoker">The delegate that will be called.</param>
+        </member>
+        <member name="M:Korbitec.Utilities.AppUtils.ParseCommandLineArgs">
+            <summary>
+            Parses command line arguments. Place in quotes if tokens contain spaces. Double quotes in a quoted string will be treated as a literal single quote.
+            </summary>
+            <returns>An array of command line arguments.</returns>
+        </member>
+        <member name="P:Korbitec.Utilities.AppUtils.CommandLineArguments">
+            <summary>
+            Dicationary containing name value pairs of command line arguments
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.BeepType">
+            <summary>
+            The type of system beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Simple">
+            <summary>
+            Simple beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Default">
+            <summary>
+            Default beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Hand">
+            <summary>
+            Hand beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Question">
+            <summary>
+            Question beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Exclamation">
+            <summary>
+            Exclamation beep.
+            </summary>
+        </member>
+        <member name="F:Korbitec.Utilities.BeepType.Asterisk">
+            <summary>
+            Asterisk beep.
+            </summary>
+        </member>
+        <member name="T:Korbitec.Utilities.ErrorCodeException">
+            <summary>
+            The exception is thrown by <see cref="T:Korbitec.Utilities.ConsoleAppWork"/> delegate.
+            This is used to return an error code to the user.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Utilities.ErrorCodeException.#ctor(System.Int32)">
+            <summary>
+            Overloaded. Initialises a new instance of the ErrorCodeException class with a
+            specified error value and an inner exception
+            </summary>
+            <param name="errorValue">The error value to return to the user</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ErrorCodeException.#ctor(System.Int32,System.Exception)">
+            <summary>
+            Overloaded. Initialises a new instance of the ErrorCodeException class with a
+            specified error value and an inner exception
+            </summary>
+            <param name="errorValue">The error value to return to the user</param>
+            <param name="innerException">The exception that caused the error</param>
+        </member>
+        <member name="M:Korbitec.Utilities.ErrorCodeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the ArgumentException class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="P:Korbitec.Utilities.ErrorCodeException.ErrorValue">
+            <summary>
+            Gets the error value to return to the user
+            </summary>
+        </member>
+    </members>
+</doc>

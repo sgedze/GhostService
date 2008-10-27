@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Korbitec.Compression</name>
+    </assembly>
+    <members>
+        <member name="T:Korbitec.Compression.ZLib.ZInputStream">
+            <summary>
+            Performs zlib compression on the input stream
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.z">
+            <summary>
+            The stream that does all the encryption
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.bufsize">
+            <summary>
+            The buffer size to use when deflating/inflating
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.flush">
+            <summary>
+            The result of the last flush operation
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.buf">
+            <summary>
+            The buffer used to use when reading a stream
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.buf1">
+            <summary>
+            A buffer that is used to read one byte at a time
+            </summary>
+        </member>
+        <member name="F:Korbitec.Compression.ZLib.ZInputStream.compress">
+            <summary>
+            A boolean value that indicates whether this is class is being used to uncompress or compress
+            </summary>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor that is used when uncompressing a stream
+            </summary>
+            <param name="in_Renamed">The stream to uncompress</param>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            Constructor that is used when compressing a stream
+            </summary>
+            <param name="in_Renamed">The stream to compress</param>
+            <param name="level">The compression level to use on the stream</param>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.Read">
+            <summary>
+            Reads a single byte from the stream
+            </summary>
+            <returns>The int value of the byte read</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads in bytes from the stream
+            </summary>
+            <param name="b">The buffer to read into</param>
+            <param name="off">The offset from the start of the buffer to starting data into</param>
+            <param name="len">The length of data to read</param>
+            <remarks>Depending on how the <code>ZInputStream</code> has been instantiated 
+            determines whether reading uncompresses or compresses</remarks>
+            <returns>A value indicating how much was read</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.skip(System.Int64)">
+            <summary>
+            Moves the position within the stream by the specified amount
+            </summary>
+            <param name="n">The number of bytes to skip</param>
+            <returns>A value indicating the number of byte sthat were skipped</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.ZInputStream.Close">
+            <summary>
+            Closes the base stream
+            </summary>
+        </member>
+        <member name="P:Korbitec.Compression.ZLib.ZInputStream.TotalIn">
+            <summary> Returns the total number of bytes input so far.</summary>
+        </member>
+        <member name="P:Korbitec.Compression.ZLib.ZInputStream.TotalOut">
+            <summary> Returns the total number of bytes output so far.</summary>
+        </member>
+        <member name="P:Korbitec.Compression.ZLib.ZOutputStream.TotalIn">
+            <summary> Returns the total number of bytes input so far.</summary>
+        </member>
+        <member name="P:Korbitec.Compression.ZLib.ZOutputStream.TotalOut">
+            <summary> Returns the total number of bytes output so far.</summary>
+        </member>
+        <member name="T:Korbitec.Compression.ZLib.SupportClass">
+            <summary>
+            Contains conversion support elements such as classes, interfaces and static methods.
+            </summary>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Identity(System.Int64)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Identity(System.UInt64)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Identity(System.Single)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Identity(System.Double)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.URShift(System.Int32,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.URShift(System.Int32,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.URShift(System.Int64,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.URShift(System.Int64,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.ReadInput(System.IO.Stream,System.Byte[],System.Int32,System.Int32)">
+            <summary>Reads a number of characters from the current source Stream and writes the data to the target array at the specified index.</summary>
+            <param name="sourceStream">The source Stream to read from.</param>
+            <param name="target">Contains the array of characteres read from the source Stream.</param>
+            <param name="start">The starting index of the target array.</param>
+            <param name="count">The maximum number of characters to read from the source Stream.</param>
+            <returns>The number of characters read. The number will be less than or equal to count depending on the data available in the source Stream. Returns -1 if the end of the stream is reached.</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.ReadInput(System.IO.TextReader,System.Byte[],System.Int32,System.Int32)">
+            <summary>Reads a number of characters from the current source TextReader and writes the data to the target array at the specified index.</summary>
+            <param name="sourceTextReader">The source TextReader to read from</param>
+            <param name="target">Contains the array of characteres read from the source TextReader.</param>
+            <param name="start">The starting index of the target array.</param>
+            <param name="count">The maximum number of characters to read from the source TextReader.</param>
+            <returns>The number of characters read. The number will be less than or equal to count depending on the data available in the source TextReader. Returns -1 if the end of the stream is reached.</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.ToByteArray(System.String)">
+            <summary>
+            Converts a string to an array of bytes
+            </summary>
+            <param name="sourceString">The string to be converted</param>
+            <returns>The new array of bytes</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.ToCharArray(System.Byte[])">
+            <summary>
+            Converts an array of bytes to an array of chars
+            </summary>
+            <param name="byteArray">The array of bytes to convert</param>
+            <returns>The new array of chars</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Serialize(System.IO.Stream,System.Object)">
+            <summary>
+            Writes an object to the specified Stream
+            </summary>
+            <param name="stream">The target Stream</param>
+            <param name="objectToSend">The object to be sent</param>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Serialize(System.IO.BinaryWriter,System.Object)">
+            <summary>
+            Writes an object to the specified BinaryWriter
+            </summary>
+            <param name="binaryWriter">The target BinaryWriter</param>
+            <param name="objectToSend">The object to be sent</param>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes an object, or an entire graph of connected objects, and returns the object intance
+            </summary>
+            <param name="binaryReader">Reader instance used to read the object</param>
+            <returns>The object instance</returns>
+        </member>
+        <member name="M:Korbitec.Compression.ZLib.SupportClass.WriteStackTrace(System.Exception,System.IO.TextWriter)">
+            <summary>
+            Writes the exception stack trace to the received stream
+            </summary>
+            <param name="throwable">Exception to obtain information from</param>
+            <param name="stream">Output sream used to write to</param>
+        </member>
+    </members>
+</doc>

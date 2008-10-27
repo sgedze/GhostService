@@ -1,0 +1,356 @@
+﻿Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService...
+Service GhostService has been successfully installed.
+Creating EventLog source GhostService in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.
+Service GhostService is being removed from the system...
+Service GhostService was successfully removed from the system.
+Attempt to stop service GhostService.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Attempt to stop service GhostService.exe.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Uninstalling assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Removing EventLog source GhostService.exe.
+Service GhostService.exe is being removed from the system...
+Service GhostService.exe was successfully removed from the system.
+Installing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
+Installing service GhostService.exe...
+Service GhostService.exe has been successfully installed.
+Creating EventLog source GhostService.exe in log Application...
+Committing assembly 'C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.exe
+   logfile = C:\working1\products\GhostService\GhostService\Assemblies\GhostService.InstallLog
