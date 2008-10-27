@@ -1,0 +1,8 @@
+\Assemblies\BackgroundCopyManager.dll
+\Assemblies\ICSharpCode.SharpZipLib.dll
+\Assemblies\Korbitec.AutoUpdate.dll
+\Assemblies\Korbitec.AutoUpdate.Bits.dll
+\Assemblies\Korbitec.AutoUpdate.ClientUpdates.dll
+\Assemblies\Korbitec.AutoUpdate.Msi.dll
+\Assemblies\Korbitec.Compression.dll
+\Assemblies\Korbitec.Utilities.dll
