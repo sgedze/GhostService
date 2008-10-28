@@ -152,13 +152,29 @@ namespace GhostService.GhostServicePlugin
             SaveToNewXML(filename);
         }
 
+        private XmlWriterSettings theXMLSettings
+        {
+            get
+            {
+
+                XmlWriterSettings settingsXML = new XmlWriterSettings();
+                settingsXML.OmitXmlDeclaration = false;
+                settingsXML.ConformanceLevel = ConformanceLevel.Auto;
+                settingsXML.CloseOutput = false;
+                settingsXML.Encoding = System.Text.Encoding.UTF8;
+                settingsXML.Indent = true;
+
+                return settingsXML;
+            }
+        }
+
         public void SaveToNewXML(string fileName)
         {
             XmlDocument doc = new XmlDocument();
 
             filename = fileName;
 
-            XmlWriter xmlWriter = XmlWriter.Create(fileName, Utilities._TheXMLSettings());
+            XmlWriter xmlWriter = XmlWriter.Create(fileName, theXMLSettings);
 
             xmlWriter.WriteStartDocument();
             xmlWriter.WriteStartElement("ApplicationUpdateDescription");

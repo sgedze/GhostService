@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ApplicationUpdateDescription, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GhostService.GhostServicePlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\GhostService.GhostServicePlugin.dll</HintPath>

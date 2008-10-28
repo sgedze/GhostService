@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUpdateDescription.cs" />
     <Compile Include="BaseEventPanelPlugin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -76,7 +75,6 @@
     <Compile Include="ThreadList.cs" />
     <Compile Include="ThreadWorker.cs" />
     <Compile Include="TraceLog.cs" />
-    <Compile Include="UpdateCheck.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="WorkItems.cs" />
   </ItemGroup>

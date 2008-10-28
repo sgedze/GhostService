@@ -5,6 +5,7 @@ using GhostService.GhostServicePlugin;
 using Korbitec.AutoUpdate.ClientUpdates;
 using System.IO;
 
+
 namespace GhostServicePluginGCUpdates
 {
     public partial class GCUpdateVPlugin : EventAutoUpdatePluginBase, IVisualPlugin
