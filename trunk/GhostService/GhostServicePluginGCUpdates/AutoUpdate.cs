@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using GhostService.GhostServicePlugin;
 using Korbitec.AutoUpdate.ClientUpdates;
 using System.IO;
-
+using System.Net;
 
 namespace GhostServicePluginGCUpdates
 {
@@ -36,7 +36,7 @@ namespace GhostServicePluginGCUpdates
         #region Properties
         private bool NotificationActive
         {
-            get { return _settings["NotificationActive"].Equals("True"); }
+            get { return _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase); }
         }
         public string DownloadPath
         {
@@ -207,12 +207,13 @@ namespace GhostServicePluginGCUpdates
                     {
                         _ghostConveyServerInstall = ghostConveyServerInstall;
                         clientNotifier.DownloadLatestUpdateAsync();
-                        _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = true;
+                        //_applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = true;
                     }
                     else
                     {
                         clientNotifier.DownloadLatestUpdate();
-                        _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = ApplyDownloadedZipUpdate(_clientNotifier, ghostConveyServerInstall);
+                        _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = 
+                            ApplyDownloadedZipUpdate(_clientNotifier, ghostConveyServerInstall);
                     }
 
                 }
@@ -262,35 +263,41 @@ namespace GhostServicePluginGCUpdates
 
             return false;
         }
-        protected void ApplyZippedUpdate(string downloadFilePath, GhostConveyServerInstall ghostConveyServerInstall)
+        protected bool ApplyZippedUpdate(string downloadFilePath, GhostConveyServerInstall ghostConveyServerInstall)
         {
             try
             {
                 ghostConveyServerInstall.ApplyZippedUpdate(downloadFilePath);
+                return true;
             }
             catch (Exception e)
-            { LogErrorToEventLog(e, "ApplyZippedUpdate"); }
+            { 
+                LogErrorToEventLog(e, "ApplyZippedUpdate");
+                return false;
+            }
         }
         private bool ApplyDownloadedZipUpdate(ClientNotifier clientNotifier, GhostConveyServerInstall ghostConveyServerInstall)
         {
+            bool success = true;
+
             if (clientNotifier.UpdateDownloaded())
             {
                 Status(string.Format("Copying update: {0}", this.Key), ghostConveyServerInstall.DbName);
 
-                if (_settings["MakeCopyOfFile"].Equals("True"))
+                if (_settings["MakeCopyOfFile"].Equals("True",StringComparison.CurrentCultureIgnoreCase))
                     MakeCopyOfDownload(clientNotifier, DownloadPath);
 
-                if (_settings["ApplyDownloadedUpdate"].Equals("True"))
+                if (_settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase))
                 {
                     Status(string.Format("Applying update: {0}", this.Key), ghostConveyServerInstall.DbName);
                     
                     foreach (string zip in AllZipFiles(clientNotifier.UpdateFilePath))
-                        ApplyZippedUpdate(zip, ghostConveyServerInstall);  //zip
+                        success = (success && ApplyZippedUpdate(zip, ghostConveyServerInstall));  //zip
                     //clientUpdater.ApplyUpdate(null);  //msi
 
                     Status(string.Format("Update applied: {0}", this.Key), ghostConveyServerInstall.DbName);
-                    
-                    return true;
+
+                    return success;
                 }
                 else
                 {
@@ -308,8 +315,8 @@ namespace GhostServicePluginGCUpdates
             //maybe later - does not seem to work now.
             _clientNotifier.UserId = ghostConveyServerInstall.GCLicenseCode;
 
-            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True"),
-                _settings["ApplyDownloadedUpdate"].Equals("True"),
+            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
+                _settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
                 ghostConveyServerInstall, _clientNotifier);
         }
         
@@ -377,9 +384,9 @@ namespace GhostServicePluginGCUpdates
             if (load)
             {
                 cbNoDLoad.Checked = _settings["DownLoadUpdate"].Equals("False");
-                cbNoApply.Checked = _settings["ApplyDownloadedUpdate"].Equals("False");
+                cbNoApply.Checked = _settings["ApplyDownloadedUpdate"].Equals("False",StringComparison.CurrentCultureIgnoreCase);
                 cbCopy.Checked = _settings["MakeCopyOfFile"].Equals("True");
-                cbGCNotify.Checked = _settings["NotificationActive"].Equals("True");
+                cbGCNotify.Checked = _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
                 tbDownloadPath.Text = _settings["MakeCopyPath"];
                 cbNoDLoad_Click(null, null);
             }
@@ -400,7 +407,10 @@ namespace GhostServicePluginGCUpdates
                 {
                     Status("Download Complete!");
                     if (windowedInstance)
-                        ApplyDownloadedZipUpdate((ClientNotifier)sender, _ghostConveyServerInstall);
+                    {
+                        if (!ApplyDownloadedZipUpdate((ClientNotifier)sender, _ghostConveyServerInstall))
+                            Status("File access problem, please see eventlog.");
+                    }
                 }
             ));
         }
@@ -440,6 +450,15 @@ namespace GhostServicePluginGCUpdates
             {
                 _clientNotifier = new ClientNotifier(this.Key, _productVersion, this.AutoUpdateServer);
                 TraceLog.Log(string.Format("Created ClientNotifier for {0}, ver {1}, to server {2}.",this.Key,_productVersion.ToString(), this.AutoUpdateServer));
+
+                if (_serverInformation.ProxySet)
+                {
+                    _clientNotifier.Proxy = Utilities.GetProxy(_serverInformation);
+                    if (_clientNotifier.Proxy == null)
+                        _clientNotifier.Proxy = WebRequest.DefaultWebProxy;
+                }
+                else
+                    TraceLog.Log("No proxy set.");
             }
 
             if ((windowedInstance) && (_clientNotifier != null))

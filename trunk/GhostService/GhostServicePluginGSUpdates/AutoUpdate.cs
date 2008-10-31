@@ -4,6 +4,7 @@ using GhostService.GhostServicePlugin;
 using Korbitec.AutoUpdate.ClientUpdates;
 using System.IO;
 using System.Threading;
+using System.Net;
 
 namespace GhostServicePluginGSUpdates
 {
@@ -174,8 +175,8 @@ namespace GhostServicePluginGSUpdates
         {
             windowedInstance = true;
             Init();
-            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True"),
-                _settings["ApplyDownloadedUpdate"].Equals("True"), _clientUpdater);
+            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
+                _settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase), _clientUpdater);
         }
 
         #endregion
@@ -204,9 +205,18 @@ namespace GhostServicePluginGSUpdates
         #region IRunnablePlugin Members
         public override void Init()
         {
-            _clientUpdater = new ClientUpdater(this.Key,this.AutoUpdateServer);            
+            _clientUpdater = new ClientUpdater(this.Key,this.AutoUpdateServer);
             TraceLog.Log(string.Format("Created ClientNotifier for {0}, to server {1}.",this.Key, this.AutoUpdateServer));
 
+            if (_serverInformation.ProxySet)
+            {
+                _clientUpdater.Proxy = Utilities.GetProxy(_serverInformation);
+                if (_clientUpdater.Proxy == null)
+                    _clientUpdater.Proxy = WebRequest.DefaultWebProxy;
+            }
+            else
+                TraceLog.Log("No proxy set.");
+            
             if (windowedInstance)
                 ClientUpdaterEvents(_clientUpdater);
         }
@@ -214,8 +224,8 @@ namespace GhostServicePluginGSUpdates
         {
             TraceLog.Log(String.Concat(this.Name, " Start ", DateTime.Now.ToString()));
 
-            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True"),
-                _settings["ApplyDownloadedUpdate"].Equals("True"), _clientUpdater);
+            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
+                _settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase), _clientUpdater);
             
             /*Status("Waiting to apply update: " + this.Key);
             TraceLog.Log("Starting phase1 now");

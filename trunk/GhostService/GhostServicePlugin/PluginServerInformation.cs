@@ -96,6 +96,90 @@ namespace GhostService.GhostServicePlugin
             set
             { _settings["StartupDelay"] = value.ToString(); }
         }
+        public bool UseDefaultProxySettings
+        {
+            get
+            {
+                return _settings["UseDefaultProxySettings"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            set
+            {
+                _settings["UseDefaultProxySettings"] = value.ToString();
+            }
+        }
+        public bool ProxySet
+        {
+            get
+            {
+                return _settings["ProxySet"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            set
+            {
+                _settings["ProxySet"] = value.ToString();
+            }
+        }
+        public string ProxyServer
+        {
+            get
+            {
+                return _settings["ProxyServer"];
+            }
+
+            set
+            {
+                _settings["ProxyServer"] = value;
+            }
+        }
+        public string ProxyPort
+        {
+            get
+            {
+                return _settings["ProxyPort"];
+            }
+
+            set
+            {
+                _settings["ProxyPort"] = value;
+            }
+        }
+        public string ProxyUserName
+        {
+            get
+            {
+                return _settings["ProxyUserName"];
+            }
+
+            set
+            {
+                _settings["ProxyUserName"] = value;
+            }
+        }
+        public string ProxyPassword
+        {
+            get
+            {                
+                return _settings["ProxyPassword"];
+            }
+
+            set
+            {
+                _settings["ProxyPassword"] = value;
+            }
+        }
+        public string ProxyDomain
+        {
+            get
+            {
+                return _settings["ProxyDomain"];
+            }
+
+            set
+            {
+                _settings["ProxyDomain"] = value;
+            }
+        }
 
         #endregion 
 
@@ -126,10 +210,28 @@ namespace GhostService.GhostServicePlugin
                 _settings.Add("StartupDelay", "3");
 
             if (!_settings.ContainsKey("AutoUpdateWaitForServiceMax"))
-                _settings.Add("AutoUpdateWaitForServiceMax", Utilities.MAX_MIN_WAIT_UPDATE.ToString());    
+                _settings.Add("AutoUpdateWaitForServiceMax", Utilities.MAX_MIN_WAIT_UPDATE.ToString());
+
+            if (!_settings.ContainsKey("ProxySet"))
+                _settings.Add("ProxySet", "True");
             
-            /*if (!_settings.ContainsKey("AutoUpateWaitForTypesOtherThan"))
-                _settings.Add("AutoUpateWaitForTypesOtherThan", "GSUpdateVPlugin");*/
+            if (!_settings.ContainsKey("UseDefaultProxySettings"))
+                _settings.Add("UseDefaultProxySettings", "True");
+
+            if (!_settings.ContainsKey("ProxyServer"))
+                _settings.Add("ProxyServer", "");
+
+            if (!_settings.ContainsKey("ProxyPort"))
+                _settings.Add("ProxyPort", "");
+       
+            if (!_settings.ContainsKey("ProxyUserName"))
+                _settings.Add("ProxyUserName", "");
+
+            if (!_settings.ContainsKey("ProxyPassword"))
+                _settings.Add("ProxyPassword", "");
+
+            if (!_settings.ContainsKey("ProxyDomain"))
+                _settings.Add("ProxyDomain", "");
         }
 
         #endregion
@@ -160,7 +262,10 @@ namespace GhostService.GhostServicePlugin
 
             foreach (string s in _settings.Keys)
             {
-                xmlWriter.WriteElementString(s, _settings[s]);
+                if (s.Equals("proxypassword",StringComparison.CurrentCultureIgnoreCase))
+                    xmlWriter.WriteElementString(s, string.Concat("@@",Utilities.Encrypt(_settings[s])));
+                else                    
+                    xmlWriter.WriteElementString(s, _settings[s]);
             }
 
             xmlWriter.WriteEndElement();
@@ -195,7 +300,16 @@ namespace GhostService.GhostServicePlugin
                     {
                         foreach (XmlNode innerNode in node.ChildNodes)
                         {
-                            _settings.Add(innerNode.Name, node[innerNode.Name].InnerText);
+                            if (innerNode.Name.Equals("proxypassword", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                if (node[innerNode.Name].InnerText.StartsWith("@@"))
+                                    _settings.Add(innerNode.Name, Utilities.Decrypt(node[innerNode.Name].InnerText.Substring(2)));
+                                else
+                                    _settings.Add(innerNode.Name, node[innerNode.Name].InnerText);
+                                    
+                            }
+                            else
+                                _settings.Add(innerNode.Name, node[innerNode.Name].InnerText);
                         }
                     }
                 }

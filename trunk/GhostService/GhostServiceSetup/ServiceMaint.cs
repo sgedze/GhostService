@@ -6,6 +6,7 @@ using System.IO;
 using System.Xml;
 using System.Diagnostics;
 using System.Drawing;
+using System.Net;
 
 namespace GhostService
 {
@@ -21,6 +22,8 @@ namespace GhostService
             this._serverInformation = psi;
             SetTraceFile(psi.TraceFileName);
             SetStartupDelay(psi.StartupDelay);
+            SetUseDefaultProxySettings(psi.ProxySet, psi.UseDefaultProxySettings);
+            SetProxySettings(psi.ProxyUserName, psi.ProxyPassword, psi.ProxyDomain, psi.ProxyServer, psi.ProxyPort);           
             elGhostService.Source = Utilities.SERVICE_NAME;
             this.Text = "Service Manager";
             SetupTraceView();
@@ -99,12 +102,12 @@ namespace GhostService
             btnReset.Enabled = Start;
         }
 
-        public void SetTraceFile(string FileName)
+        private void SetTraceFile(string fileName)
         {
-            edtTraceFile.Text = FileName;
-            _serverInformation.TraceFileName = FileName;
+            edtTraceFile.Text = fileName;
+            _serverInformation.TraceFileName = fileName;
             _serverInformation.SaveToSameXML();
-            _pickUpTraceFile = !string.IsNullOrEmpty(FileName);
+            _pickUpTraceFile = !string.IsNullOrEmpty(fileName);
             if (_pickUpTraceFile)
             {
                 try
@@ -121,13 +124,13 @@ namespace GhostService
             }
         }
 
-        public void SetStartupDelay(string Delay)
+        private void SetStartupDelay(string delay)
         {
-            _restartService = !_serverInformation.StartupDelay.Equals(Delay);
+            _restartService = !_serverInformation.StartupDelay.Equals(delay);
 
             try
             {
-                nudDelay.Value = Convert.ToInt16(Delay);
+                nudDelay.Value = Convert.ToInt16(delay);
             }
             catch
             {
@@ -136,6 +139,39 @@ namespace GhostService
             
             _serverInformation.StartupDelay = nudDelay.Value.ToString();
             _serverInformation.SaveToSameXML();
+        }
+
+        private void SetUseDefaultProxySettings(bool proxySet, bool useDefault)
+        {
+            _serverInformation.ProxySet = proxySet;
+            cbSetProxy.Checked = proxySet;
+            _serverInformation.UseDefaultProxySettings = (useDefault && proxySet);
+            cbDefault.Checked = (useDefault && proxySet);
+            _serverInformation.SaveToSameXML();
+            cbDefault.Enabled = proxySet;
+            gbManual.Enabled = (!(useDefault && proxySet));
+            gbProxyUser.Enabled = (!(useDefault && proxySet));
+        }
+
+        private void ProxySettingsChanged()
+        {
+            SetProxySettings(tbProxyUser.Text,tbProxyPass.Text,tbProxyDomain.Text,tbProxyServer.Text,tbProxyPort.Text);
+        }
+        private void SetProxySettings(string user, string password, string domain, string proxyserver, string proxyport)
+        {
+            _serverInformation.ProxyUserName = user;
+            _serverInformation.ProxyPassword = password;
+            _serverInformation.ProxyDomain = domain;
+            _serverInformation.ProxyServer = proxyserver;
+            _serverInformation.ProxyPort = proxyport;
+
+            tbProxyDomain.Text = domain;
+            tbProxyPass.Text = password;
+            tbProxyPort.Text = proxyport;
+            tbProxyServer.Text = proxyserver;
+            tbProxyUser.Text = user;
+                        
+            _serverInformation.SaveToSameXML();            
         }
 
         private void PromptRestartService()
@@ -232,57 +268,7 @@ namespace GhostService
             lvThreads.Columns.Add("Thread State", 100, HorizontalAlignment.Left);
             lvThreads.View = View.Details;
         }
-
-        #region events 
-        private void btnStopTrace_Click(object sender, EventArgs e)
-        {
-            SetTraceFile("");
-            PromptRestartService();
-        }
-        private void ServiceMaint_Load(object sender, EventArgs e)
-        {
-            scGS.ServiceName = Utilities.SERVICE_NAME;
-            Activated(sender, e);
-        }
-        private void RefreshTimer_Tick(object sender, EventArgs e)
-        {
-            RefreshStatus();
-        }
-        private void btnBrowse_Click(object sender, EventArgs e)
-        {
-            if (sfdTraceFile.ShowDialog() == DialogResult.OK)
-            {
-                SetTraceFile(sfdTraceFile.FileName);
-                PromptRestartService();
-            }
-        }
-        private void sfwTraceFile_Changed(object sender, System.IO.FileSystemEventArgs e)
-        {
-            //reload last section
-            string filename = string.Concat(_serverInformation.TraceFileName, ".xml");
-            if (File.Exists(filename))
-            {
-                FillView(filename);
-            }            
-        }
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-            scGS.Stop();
-        }
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            scGS.Start();
-            _restartService = false;
-        }
-        private void btnRestart_Click(object sender, EventArgs e)
-        {
-        }
-        private void nudDelay_Leave(object sender, EventArgs e)
-        {
-            SetStartupDelay(nudDelay.Value.ToString());
-        }
-        #endregion 
-
+        
         public override void Activated(object sender, EventArgs e)
         {
             RefreshTimer.Start();
@@ -350,16 +336,73 @@ namespace GhostService
                     col.Width = -2;
             }
         }
-
+                
+        #region events
+        private void btnStopTrace_Click(object sender, EventArgs e)
+        {
+            SetTraceFile("");
+            PromptRestartService();
+        }
+        private void ServiceMaint_Load(object sender, EventArgs e)
+        {
+            scGS.ServiceName = Utilities.SERVICE_NAME;
+            Activated(sender, e);
+        }
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            RefreshStatus();
+        }
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if (sfdTraceFile.ShowDialog() == DialogResult.OK)
+            {
+                SetTraceFile(sfdTraceFile.FileName);
+                PromptRestartService();
+            }
+        }
+        private void sfwTraceFile_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+            //reload last section
+            string filename = string.Concat(_serverInformation.TraceFileName, ".xml");
+            if (File.Exists(filename))
+            {
+                FillView(filename);
+            }
+        }
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            scGS.Stop();
+        }
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            scGS.Start();
+            _restartService = false;
+        }
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+        }
+        private void nudDelay_Leave(object sender, EventArgs e)
+        {
+            SetStartupDelay(nudDelay.Value.ToString());
+        }
+        private void cbDefault_Click(object sender, EventArgs e)
+        {
+            SetUseDefaultProxySettings(cbSetProxy.Checked, cbDefault.Checked);
+            PromptRestartService();
+        }
+        private void tbProxyServer_TextChanged(object sender, EventArgs e)
+        {
+            ProxySettingsChanged();
+        }
         private void tpAppEvents_Enter(object sender, EventArgs e)
         {
             if (lvEvents.Items.Count < 1)
                 ReadEventLogAndDisplay();
         }
-
         private void btnEventsRefresh_Click(object sender, EventArgs e)
         {
             ReadEventLogAndDisplay();
-        }         
+        }
+        #endregion 
     }
 }

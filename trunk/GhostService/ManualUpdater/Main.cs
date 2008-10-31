@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Korbitec.AutoUpdate.ClientUpdates;
+using System.Net;
 
 namespace ManualUpdater
 {
@@ -24,6 +25,7 @@ namespace ManualUpdater
             {
                 Status("Creating connection");
                 _clientUpdater = new ClientUpdater(tbProduct.Text, tbURL.Text);
+                _clientUpdater.Proxy = WebRequest.DefaultWebProxy;
 
                 Status("Checking for update");
                 if (_clientUpdater.UpdateAvailable())

@@ -142,7 +142,7 @@ namespace GhostService.GhostServicePlugin
                     {
                         _processed.Clear();
                         foreach (XmlNode innerNode in node.ChildNodes)
-                            _processed.Add(innerNode.Name, node[innerNode.Name].InnerText.Equals("True"));
+                            _processed.Add(innerNode.Name, node[innerNode.Name].InnerText.Equals("True",StringComparison.CurrentCultureIgnoreCase));
                     }
                 }
         }

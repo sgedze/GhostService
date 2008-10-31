@@ -7,10 +7,10 @@
     <ROW Property="BannerBitmap" Value="AI_RES_default_banner.bmp" Type="1"/>
     <ROW Property="DialogBitmap" Value="AI_RES_default_dialog.bmp" Type="1"/>
     <ROW Property="Manufacturer" Value="Korbitec" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1033:{4E53239A-9F6B-468D-BF81-52D12BAD40AD} "/>
+    <ROW Property="ProductCode" Value="1033:{DAC29252-0ABF-4205-AC45-6F52D590298E} "/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="GhostService" ValueLocId="*"/>
-    <ROW Property="ProductVersion" Value="0.5.11.0"/>
+    <ROW Property="ProductVersion" Value="0.5.16.0"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AC5AED54-D6AC-4BAF-AAFB-EBC3FA9EA40B}"/>
     <ROW Property="WindowsFamily9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

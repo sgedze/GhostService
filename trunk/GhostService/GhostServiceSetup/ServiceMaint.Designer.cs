@@ -61,9 +61,11 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lvWork = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lvThreads = new System.Windows.Forms.ListView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -76,11 +78,24 @@
             this.lvEvents = new System.Windows.Forms.ListView();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnEventsRefresh = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbSetProxy = new System.Windows.Forms.CheckBox();
+            this.gbProxyUser = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbProxyDomain = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbProxyPass = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbProxyUser = new System.Windows.Forms.TextBox();
+            this.gbManual = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbProxyPort = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbProxyServer = new System.Windows.Forms.TextBox();
+            this.cbDefault = new System.Windows.Forms.CheckBox();
             this.elGhostService = new System.Diagnostics.EventLog();
             this.dataSet1 = new System.Data.DataSet();
             this.dataSet2 = new System.Data.DataSet();
-            this.lvWork = new System.Windows.Forms.ListView();
-            this.lvThreads = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.sfwTraceFile)).BeginInit();
             this.panel1.SuspendLayout();
             this.tpPluginOptions.SuspendLayout();
@@ -103,6 +118,9 @@
             this.tpAppEvents.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.gbProxyUser.SuspendLayout();
+            this.gbManual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elGhostService)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).BeginInit();
@@ -137,6 +155,7 @@
             this.tpPluginOptions.Controls.Add(this.tabPage3);
             this.tpPluginOptions.Controls.Add(this.tabPage1);
             this.tpPluginOptions.Controls.Add(this.tpAppEvents);
+            this.tpPluginOptions.Controls.Add(this.tabPage2);
             this.tpPluginOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tpPluginOptions.Location = new System.Drawing.Point(0, 0);
             this.tpPluginOptions.Name = "tpPluginOptions";
@@ -435,6 +454,15 @@
             this.panel5.Size = new System.Drawing.Size(601, 165);
             this.panel5.TabIndex = 2;
             // 
+            // lvWork
+            // 
+            this.lvWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvWork.Location = new System.Drawing.Point(0, 0);
+            this.lvWork.Name = "lvWork";
+            this.lvWork.Size = new System.Drawing.Size(601, 165);
+            this.lvWork.TabIndex = 1;
+            this.lvWork.UseCompatibleStateImageBehavior = false;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label4);
@@ -461,6 +489,15 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(601, 187);
             this.panel6.TabIndex = 3;
+            // 
+            // lvThreads
+            // 
+            this.lvThreads.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvThreads.Location = new System.Drawing.Point(0, 0);
+            this.lvThreads.Name = "lvThreads";
+            this.lvThreads.Size = new System.Drawing.Size(601, 187);
+            this.lvThreads.TabIndex = 2;
+            this.lvThreads.UseCompatibleStateImageBehavior = false;
             // 
             // panel4
             // 
@@ -578,6 +615,157 @@
             this.btnEventsRefresh.UseVisualStyleBackColor = true;
             this.btnEventsRefresh.Click += new System.EventHandler(this.btnEventsRefresh_Click);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.cbSetProxy);
+            this.tabPage2.Controls.Add(this.gbProxyUser);
+            this.tabPage2.Controls.Add(this.gbManual);
+            this.tabPage2.Controls.Add(this.cbDefault);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(607, 452);
+            this.tabPage2.TabIndex = 5;
+            this.tabPage2.Text = "Proxy Settings";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cbSetProxy
+            // 
+            this.cbSetProxy.AutoSize = true;
+            this.cbSetProxy.Location = new System.Drawing.Point(36, 29);
+            this.cbSetProxy.Name = "cbSetProxy";
+            this.cbSetProxy.Size = new System.Drawing.Size(70, 17);
+            this.cbSetProxy.TabIndex = 5;
+            this.cbSetProxy.Text = "Set proxy";
+            this.cbSetProxy.UseVisualStyleBackColor = true;
+            this.cbSetProxy.Click += new System.EventHandler(this.cbDefault_Click);
+            // 
+            // gbProxyUser
+            // 
+            this.gbProxyUser.Controls.Add(this.label15);
+            this.gbProxyUser.Controls.Add(this.tbProxyDomain);
+            this.gbProxyUser.Controls.Add(this.label14);
+            this.gbProxyUser.Controls.Add(this.tbProxyPass);
+            this.gbProxyUser.Controls.Add(this.label13);
+            this.gbProxyUser.Controls.Add(this.tbProxyUser);
+            this.gbProxyUser.Location = new System.Drawing.Point(36, 195);
+            this.gbProxyUser.Name = "gbProxyUser";
+            this.gbProxyUser.Size = new System.Drawing.Size(457, 144);
+            this.gbProxyUser.TabIndex = 4;
+            this.gbProxyUser.TabStop = false;
+            this.gbProxyUser.Text = "Proxy User Details";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(13, 105);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(46, 13);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Domain:";
+            // 
+            // tbProxyDomain
+            // 
+            this.tbProxyDomain.Location = new System.Drawing.Point(124, 102);
+            this.tbProxyDomain.Name = "tbProxyDomain";
+            this.tbProxyDomain.Size = new System.Drawing.Size(137, 20);
+            this.tbProxyDomain.TabIndex = 14;
+            this.tbProxyDomain.Leave += new System.EventHandler(this.tbProxyServer_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(13, 68);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(56, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Password:";
+            // 
+            // tbProxyPass
+            // 
+            this.tbProxyPass.Location = new System.Drawing.Point(124, 65);
+            this.tbProxyPass.Name = "tbProxyPass";
+            this.tbProxyPass.Size = new System.Drawing.Size(137, 20);
+            this.tbProxyPass.TabIndex = 12;
+            this.tbProxyPass.UseSystemPasswordChar = true;
+            this.tbProxyPass.Leave += new System.EventHandler(this.tbProxyServer_TextChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(13, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(58, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Username:";
+            // 
+            // tbProxyUser
+            // 
+            this.tbProxyUser.Location = new System.Drawing.Point(124, 29);
+            this.tbProxyUser.Name = "tbProxyUser";
+            this.tbProxyUser.Size = new System.Drawing.Size(137, 20);
+            this.tbProxyUser.TabIndex = 10;
+            this.tbProxyUser.Leave += new System.EventHandler(this.tbProxyServer_TextChanged);
+            // 
+            // gbManual
+            // 
+            this.gbManual.Controls.Add(this.label12);
+            this.gbManual.Controls.Add(this.tbProxyPort);
+            this.gbManual.Controls.Add(this.label9);
+            this.gbManual.Controls.Add(this.tbProxyServer);
+            this.gbManual.Location = new System.Drawing.Point(36, 100);
+            this.gbManual.Name = "gbManual";
+            this.gbManual.Size = new System.Drawing.Size(457, 69);
+            this.gbManual.TabIndex = 3;
+            this.gbManual.TabStop = false;
+            this.gbManual.Text = "Proxy Server";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(309, 29);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Port:";
+            // 
+            // tbProxyPort
+            // 
+            this.tbProxyPort.Location = new System.Drawing.Point(344, 26);
+            this.tbProxyPort.Name = "tbProxyPort";
+            this.tbProxyPort.Size = new System.Drawing.Size(56, 20);
+            this.tbProxyPort.TabIndex = 2;
+            this.tbProxyPort.Leave += new System.EventHandler(this.tbProxyServer_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Proxy Server:";
+            // 
+            // tbProxyServer
+            // 
+            this.tbProxyServer.AcceptsReturn = true;
+            this.tbProxyServer.Location = new System.Drawing.Point(124, 26);
+            this.tbProxyServer.Name = "tbProxyServer";
+            this.tbProxyServer.Size = new System.Drawing.Size(172, 20);
+            this.tbProxyServer.TabIndex = 0;
+            this.tbProxyServer.Leave += new System.EventHandler(this.tbProxyServer_TextChanged);
+            // 
+            // cbDefault
+            // 
+            this.cbDefault.AutoSize = true;
+            this.cbDefault.Location = new System.Drawing.Point(36, 61);
+            this.cbDefault.Name = "cbDefault";
+            this.cbDefault.Size = new System.Drawing.Size(284, 17);
+            this.cbDefault.TabIndex = 2;
+            this.cbDefault.Text = "Use default settings (GhostService will settings from IE)";
+            this.cbDefault.UseVisualStyleBackColor = true;
+            this.cbDefault.Click += new System.EventHandler(this.cbDefault_Click);
+            // 
             // elGhostService
             // 
             this.elGhostService.Log = "Application";
@@ -590,24 +778,6 @@
             // dataSet2
             // 
             this.dataSet2.DataSetName = "NewDataSet";
-            // 
-            // lvWork
-            // 
-            this.lvWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvWork.Location = new System.Drawing.Point(0, 0);
-            this.lvWork.Name = "lvWork";
-            this.lvWork.Size = new System.Drawing.Size(601, 165);
-            this.lvWork.TabIndex = 1;
-            this.lvWork.UseCompatibleStateImageBehavior = false;
-            // 
-            // lvThreads
-            // 
-            this.lvThreads.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvThreads.Location = new System.Drawing.Point(0, 0);
-            this.lvThreads.Name = "lvThreads";
-            this.lvThreads.Size = new System.Drawing.Size(601, 187);
-            this.lvThreads.TabIndex = 2;
-            this.lvThreads.UseCompatibleStateImageBehavior = false;
             // 
             // ServiceMaint
             // 
@@ -646,6 +816,12 @@
             this.tpAppEvents.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.gbProxyUser.ResumeLayout(false);
+            this.gbProxyUser.PerformLayout();
+            this.gbManual.ResumeLayout(false);
+            this.gbManual.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elGhostService)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).EndInit();
@@ -707,5 +883,20 @@
         private System.Data.DataSet dataSet2;
         private System.Windows.Forms.ListView lvWork;
         private System.Windows.Forms.ListView lvThreads;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox gbManual;
+        private System.Windows.Forms.CheckBox cbDefault;
+        private System.Windows.Forms.TextBox tbProxyServer;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbProxyPort;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox gbProxyUser;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbProxyDomain;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tbProxyPass;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbProxyUser;
+        private System.Windows.Forms.CheckBox cbSetProxy;
     }
 }

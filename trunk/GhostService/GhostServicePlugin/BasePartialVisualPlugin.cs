@@ -72,7 +72,7 @@ namespace GhostService.GhostServicePlugin
         {
             get
             {
-                return _settings["PluginActive"].Equals("True");
+                return _settings["PluginActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
             }
 
             set
@@ -108,7 +108,7 @@ namespace GhostService.GhostServicePlugin
         {
             get
             {
-                return _settings["CalculateIntervalFromBase"].Equals("True");
+                return _settings["CalculateIntervalFromBase"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
             }
         }
         public virtual void Init()

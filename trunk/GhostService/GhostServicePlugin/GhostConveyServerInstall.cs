@@ -245,7 +245,12 @@ namespace GhostService.GhostServicePlugin
 
         public void ApplyZippedUpdate(string downloadFilePath)
         {
-            Utilities.UnzipFile(downloadFilePath, GCDataFolder);
+            string lockedFiles = "";
+            
+            if (Utilities.CheckZipFilesHasAccess(downloadFilePath, GCDataFolder, ref lockedFiles))
+                Utilities.UnzipFile(downloadFilePath, GCDataFolder);
+            else
+                throw new Exception(String.Format("This following files cannot be opened or overwritten:{0}",lockedFiles));
         }
 
         private DbConnection _conn;
