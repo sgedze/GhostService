@@ -108,6 +108,18 @@ namespace GhostService.GhostServicePlugin
                 _settings["UseDefaultProxySettings"] = value.ToString();
             }
         }
+        public bool ProxyCachedCredentials
+        {
+            get
+            {
+                return _settings["ProxyCachedCredentials"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            set
+            {
+                _settings["ProxyCachedCredentials"] = value.ToString();
+            }
+        }
         public bool ProxySet
         {
             get
@@ -232,6 +244,9 @@ namespace GhostService.GhostServicePlugin
 
             if (!_settings.ContainsKey("ProxyDomain"))
                 _settings.Add("ProxyDomain", "");
+
+            if (!_settings.ContainsKey("ProxyCachedCredentials"))
+                _settings.Add("ProxyCachedCredentials", "False");
         }
 
         #endregion

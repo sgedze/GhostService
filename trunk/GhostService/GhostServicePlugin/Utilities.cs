@@ -99,6 +99,7 @@ namespace GhostService.GhostServicePlugin
 
         #region constants
         public const int MINS_IN_WEEK = 10080;
+        public const int MINS_IN_DAY = 1440;
         public const string SERVICE_WAITFOR_TYPE_OTHER_THAN = "GSUpdateVPlugin";
         public const string PLUGIN_FILTER_NAME = "GhostServicePlugin*.DLL";
         public const string DLL_FILTER_NAME = "*.DLL";
@@ -225,6 +226,7 @@ namespace GhostService.GhostServicePlugin
         public static WebProxy GetProxy(PluginServerInformation pluginServerInformation)
         {
             return GetProxy(pluginServerInformation.UseDefaultProxySettings,
+                pluginServerInformation.ProxyCachedCredentials,
                 pluginServerInformation.ProxyServer,
                 pluginServerInformation.ProxyPort,
                 pluginServerInformation.ProxyUserName,
@@ -232,7 +234,7 @@ namespace GhostService.GhostServicePlugin
                 pluginServerInformation.ProxyDomain);
         }
         
-        public static WebProxy GetProxy(bool useDefault, string address, string port, string username, string password, string domain)
+        public static WebProxy GetProxy(bool useDefault, bool useCacheCreds, string address, string port, string username, string password, string domain)
         {
             TraceLog.Log("Trying to create a proxy.");
 
@@ -257,15 +259,20 @@ namespace GhostService.GhostServicePlugin
                 TraceLog.Log(string.Format("Create proxy:{0}, {1}.", address, myport.ToString()));
                 WebProxy webProxy = new WebProxy(address, myport);
 
-                if  (!string.IsNullOrEmpty(username))
+                if (useCacheCreds)
                 {
-                    TraceLog.Log(string.Format("Create network credentials, User:{0}, Domain: {1}.", username, domain)); 
+                    TraceLog.Log("Using default (cached) credentials."); 
+                    webProxy.UseDefaultCredentials = true;                                       
+                }
+                else if (!string.IsNullOrEmpty(username))
+                {
+                    TraceLog.Log(string.Format("Create network credentials, User:{0}, Domain: {1}.", username, domain));
                     NetworkCredential credentials = new NetworkCredential(username, password, domain);
                     webProxy.Credentials = credentials;
                 }
                 
-                webProxy.BypassProxyOnLocal = true;
-
+                //webProxy.BypassProxyOnLocal = true;
+                
                 return webProxy;
             }
             catch (Exception e)

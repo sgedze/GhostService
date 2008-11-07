@@ -7,14 +7,14 @@
     <ROW Property="BannerBitmap" Value="AI_RES_default_banner.bmp" Type="1"/>
     <ROW Property="DialogBitmap" Value="AI_RES_default_dialog.bmp" Type="1"/>
     <ROW Property="Manufacturer" Value="Korbitec" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1033:{DAC29252-0ABF-4205-AC45-6F52D590298E} "/>
+    <ROW Property="ProductCode" Value="1033:{F58A76D5-26FF-4DBB-BADB-334879C226AB} "/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="GhostService" ValueLocId="*"/>
-    <ROW Property="ProductVersion" Value="0.5.16.0"/>
+    <ROW Property="ProductVersion" Value="0.5.18.0"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AC5AED54-D6AC-4BAF-AAFB-EBC3FA9EA40B}"/>
     <ROW Property="WindowsFamily9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows XP x86 Service Pack 2" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 2000 Service Pack 1" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -121,7 +121,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="(AI_DOTNET20_SEARCH = &quot;#1&quot;) OR (AI_DOTNET30_SEARCH = &quot;#1&quot;) OR (AI_DOTNET35_SEARCH = &quot;#1&quot;)" Description="[ProductName] cannot be installed on systems with .NET Framework version smaller than [AI_MINDOTNETVERSION]" DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="Version9X OR VersionNT64 OR ((VersionNT &gt; 501) OR ((VersionNT = 501) AND (ServicePackLevel &gt;= 2)))" Description="[ProductName] cannot be installed on systems earlier than [WindowsTypeNT]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="Version9X OR VersionNT64 OR ((VersionNT &gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &gt;= 1)))" Description="[ProductName] cannot be installed on systems earlier than [WindowsTypeNT]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsFamily9X]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">

@@ -25,7 +25,7 @@ namespace GhostServicePluginGCUpdates
         private const bool MAKE_COPY_OF_FILE = false;
         private const string MAKE_COPY_PATH = "";
         private const bool NOTIFICATION_ACTIVE = true;
-        private const PluginRunType RUNTYPE = PluginRunType.PerInterval;
+        private const PluginRunType RUNTYPE = PluginRunType.OnceADay;
 
         #endregion                                  
         

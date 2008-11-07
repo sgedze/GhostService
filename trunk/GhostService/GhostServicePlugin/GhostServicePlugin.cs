@@ -7,6 +7,7 @@
     {
         PerInterval = 0,
         OnceOnly = 1,
-        OnceAWeek = 2
+        OnceAWeek = 2,
+        OnceADay = 3
     }    
 }

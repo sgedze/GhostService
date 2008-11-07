@@ -56,6 +56,11 @@ namespace GhostService.GhostServicePlugin
                         if (this.minOfTheWeek < Utilities.DateToMinuteOfWeek(DateTime.Now))
                             this.minOfTheWeek += Utilities.MINS_IN_WEEK;
                     }
+                    else if (this.RunType == PluginRunType.OnceADay)
+                    {
+                        while (this.minOfTheWeek < Utilities.DateToMinuteOfWeek(DateTime.Now))
+                            this.minOfTheWeek += Utilities.MINS_IN_DAY;
+                    }
                     else
                     {
                         while (this.minOfTheWeek < Utilities.DateToMinuteOfWeek(DateTime.Now))
@@ -69,6 +74,8 @@ namespace GhostService.GhostServicePlugin
             {
                 if (this.runType == PluginRunType.OnceAWeek) //cant be first calculate
                     this.minOfTheWeek += Utilities.MINS_IN_WEEK;
+                else if (this.runType == PluginRunType.OnceADay)
+                    this.minOfTheWeek += Utilities.MINS_IN_DAY;
                 else  //lets use Utils here iso just "incrementing" it
                     this.minOfTheWeek = Utilities.DateToMinuteOfWeek(DateTime.Now) + this.interval;
             }

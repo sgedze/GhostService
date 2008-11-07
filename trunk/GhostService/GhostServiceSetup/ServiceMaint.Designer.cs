@@ -81,6 +81,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cbSetProxy = new System.Windows.Forms.CheckBox();
             this.gbProxyUser = new System.Windows.Forms.GroupBox();
+            this.cbCachedCreds = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tbProxyDomain = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -617,6 +618,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cbCachedCreds);
             this.tabPage2.Controls.Add(this.cbSetProxy);
             this.tabPage2.Controls.Add(this.gbProxyUser);
             this.tabPage2.Controls.Add(this.gbManual);
@@ -648,17 +650,28 @@
             this.gbProxyUser.Controls.Add(this.tbProxyPass);
             this.gbProxyUser.Controls.Add(this.label13);
             this.gbProxyUser.Controls.Add(this.tbProxyUser);
-            this.gbProxyUser.Location = new System.Drawing.Point(36, 195);
+            this.gbProxyUser.Location = new System.Drawing.Point(36, 209);
             this.gbProxyUser.Name = "gbProxyUser";
-            this.gbProxyUser.Size = new System.Drawing.Size(457, 144);
+            this.gbProxyUser.Size = new System.Drawing.Size(457, 136);
             this.gbProxyUser.TabIndex = 4;
             this.gbProxyUser.TabStop = false;
             this.gbProxyUser.Text = "Proxy User Details";
             // 
+            // cbCachedCreds
+            // 
+            this.cbCachedCreds.AutoSize = true;
+            this.cbCachedCreds.Location = new System.Drawing.Point(36, 186);
+            this.cbCachedCreds.Name = "cbCachedCreds";
+            this.cbCachedCreds.Size = new System.Drawing.Size(323, 17);
+            this.cbCachedCreds.TabIndex = 6;
+            this.cbCachedCreds.Text = "Use cached credentials (might require changes to service user)";
+            this.cbCachedCreds.UseVisualStyleBackColor = true;
+            this.cbCachedCreds.Click += new System.EventHandler(this.cbDefault_Click);
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(13, 105);
+            this.label15.Location = new System.Drawing.Point(12, 100);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(46, 13);
             this.label15.TabIndex = 15;
@@ -666,7 +679,7 @@
             // 
             // tbProxyDomain
             // 
-            this.tbProxyDomain.Location = new System.Drawing.Point(124, 102);
+            this.tbProxyDomain.Location = new System.Drawing.Point(123, 97);
             this.tbProxyDomain.Name = "tbProxyDomain";
             this.tbProxyDomain.Size = new System.Drawing.Size(137, 20);
             this.tbProxyDomain.TabIndex = 14;
@@ -675,7 +688,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(13, 68);
+            this.label14.Location = new System.Drawing.Point(12, 63);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 13);
             this.label14.TabIndex = 13;
@@ -683,7 +696,7 @@
             // 
             // tbProxyPass
             // 
-            this.tbProxyPass.Location = new System.Drawing.Point(124, 65);
+            this.tbProxyPass.Location = new System.Drawing.Point(123, 60);
             this.tbProxyPass.Name = "tbProxyPass";
             this.tbProxyPass.Size = new System.Drawing.Size(137, 20);
             this.tbProxyPass.TabIndex = 12;
@@ -693,7 +706,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 32);
+            this.label13.Location = new System.Drawing.Point(12, 27);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(58, 13);
             this.label13.TabIndex = 11;
@@ -701,7 +714,7 @@
             // 
             // tbProxyUser
             // 
-            this.tbProxyUser.Location = new System.Drawing.Point(124, 29);
+            this.tbProxyUser.Location = new System.Drawing.Point(123, 24);
             this.tbProxyUser.Name = "tbProxyUser";
             this.tbProxyUser.Size = new System.Drawing.Size(137, 20);
             this.tbProxyUser.TabIndex = 10;
@@ -898,5 +911,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbProxyUser;
         private System.Windows.Forms.CheckBox cbSetProxy;
+        private System.Windows.Forms.CheckBox cbCachedCreds;
     }
 }

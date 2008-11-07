@@ -22,7 +22,7 @@ namespace GhostService
             this._serverInformation = psi;
             SetTraceFile(psi.TraceFileName);
             SetStartupDelay(psi.StartupDelay);
-            SetUseDefaultProxySettings(psi.ProxySet, psi.UseDefaultProxySettings);
+            SetUseDefaultProxySettings(psi.ProxySet, psi.UseDefaultProxySettings, psi.ProxyCachedCredentials);
             SetProxySettings(psi.ProxyUserName, psi.ProxyPassword, psi.ProxyDomain, psi.ProxyServer, psi.ProxyPort);           
             elGhostService.Source = Utilities.SERVICE_NAME;
             this.Text = "Service Manager";
@@ -141,16 +141,20 @@ namespace GhostService
             _serverInformation.SaveToSameXML();
         }
 
-        private void SetUseDefaultProxySettings(bool proxySet, bool useDefault)
+        private void SetUseDefaultProxySettings(bool proxySet, bool useDefault, bool useCachedCreds)
         {
             _serverInformation.ProxySet = proxySet;
             cbSetProxy.Checked = proxySet;
             _serverInformation.UseDefaultProxySettings = (useDefault && proxySet);
             cbDefault.Checked = (useDefault && proxySet);
+            _serverInformation.ProxyCachedCredentials = useCachedCreds;
+            cbCachedCreds.Checked = useCachedCreds;
             _serverInformation.SaveToSameXML();
+
             cbDefault.Enabled = proxySet;
-            gbManual.Enabled = (!(useDefault && proxySet));
-            gbProxyUser.Enabled = (!(useDefault && proxySet));
+            gbManual.Enabled = (proxySet && (!cbDefault.Checked));
+            cbCachedCreds.Enabled = (proxySet && gbManual.Enabled);
+            gbProxyUser.Enabled = (proxySet && cbCachedCreds.Enabled && !cbCachedCreds.Checked);
         }
 
         private void ProxySettingsChanged()
@@ -387,8 +391,9 @@ namespace GhostService
         }
         private void cbDefault_Click(object sender, EventArgs e)
         {
-            SetUseDefaultProxySettings(cbSetProxy.Checked, cbDefault.Checked);
-            PromptRestartService();
+            SetUseDefaultProxySettings(cbSetProxy.Checked, cbDefault.Checked, cbCachedCreds.Checked);
+            //PromptRestartService();
+            _restartService = true;
         }
         private void tbProxyServer_TextChanged(object sender, EventArgs e)
         {
