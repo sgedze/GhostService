@@ -38,8 +38,10 @@
             this.lbDBs = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.cbEmailNotify = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbEmailAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,6 +61,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cbStepbyStep = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -174,16 +177,36 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbStepbyStep);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.cbEmailNotify);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbEmailAddress);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(27, 162);
+            this.groupBox2.Location = new System.Drawing.Point(27, 154);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(375, 110);
+            this.groupBox2.Size = new System.Drawing.Size(375, 170);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Notification via Email";
-            this.groupBox2.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 62);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(111, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Service Management.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(335, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "This option will try and notify you via the email settings supplied under ";
             // 
             // cbEmailNotify
             // 
@@ -195,22 +218,23 @@
             this.cbEmailNotify.TabIndex = 1;
             this.cbEmailNotify.Text = "Enable";
             this.cbEmailNotify.UseVisualStyleBackColor = true;
+            this.cbEmailNotify.Click += new System.EventHandler(this.cbEmailNotify_Click);
             // 
-            // textBox1
+            // tbEmailAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 71);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 20);
-            this.textBox1.TabIndex = 2;
+            this.tbEmailAddress.Location = new System.Drawing.Point(31, 106);
+            this.tbEmailAddress.Name = "tbEmailAddress";
+            this.tbEmailAddress.Size = new System.Drawing.Size(324, 20);
+            this.tbEmailAddress.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 55);
+            this.label3.Location = new System.Drawing.Point(28, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(181, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
+            this.label3.Text = "Notify email address (separated by \';\')";
             // 
             // groupBox1
             // 
@@ -220,7 +244,7 @@
             this.groupBox1.Controls.Add(this.cbGCNotify);
             this.groupBox1.Location = new System.Drawing.Point(27, 17);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(375, 125);
+            this.groupBox1.Size = new System.Drawing.Size(375, 112);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification via GhostConvey";
@@ -377,6 +401,16 @@
             this.textBox2.Size = new System.Drawing.Size(276, 20);
             this.textBox2.TabIndex = 6;
             // 
+            // cbStepbyStep
+            // 
+            this.cbStepbyStep.AutoSize = true;
+            this.cbStepbyStep.Location = new System.Drawing.Point(31, 140);
+            this.cbStepbyStep.Name = "cbStepbyStep";
+            this.cbStepbyStep.Size = new System.Drawing.Size(190, 17);
+            this.cbStepbyStep.TabIndex = 7;
+            this.cbStepbyStep.Text = "Include step by step status reports.";
+            this.cbStepbyStep.UseVisualStyleBackColor = true;
+            // 
             // GCUpdateVPlugin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,7 +443,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.CheckBox cbNoDLoad;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbEmailAddress;
         private System.Windows.Forms.CheckBox cbEmailNotify;
         private System.Windows.Forms.CheckBox cbGCNotify;
         private System.Windows.Forms.Label label3;
@@ -435,6 +469,9 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.Button btnCheckNow;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbStepbyStep;
 
     }
 }

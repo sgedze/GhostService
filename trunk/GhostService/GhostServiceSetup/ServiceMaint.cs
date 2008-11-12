@@ -23,6 +23,7 @@ namespace GhostService
             SetTraceFile(psi.TraceFileName);
             SetStartupDelay(psi.StartupDelay);
             SetUseDefaultProxySettings(psi.ProxySet, psi.UseDefaultProxySettings, psi.ProxyCachedCredentials);
+            SetSMTPFrameDetails(psi.UseMAPI, psi.SMTPServer, psi.SMTPDefaultFromAddress, psi.SMTPUsername, psi.SMTPPassword, psi.SMTPSecureConnection);
             SetProxySettings(psi.ProxyUserName, psi.ProxyPassword, psi.ProxyDomain, psi.ProxyServer, psi.ProxyPort);           
             elGhostService.Source = Utilities.SERVICE_NAME;
             this.Text = "Service Manager";
@@ -48,46 +49,56 @@ namespace GhostService
         private void RefreshStatus()
         {
             scGS.Refresh();
-            switch(scGS.Status)
+
+            try
             {
-                case ServiceControllerStatus.Running:
-                    {
-                        ButtonStatus(false, true, true);
-                        ResetProgressbar();
-                        lblServiceName.Text = string.Format("{0} is running.", Utilities.SERVICE_NAME);
-                        lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
-                        break;
-                    }
-                case ServiceControllerStatus.Stopped:
-                    {
-                        ButtonStatus(true, false, false);
-                        ResetProgressbar();
-                        lblServiceName.Text = string.Format("{0} is not running.", Utilities.SERVICE_NAME);
-                        lblServiceStatus.Text = string.Format("Service ({0}), not running.", Utilities.SERVICE_NAME);
-                        break;
-                    }
-                case ServiceControllerStatus.StopPending:
-                    {
-                        ButtonStatus(false, false, false);
-                        ProgressbarStep();
-                        lblServiceName.Text = string.Format("{0} is busy stopping ...", Utilities.SERVICE_NAME);
-                        lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
-                        break;
-                    }
-                case ServiceControllerStatus.StartPending:
-                    {
-                        ButtonStatus(false, false, false);
-                        ProgressbarStep();
-                        lblServiceName.Text = string.Format("{0} is busy starting ...", Utilities.SERVICE_NAME);
-                        lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
-                        break;
-                    }
-                default:
-                    {
-                        ButtonStatus(true, true, true);
-                        lblServiceName.Text = Utilities.SERVICE_NAME;
-                        break;
-                    }
+                switch (scGS.Status)
+                {
+                    case ServiceControllerStatus.Running:
+                        {
+                            ButtonStatus(false, true, true);
+                            ResetProgressbar();
+                            lblServiceName.Text = string.Format("{0} is running.", Utilities.SERVICE_NAME);
+                            lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
+                            break;
+                        }
+                    case ServiceControllerStatus.Stopped:
+                        {
+                            ButtonStatus(true, false, false);
+                            ResetProgressbar();
+                            lblServiceName.Text = string.Format("{0} is not running.", Utilities.SERVICE_NAME);
+                            lblServiceStatus.Text = string.Format("Service ({0}), not running.", Utilities.SERVICE_NAME);
+                            break;
+                        }
+                    case ServiceControllerStatus.StopPending:
+                        {
+                            ButtonStatus(false, false, false);
+                            ProgressbarStep();
+                            lblServiceName.Text = string.Format("{0} is busy stopping ...", Utilities.SERVICE_NAME);
+                            lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
+                            break;
+                        }
+                    case ServiceControllerStatus.StartPending:
+                        {
+                            ButtonStatus(false, false, false);
+                            ProgressbarStep();
+                            lblServiceName.Text = string.Format("{0} is busy starting ...", Utilities.SERVICE_NAME);
+                            lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
+                            break;
+                        }
+                    default:
+                        {
+                            ButtonStatus(true, true, true);
+                            lblServiceName.Text = Utilities.SERVICE_NAME;
+                            break;
+                        }
+                }
+            }
+            catch (InvalidOperationException ioe)
+            {
+                ButtonStatus(true, true, true);
+                lblServiceName.Text = ioe.Message;
+                TraceLog.Log(ioe);
             }
         }
 
@@ -155,6 +166,27 @@ namespace GhostService
             gbManual.Enabled = (proxySet && (!cbDefault.Checked));
             cbCachedCreds.Enabled = (proxySet && gbManual.Enabled);
             gbProxyUser.Enabled = (proxySet && cbCachedCreds.Enabled && !cbCachedCreds.Checked);
+        }
+
+        private void SetSMTPFrameDetails(bool useMAPI, string sMTPServer, string defaultFromAddress, string sMTPUsername, string sMTPPassword, bool secureConnection)
+        {
+            _serverInformation.UseMAPI = useMAPI;
+            cbUseMAPI.Checked = useMAPI;
+            _serverInformation.SMTPDefaultFromAddress = defaultFromAddress;
+            tbDefaultAddress.Text = defaultFromAddress;
+            _serverInformation.SMTPPassword = sMTPPassword;
+            tbSMTPPassword.Text = sMTPPassword;
+            _serverInformation.SMTPSecureConnection = secureConnection;
+            cbSecureConn.Checked = secureConnection;
+            _serverInformation.SMTPServer = sMTPServer;
+            tbSMTPServer.Text = sMTPServer;
+            _serverInformation.SMTPUsername = sMTPUsername;
+            tbSMTPUser.Text = sMTPUsername;            
+            _serverInformation.SaveToSameXML();
+
+            gbEmailOptions.Enabled = !useMAPI;
+            gbSMTP.Enabled = !useMAPI;
+            gbSMTPUser.Enabled = !useMAPI;            
         }
 
         private void ProxySettingsChanged()
@@ -395,6 +427,12 @@ namespace GhostService
             //PromptRestartService();
             _restartService = true;
         }
+        private void cbSMTPDefault_Click(object sender, EventArgs e)
+        {
+            SetSMTPFrameDetails(cbUseMAPI.Checked, tbSMTPServer.Text, tbDefaultAddress.Text, tbSMTPUser.Text, tbSMTPPassword.Text, cbSecureConn.Checked);
+            _restartService = true;
+        }       
+
         private void tbProxyServer_TextChanged(object sender, EventArgs e)
         {
             ProxySettingsChanged();
@@ -409,5 +447,10 @@ namespace GhostService
             ReadEventLogAndDisplay();
         }
         #endregion 
+
+        private void tbSMTPTest_Click(object sender, EventArgs e)
+        {            
+            Utilities.SendTestEmail(_serverInformation, tbDefaultAddress.Text);            
+        }
     }
 }

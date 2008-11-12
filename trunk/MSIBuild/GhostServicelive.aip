@@ -7,10 +7,10 @@
     <ROW Property="BannerBitmap" Value="AI_RES_default_banner.bmp" Type="1"/>
     <ROW Property="DialogBitmap" Value="AI_RES_default_dialog.bmp" Type="1"/>
     <ROW Property="Manufacturer" Value="Korbitec" ValueLocId="*"/>
-    <ROW Property="ProductCode" Value="1033:{F58A76D5-26FF-4DBB-BADB-334879C226AB} "/>
+    <ROW Property="ProductCode" Value="1033:{303C0B20-C310-45E8-BB97-9B5E594D946D} "/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="GhostService" ValueLocId="*"/>
-    <ROW Property="ProductVersion" Value="0.5.18.0"/>
+    <ROW Property="ProductVersion" Value="0.5.19.0"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AC5AED54-D6AC-4BAF-AAFB-EBC3FA9EA40B}"/>
     <ROW Property="WindowsFamily9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -37,12 +37,14 @@
     <ROW Component="Korbitec.AutoUpdate.ClientUpdates.dll" ComponentId="{B476E0C1-3E3B-4C7F-A022-A92D78971AF3}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.ClientUpdates.dll"/>
     <ROW Component="Korbitec.AutoUpdate.Msi.dll" ComponentId="{2C13105F-4088-49A5-803B-F85E7801362A}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.Msi.dll"/>
     <ROW Component="Korbitec.AutoUpdate.dll" ComponentId="{1DB42683-CCFE-463E-8D34-3B09B182CB7B}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.AutoUpdate.dll"/>
+    <ROW Component="Korbitec.Components.Messaging.dll" ComponentId="{0764D551-E9AB-4961-9986-EF14E5B1EB3B}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Components.Messaging.dll"/>
     <ROW Component="Korbitec.Compression.dll" ComponentId="{027ACBA8-2897-4D38-BDA6-123C7A881D90}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Compression.dll"/>
+    <ROW Component="Korbitec.Outlook9.Interop.dll" ComponentId="{389D8708-000F-4729-B077-1AB496966C59}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Outlook9.Interop.dll"/>
     <ROW Component="Korbitec.Utilities.dll" ComponentId="{9C175335-C02C-468C-84E6-10AC342DB3CB}" Directory_="APPDIR" Attributes="0" KeyPath="Korbitec.Utilities.dll"/>
     <ROW Component="ManualUpdater.exe" ComponentId="{A17CCF96-4C16-4730-A468-35FB05A3F455}" Directory_="APPDIR" Attributes="0" KeyPath="ManualUpdater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="Korbitec.AutoUpdate.Msi.dll BackgroundCopyManager.dll GhostService.exe GhostService.GhostServicePlugin.dll GhostServicePluginGSUpdates.dll GhostServiceSetup.exe Korbitec.AutoUpdate.Bits.dll Korbitec.AutoUpdate.ClientUpdates.dll Korbitec.AutoUpdate.dll GhostServicePluginGCUpdates.dll ICSharpCode.SharpZipLib.dll Korbitec.Utilities.dll Korbitec.Compression.dll GhostService ManualUpdater.exe ApplicationUpdateDescription.dll"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="Korbitec.AutoUpdate.Msi.dll BackgroundCopyManager.dll GhostService.exe GhostService.GhostServicePlugin.dll GhostServicePluginGSUpdates.dll GhostServiceSetup.exe Korbitec.AutoUpdate.Bits.dll Korbitec.AutoUpdate.ClientUpdates.dll Korbitec.AutoUpdate.dll GhostServicePluginGCUpdates.dll ICSharpCode.SharpZipLib.dll Korbitec.Utilities.dll Korbitec.Compression.dll GhostService ManualUpdater.exe ApplicationUpdateDescription.dll Korbitec.Components.Messaging.dll Korbitec.Outlook9.Interop.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -58,7 +60,9 @@
     <ROW File="Korbitec.AutoUpdate.ClientUpdates.dll" Component_="Korbitec.AutoUpdate.ClientUpdates.dll" FileName="Korbit~3.dll|Korbitec.AutoUpdate.ClientUpdates.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.ClientUpdates.dll" SelfReg="false" Sequence="8"/>
     <ROW File="Korbitec.AutoUpdate.Msi.dll" Component_="Korbitec.AutoUpdate.Msi.dll" FileName="Korbit~1.dll|Korbitec.AutoUpdate.Msi.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.Msi.dll" SelfReg="false" Sequence="1"/>
     <ROW File="Korbitec.AutoUpdate.dll" Component_="Korbitec.AutoUpdate.dll" FileName="Korbit~4.dll|Korbitec.AutoUpdate.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.AutoUpdate.dll" SelfReg="false" Sequence="9"/>
+    <ROW File="Korbitec.Components.Messaging.dll" Component_="Korbitec.Components.Messaging.dll" FileName="Korbit~7.dll|Korbitec.Components.Messaging.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Components.Messaging.dll" SelfReg="false" Sequence="16"/>
     <ROW File="Korbitec.Compression.dll" Component_="Korbitec.Compression.dll" FileName="Korbit~6.dll|Korbitec.Compression.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Compression.dll" SelfReg="false" Sequence="13"/>
+    <ROW File="Korbitec.Outlook9.Interop.dll" Component_="Korbitec.Outlook9.Interop.dll" FileName="Korbit~8.dll|Korbitec.Outlook9.Interop.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Outlook9.Interop.dll" SelfReg="false" Sequence="17"/>
     <ROW File="Korbitec.Utilities.dll" Component_="Korbitec.Utilities.dll" FileName="Korbit~5.dll|Korbitec.Utilities.dll" Attributes="0" SourcePath="..\GhostService\Assemblies\Korbitec.Utilities.dll" SelfReg="false" Sequence="12"/>
     <ROW File="ManualUpdater.exe" Component_="ManualUpdater.exe" FileName="Manual~1.exe|ManualUpdater.exe" Attributes="0" SourcePath="..\GhostService\Assemblies\ManualUpdater.exe" SelfReg="false" Sequence="14"/>
   </COMPONENT>

@@ -24,19 +24,30 @@ namespace GhostServicePluginGCUpdates
         private string OLD_AUTO_UPDATE_SERVER = @"http://sqltestpc.korbitec.int/AutoUpdateServer/Service.svc";
         private const bool MAKE_COPY_OF_FILE = false;
         private const string MAKE_COPY_PATH = "";
-        private const bool NOTIFICATION_ACTIVE = true;
+        private const bool NOTIFICATION_ACTIVE_GC = true;
+        private const bool NOTIFICATION_ACTIVE_EMAIL = false;
+        private const bool STEP_BY_STEP_REPORTS_EMAIL = false;
+        private const string NOTIFICATION_EMAIL_ADDRESS = "";
         private const PluginRunType RUNTYPE = PluginRunType.OnceADay;
 
         #endregion                                  
-        
+
         protected ClientNotifier _clientNotifier;
         protected Version _productVersion;
         private GhostConveyServerInstall _ghostConveyServerInstall;
 
         #region Properties
-        private bool NotificationActive
+        private bool NotificationActiveGC
         {
             get { return _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase); }
+        }
+        private bool NotificationActiveEmail
+        {
+            get { return _settings["NotificationActiveEmail"].Equals("True", StringComparison.CurrentCultureIgnoreCase); }
+        }
+        private string NotificationEmailAddress
+        {
+            get { return _settings["NotificationEmailAddress"]; }
         }
         public string DownloadPath
         {
@@ -56,6 +67,10 @@ namespace GhostServicePluginGCUpdates
             {
                 return new String[2] { _settings["MenuPath1"], _settings["MenuPath2"] };
             }
+        }
+        private bool StepByStepReportsEmail
+        {
+            get { return _settings["StepByStepReportsEmail"].Equals("True", StringComparison.CurrentCultureIgnoreCase); }
         }
 
         #endregion
@@ -121,6 +136,11 @@ namespace GhostServicePluginGCUpdates
             gbDloadPath.Enabled = !cbNoDLoad.Checked;
             cbCopy.Checked = gbDloadPath.Enabled ? cbCopy.Checked : false;
         }
+        private void cbEmailNotify_Click(object sender, EventArgs e)
+        {
+            cbStepbyStep.Enabled = cbEmailNotify.Checked;
+            tbEmailAddress.Enabled = cbEmailNotify.Checked;
+        }
                 
         #endregion 
 
@@ -165,11 +185,26 @@ namespace GhostServicePluginGCUpdates
         {
             try
             {
-                if (NotificationActive)
-                    ghostConveyServerInstall.WriteNotificationMsgToUserList(customUserMessage);
+                if (!string.IsNullOrEmpty(customUserMessage))
+                    if (NotificationActiveGC)
+                        ghostConveyServerInstall.WriteNotificationMsgToUserList(customUserMessage);
+
+                if (NotificationActiveEmail)
+                    Utilities.SendEmail(ServerInformation, customUserMessage, string.Concat(Utilities.SERVICE_NAME," Notification"), NotificationEmailAddress);
             }
             catch (Exception e)
             { LogErrorToEventLog(e, "DoAnyNotificationWork"); }
+        }
+        private void SendStatusEmail(string statusMsg, string statusWord)
+        {
+            try
+            {
+                if (NotificationActiveEmail)
+                    if (StepByStepReportsEmail)
+                        Utilities.SendEmail(ServerInformation, statusMsg, string.Concat(Utilities.SERVICE_NAME, " Status:",statusWord), NotificationEmailAddress);
+            }
+            catch (Exception e)
+            { LogErrorToEventLog(e, "SendStatusEmail"); }
         }
         public void CheckForUpdatesNow(bool downLoadUpdate, bool applyDownloadedUpdate, GhostConveyServerInstall ghostConveyServerInstall, ClientNotifier clientNotifier)
         {            
@@ -180,6 +215,7 @@ namespace GhostServicePluginGCUpdates
                 new ApplicationUpdateDescription();
 
             Status(string.Format("Checking for update: {0}", this.Key), dbName);
+            SendStatusEmail(string.Format("Checking for update,  {0} current version:{1}", this.Key,ghostConveyServerInstall.GCVersionFromFile.ToString()), "Checking");
 
             if (updateApplicable)
             {
@@ -191,9 +227,8 @@ namespace GhostServicePluginGCUpdates
             if (updateApplicable)            
             {   
                 try
-                {
-                    if (!string.IsNullOrEmpty(customUserMessage))
-                        DoAnyNotificationWork(ghostConveyServerInstall, customUserMessage);
+                {                    
+                    DoAnyNotificationWork(ghostConveyServerInstall, customUserMessage);
                 }
                 catch (Exception e)
                 { LogErrorToEventLog(e, "CheckForUpdatesNow"); }
@@ -202,6 +237,7 @@ namespace GhostServicePluginGCUpdates
                 if (downLoadUpdate)
                 {
                     Status(string.Format("Downloading update: {0}", this.Key), dbName);
+                    SendStatusEmail(string.Format("Downloading update for {0} current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString()), "Downloading");
 
                     if (windowedInstance)
                     {
@@ -220,11 +256,13 @@ namespace GhostServicePluginGCUpdates
                 else
                 {
                     Status(string.Format("There is an update available for: {0}", this.Key), dbName);
+                    SendStatusEmail(string.Format("There is an update available for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(),clientNotifier.LatestVersion().ToString()), "Available");
                 }
             }
             else
             {
                 Status(string.Format("There is no update available for: {0}", this.Key), dbName);
+                SendStatusEmail(string.Format("There is no update available for {0} current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString()), "Not available");
                 if (clientNotifier.UpdateAvailable())
                     _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = true;
             }
@@ -296,12 +334,14 @@ namespace GhostServicePluginGCUpdates
                     //clientUpdater.ApplyUpdate(null);  //msi
 
                     Status(string.Format("Update applied: {0}", this.Key), ghostConveyServerInstall.DbName);
+                    SendStatusEmail(string.Format("Update applied for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString()), "Applied");
 
                     return success;
                 }
                 else
                 {
-                    Status(string.Format("Update downloaded: {0}", this.Key), ghostConveyServerInstall.DbName);                    
+                    Status(string.Format("Update downloaded: {0}", this.Key), ghostConveyServerInstall.DbName);
+                    SendStatusEmail(string.Format("Update downloaded for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString()), "Downloaded");
                 }
             }
             return false;
@@ -365,9 +405,15 @@ namespace GhostServicePluginGCUpdates
             if (currentSettings.PluginSettingNotExists("MakeCopyPath"))
                 currentSettings.Add("MakeCopyPath", MAKE_COPY_PATH.ToString());
             if (currentSettings.PluginSettingNotExists("NotificationActive"))
-                currentSettings.Add("NotificationActive", NOTIFICATION_ACTIVE.ToString());
+                currentSettings.Add("NotificationActive", NOTIFICATION_ACTIVE_GC.ToString());
             if (currentSettings.PluginSettingNotExists("CalculateIntervalFromBase"))
                 currentSettings.Add("CalculateIntervalFromBase", CALCULATE_INTERVAL_FROM_BASE.ToString());
+            if (currentSettings.PluginSettingNotExists("NotificationActiveEmail"))
+                currentSettings.Add("NotificationActiveEmail", NOTIFICATION_ACTIVE_EMAIL.ToString());
+            if (currentSettings.PluginSettingNotExists("NotificationEmailAddress"))
+                currentSettings.Add("NotificationEmailAddress", NOTIFICATION_EMAIL_ADDRESS);
+            if (currentSettings.PluginSettingNotExists("StepByStepReportsEmail"))
+                currentSettings.Add("StepByStepReportsEmail", STEP_BY_STEP_REPORTS_EMAIL.ToString());
                         
             currentSettings.FileName = fileName;
             currentSettings.SaveToSameXML();
@@ -388,7 +434,9 @@ namespace GhostServicePluginGCUpdates
                 cbCopy.Checked = _settings["MakeCopyOfFile"].Equals("True");
                 cbGCNotify.Checked = _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
                 tbDownloadPath.Text = _settings["MakeCopyPath"];
-                cbNoDLoad_Click(null, null);
+                cbEmailNotify.Checked = _settings["NotificationActiveEmail"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
+                tbEmailAddress.Text = _settings["NotificationEmailAddress"];
+                cbStepbyStep.Checked = _settings["StepByStepReportsEmail"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
             }
             else
             {
@@ -397,6 +445,9 @@ namespace GhostServicePluginGCUpdates
                 _settings["MakeCopyOfFile"] = cbCopy.Checked.ToString();
                 _settings["NotificationActive"] = cbGCNotify.Checked.ToString();
                 _settings["MakeCopyPath"] = tbDownloadPath.Text;
+                _settings["NotificationActiveEmail"] = cbEmailNotify.Checked.ToString();
+                _settings["NotificationEmailAddress"] = tbEmailAddress.Text;
+                _settings["StepByStepReportsEmail"] = cbStepbyStep.Checked.ToString();
             }
         }
         #region AutoUpdate Event Handlers
@@ -485,6 +536,6 @@ namespace GhostServicePluginGCUpdates
         }
 
         #endregion
-        
+                
     }
 }

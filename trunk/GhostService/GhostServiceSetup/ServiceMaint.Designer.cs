@@ -79,9 +79,9 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnEventsRefresh = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbCachedCreds = new System.Windows.Forms.CheckBox();
             this.cbSetProxy = new System.Windows.Forms.CheckBox();
             this.gbProxyUser = new System.Windows.Forms.GroupBox();
-            this.cbCachedCreds = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tbProxyDomain = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -94,9 +94,25 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tbProxyServer = new System.Windows.Forms.TextBox();
             this.cbDefault = new System.Windows.Forms.CheckBox();
+            this.tpEmail = new System.Windows.Forms.TabPage();
+            this.tbSMTPTest = new System.Windows.Forms.Button();
+            this.cbUseMAPI = new System.Windows.Forms.CheckBox();
+            this.gbEmailOptions = new System.Windows.Forms.GroupBox();
+            this.cbSecureConn = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbDefaultAddress = new System.Windows.Forms.TextBox();
+            this.gbSMTP = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbSMTPServer = new System.Windows.Forms.TextBox();
+            this.gbSMTPUser = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbSMTPPassword = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tbSMTPUser = new System.Windows.Forms.TextBox();
             this.elGhostService = new System.Diagnostics.EventLog();
             this.dataSet1 = new System.Data.DataSet();
             this.dataSet2 = new System.Data.DataSet();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sfwTraceFile)).BeginInit();
             this.panel1.SuspendLayout();
             this.tpPluginOptions.SuspendLayout();
@@ -122,6 +138,10 @@
             this.tabPage2.SuspendLayout();
             this.gbProxyUser.SuspendLayout();
             this.gbManual.SuspendLayout();
+            this.tpEmail.SuspendLayout();
+            this.gbEmailOptions.SuspendLayout();
+            this.gbSMTP.SuspendLayout();
+            this.gbSMTPUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elGhostService)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).BeginInit();
@@ -157,6 +177,7 @@
             this.tpPluginOptions.Controls.Add(this.tabPage1);
             this.tpPluginOptions.Controls.Add(this.tpAppEvents);
             this.tpPluginOptions.Controls.Add(this.tabPage2);
+            this.tpPluginOptions.Controls.Add(this.tpEmail);
             this.tpPluginOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tpPluginOptions.Location = new System.Drawing.Point(0, 0);
             this.tpPluginOptions.Name = "tpPluginOptions";
@@ -631,6 +652,17 @@
             this.tabPage2.Text = "Proxy Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // cbCachedCreds
+            // 
+            this.cbCachedCreds.AutoSize = true;
+            this.cbCachedCreds.Location = new System.Drawing.Point(36, 186);
+            this.cbCachedCreds.Name = "cbCachedCreds";
+            this.cbCachedCreds.Size = new System.Drawing.Size(323, 17);
+            this.cbCachedCreds.TabIndex = 6;
+            this.cbCachedCreds.Text = "Use cached credentials (might require changes to service user)";
+            this.cbCachedCreds.UseVisualStyleBackColor = true;
+            this.cbCachedCreds.Click += new System.EventHandler(this.cbDefault_Click);
+            // 
             // cbSetProxy
             // 
             this.cbSetProxy.AutoSize = true;
@@ -656,17 +688,6 @@
             this.gbProxyUser.TabIndex = 4;
             this.gbProxyUser.TabStop = false;
             this.gbProxyUser.Text = "Proxy User Details";
-            // 
-            // cbCachedCreds
-            // 
-            this.cbCachedCreds.AutoSize = true;
-            this.cbCachedCreds.Location = new System.Drawing.Point(36, 186);
-            this.cbCachedCreds.Name = "cbCachedCreds";
-            this.cbCachedCreds.Size = new System.Drawing.Size(323, 17);
-            this.cbCachedCreds.TabIndex = 6;
-            this.cbCachedCreds.Text = "Use cached credentials (might require changes to service user)";
-            this.cbCachedCreds.UseVisualStyleBackColor = true;
-            this.cbCachedCreds.Click += new System.EventHandler(this.cbDefault_Click);
             // 
             // label15
             // 
@@ -779,6 +800,160 @@
             this.cbDefault.UseVisualStyleBackColor = true;
             this.cbDefault.Click += new System.EventHandler(this.cbDefault_Click);
             // 
+            // tpEmail
+            // 
+            this.tpEmail.Controls.Add(this.tbSMTPTest);
+            this.tpEmail.Controls.Add(this.cbUseMAPI);
+            this.tpEmail.Controls.Add(this.gbEmailOptions);
+            this.tpEmail.Controls.Add(this.gbSMTP);
+            this.tpEmail.Controls.Add(this.gbSMTPUser);
+            this.tpEmail.Location = new System.Drawing.Point(4, 22);
+            this.tpEmail.Name = "tpEmail";
+            this.tpEmail.Padding = new System.Windows.Forms.Padding(3);
+            this.tpEmail.Size = new System.Drawing.Size(607, 452);
+            this.tpEmail.TabIndex = 6;
+            this.tpEmail.Text = "Email Settings";
+            this.tpEmail.UseVisualStyleBackColor = true;
+            // 
+            // tbSMTPTest
+            // 
+            this.tbSMTPTest.Location = new System.Drawing.Point(392, 29);
+            this.tbSMTPTest.Name = "tbSMTPTest";
+            this.tbSMTPTest.Size = new System.Drawing.Size(101, 22);
+            this.tbSMTPTest.TabIndex = 2;
+            this.tbSMTPTest.Text = "Send Test Email";
+            this.tbSMTPTest.UseVisualStyleBackColor = true;
+            this.tbSMTPTest.Click += new System.EventHandler(this.tbSMTPTest_Click);
+            // 
+            // cbUseMAPI
+            // 
+            this.cbUseMAPI.AutoSize = true;
+            this.cbUseMAPI.Location = new System.Drawing.Point(36, 29);
+            this.cbUseMAPI.Name = "cbUseMAPI";
+            this.cbUseMAPI.Size = new System.Drawing.Size(259, 17);
+            this.cbUseMAPI.TabIndex = 1;
+            this.cbUseMAPI.Text = "Use MAPI (might require changes to service user)";
+            this.cbUseMAPI.UseVisualStyleBackColor = true;
+            this.cbUseMAPI.Click += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
+            // gbEmailOptions
+            // 
+            this.gbEmailOptions.Controls.Add(this.label16);
+            this.gbEmailOptions.Controls.Add(this.cbSecureConn);
+            this.gbEmailOptions.Controls.Add(this.label19);
+            this.gbEmailOptions.Controls.Add(this.tbDefaultAddress);
+            this.gbEmailOptions.Location = new System.Drawing.Point(36, 62);
+            this.gbEmailOptions.Name = "gbEmailOptions";
+            this.gbEmailOptions.Size = new System.Drawing.Size(457, 95);
+            this.gbEmailOptions.TabIndex = 3;
+            this.gbEmailOptions.TabStop = false;
+            this.gbEmailOptions.Text = "Email Options";
+            // 
+            // cbSecureConn
+            // 
+            this.cbSecureConn.AutoSize = true;
+            this.cbSecureConn.Location = new System.Drawing.Point(15, 59);
+            this.cbSecureConn.Name = "cbSecureConn";
+            this.cbSecureConn.Size = new System.Drawing.Size(119, 17);
+            this.cbSecureConn.TabIndex = 5;
+            this.cbSecureConn.Text = "Secure connection.";
+            this.cbSecureConn.UseVisualStyleBackColor = true;
+            this.cbSecureConn.Click += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(107, 13);
+            this.label19.TabIndex = 11;
+            this.label19.Text = "Default from address:";
+            // 
+            // tbDefaultAddress
+            // 
+            this.tbDefaultAddress.Location = new System.Drawing.Point(123, 24);
+            this.tbDefaultAddress.Name = "tbDefaultAddress";
+            this.tbDefaultAddress.Size = new System.Drawing.Size(217, 20);
+            this.tbDefaultAddress.TabIndex = 4;
+            this.tbDefaultAddress.Leave += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
+            // gbSMTP
+            // 
+            this.gbSMTP.Controls.Add(this.label20);
+            this.gbSMTP.Controls.Add(this.tbSMTPServer);
+            this.gbSMTP.Location = new System.Drawing.Point(36, 173);
+            this.gbSMTP.Name = "gbSMTP";
+            this.gbSMTP.Size = new System.Drawing.Size(457, 69);
+            this.gbSMTP.TabIndex = 6;
+            this.gbSMTP.TabStop = false;
+            this.gbSMTP.Text = "SMTP Server";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(13, 29);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(74, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "SMTP Server:";
+            // 
+            // tbSMTPServer
+            // 
+            this.tbSMTPServer.AcceptsReturn = true;
+            this.tbSMTPServer.Location = new System.Drawing.Point(124, 26);
+            this.tbSMTPServer.Name = "tbSMTPServer";
+            this.tbSMTPServer.Size = new System.Drawing.Size(216, 20);
+            this.tbSMTPServer.TabIndex = 7;
+            this.tbSMTPServer.Leave += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
+            // gbSMTPUser
+            // 
+            this.gbSMTPUser.Controls.Add(this.label17);
+            this.gbSMTPUser.Controls.Add(this.tbSMTPPassword);
+            this.gbSMTPUser.Controls.Add(this.label18);
+            this.gbSMTPUser.Controls.Add(this.tbSMTPUser);
+            this.gbSMTPUser.Location = new System.Drawing.Point(36, 264);
+            this.gbSMTPUser.Name = "gbSMTPUser";
+            this.gbSMTPUser.Size = new System.Drawing.Size(457, 99);
+            this.gbSMTPUser.TabIndex = 8;
+            this.gbSMTPUser.TabStop = false;
+            this.gbSMTPUser.Text = "SMTP User Details";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(12, 63);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 13);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "Password:";
+            // 
+            // tbSMTPPassword
+            // 
+            this.tbSMTPPassword.Location = new System.Drawing.Point(123, 60);
+            this.tbSMTPPassword.Name = "tbSMTPPassword";
+            this.tbSMTPPassword.Size = new System.Drawing.Size(137, 20);
+            this.tbSMTPPassword.TabIndex = 10;
+            this.tbSMTPPassword.UseSystemPasswordChar = true;
+            this.tbSMTPPassword.Leave += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(12, 27);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 13);
+            this.label18.TabIndex = 11;
+            this.label18.Text = "Username:";
+            // 
+            // tbSMTPUser
+            // 
+            this.tbSMTPUser.Location = new System.Drawing.Point(123, 24);
+            this.tbSMTPUser.Name = "tbSMTPUser";
+            this.tbSMTPUser.Size = new System.Drawing.Size(137, 20);
+            this.tbSMTPUser.TabIndex = 9;
+            this.tbSMTPUser.Leave += new System.EventHandler(this.cbSMTPDefault_Click);
+            // 
             // elGhostService
             // 
             this.elGhostService.Log = "Application";
@@ -791,6 +966,16 @@
             // dataSet2
             // 
             this.dataSet2.DataSetName = "NewDataSet";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(121, 44);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(111, 12);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "(Also To address for test.)";
             // 
             // ServiceMaint
             // 
@@ -835,6 +1020,14 @@
             this.gbProxyUser.PerformLayout();
             this.gbManual.ResumeLayout(false);
             this.gbManual.PerformLayout();
+            this.tpEmail.ResumeLayout(false);
+            this.tpEmail.PerformLayout();
+            this.gbEmailOptions.ResumeLayout(false);
+            this.gbEmailOptions.PerformLayout();
+            this.gbSMTP.ResumeLayout(false);
+            this.gbSMTP.PerformLayout();
+            this.gbSMTPUser.ResumeLayout(false);
+            this.gbSMTPUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elGhostService)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).EndInit();
@@ -912,5 +1105,21 @@
         private System.Windows.Forms.TextBox tbProxyUser;
         private System.Windows.Forms.CheckBox cbSetProxy;
         private System.Windows.Forms.CheckBox cbCachedCreds;
+        private System.Windows.Forms.TabPage tpEmail;
+        private System.Windows.Forms.GroupBox gbSMTP;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox tbSMTPServer;
+        private System.Windows.Forms.GroupBox gbSMTPUser;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox tbSMTPPassword;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox tbSMTPUser;
+        private System.Windows.Forms.GroupBox gbEmailOptions;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox tbDefaultAddress;
+        private System.Windows.Forms.CheckBox cbSecureConn;
+        private System.Windows.Forms.CheckBox cbUseMAPI;
+        private System.Windows.Forms.Button tbSMTPTest;
+        private System.Windows.Forms.Label label16;
     }
 }

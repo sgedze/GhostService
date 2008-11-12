@@ -16,7 +16,7 @@ namespace GhostService.GhostServicePlugin
 
         public GhostServicePluginTestBase()
         {
-            pluginInterval =  (ushort)new Random().Next(1, 4);
+            pluginInterval = 1;//(ushort)new Random().Next(1, 4);
             //runtype = new Random().Next(0, 2);
         }
         
@@ -56,12 +56,20 @@ namespace GhostService.GhostServicePlugin
 
         public void Start()
         {
-            
+            try
+            {
+                Utilities.SendTestEmail(this.ServerInformation, "justint@korbitec.com");
+            }
+            catch (Exception e)
+            {
+                TraceLog.Log(e);
+            }
         }
 
         public void InitAndStart()
-        {            
-            Utilities.DummyTestForm(new Random().Next(3,20), this.Key);
+        {
+            Start();
+            //Utilities.DummyTestForm(new Random().Next(3,20), this.Key);
         }
 
         #endregion

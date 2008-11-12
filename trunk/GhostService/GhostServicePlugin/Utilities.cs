@@ -9,6 +9,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Net;
 using System.Security.Cryptography;
+using Korbitec.Components.Messaging;
 
 namespace GhostService.GhostServicePlugin
 {
@@ -121,6 +122,8 @@ namespace GhostService.GhostServicePlugin
         //public const string UPDATE_NOTIFICATION_MSG = "Please note there is an update available for GhostConvey. ";
         public const int MIN_RANDOM_SEED = 1;//2;
         public const int MAX_RANDOM_SEED = 2;//15;
+        public const string EMAIL_TEST_SUBJECT = "Test email (from GhostService)";
+        public const string EMAIL_TEST_MESSAGE = "Test email created at: {0}";
 
         #endregion
 
@@ -219,7 +222,7 @@ namespace GhostService.GhostServicePlugin
         }
         #endregion
 
-        #region Other, Zip, Proxy, Crypto
+        #region Other, Zip, Proxy, Crypto, Email
                 
         private static int t_keySize = 256; // can be 192 or 128
 
@@ -534,6 +537,54 @@ namespace GhostService.GhostServicePlugin
                 }
             }
             return string.Empty;
+        }
+
+        public static bool SendTestEmail(PluginServerInformation pluginServerInformation, string emailTo)
+        {
+            return SendEmail(pluginServerInformation.UseMAPI,
+                    pluginServerInformation.SMTPServer,
+                    pluginServerInformation.SMTPDefaultFromAddress,
+                    pluginServerInformation.SMTPUsername,
+                    pluginServerInformation.SMTPPassword,
+                    pluginServerInformation.SMTPSecureConnection,
+                    string.Format(Utilities.EMAIL_TEST_MESSAGE,DateTime.Now.ToString()),
+                    Utilities.EMAIL_TEST_SUBJECT, emailTo);
+        }
+
+        public static bool SendEmail(PluginServerInformation pluginServerInformation, string emailMessage, string emailSubject, string emailTo)
+        {            
+            return SendEmail(pluginServerInformation.UseMAPI,
+                    pluginServerInformation.SMTPServer,
+                    pluginServerInformation.SMTPDefaultFromAddress,
+                    pluginServerInformation.SMTPUsername,
+                    pluginServerInformation.SMTPPassword,
+                    pluginServerInformation.SMTPSecureConnection,
+                    emailMessage,emailSubject,emailTo);
+        }
+
+        public static bool SendEmail(bool useMAPI, string sMTPServer, string defaultFromAddress, string sMTPUsername, string sMTPPassword, bool secureConnection, string emailMessage, string emailSubject, string emailTo)
+        {            
+            Email email = new Email();
+            email.To = emailTo;
+            email.Subject = emailSubject;
+            email.Message = emailMessage;
+            
+            if (useMAPI)
+            {
+                EmailerOutlook emailerOutLook = new EmailerOutlook();
+                emailerOutLook.SendEmail(email);                
+            }
+            else
+            {   
+                EmailerSmtp emailerSmtp = new EmailerSmtp(defaultFromAddress,sMTPServer);
+                emailerSmtp.SmtpSecureConnection = secureConnection;
+                emailerSmtp.SmtpUserName = sMTPUsername;
+                emailerSmtp.SmtpPassword = sMTPPassword;
+
+                emailerSmtp.SendEmail(email);
+            }
+
+            return true;
         }
         
         #endregion

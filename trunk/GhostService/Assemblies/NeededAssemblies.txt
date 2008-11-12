@@ -6,3 +6,5 @@
 \Assemblies\Korbitec.AutoUpdate.Msi.dll
 \Assemblies\Korbitec.Compression.dll
 \Assemblies\Korbitec.Utilities.dll
+\Assemblies\Korbitec.Components.Messaging.dll
+\Assemblies\Korbitec.Outlook9.Interop.dll

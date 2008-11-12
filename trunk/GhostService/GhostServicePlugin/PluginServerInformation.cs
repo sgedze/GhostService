@@ -192,6 +192,79 @@ namespace GhostService.GhostServicePlugin
                 _settings["ProxyDomain"] = value;
             }
         }
+        public bool UseMAPI
+        {
+            get
+            {
+                return _settings["UseMAPI"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            set
+            {
+                _settings["UseMAPI"] = value.ToString();
+            }
+        }
+        public bool SMTPSecureConnection
+        {
+            get
+            {
+                return _settings["SMTPSecureConnection"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            set
+            {
+                _settings["SMTPSecureConnection"] = value.ToString();
+            }
+        }
+        public string SMTPPassword
+        {
+            get
+            {                
+                return _settings["SMTPPassword"];
+            }
+
+            set
+            {
+                _settings["SMTPPassword"] = value;
+            }
+        }
+        public string SMTPDefaultFromAddress
+        {
+            get
+            {                
+                return _settings["SMTPDefaultFromAddress"];
+            }
+
+            set
+            {
+                _settings["SMTPDefaultFromAddress"] = value;
+            }
+        }
+        public string SMTPUsername
+        {
+            get
+            {                
+                return _settings["SMTPUsername"];
+            }
+
+            set
+            {
+                _settings["SMTPUsername"] = value;
+            }
+        }
+        public string SMTPServer
+        {
+            get
+            {                
+                return _settings["SMTPServer"];
+            }
+
+            set
+            {
+                _settings["SMTPServer"] = value;
+            }
+        }
+
 
         #endregion 
 
@@ -247,6 +320,24 @@ namespace GhostService.GhostServicePlugin
 
             if (!_settings.ContainsKey("ProxyCachedCredentials"))
                 _settings.Add("ProxyCachedCredentials", "False");
+
+            if (!_settings.ContainsKey("UseMAPI"))
+                _settings.Add("UseMAPI", "False");
+
+            if (!_settings.ContainsKey("SMTPDefaultFromAddress"))
+                _settings.Add("SMTPDefaultFromAddress", "");
+
+            if (!_settings.ContainsKey("SMTPUsername"))
+                _settings.Add("SMTPUsername", "");
+
+            if (!_settings.ContainsKey("SMTPPassword"))
+                _settings.Add("SMTPPassword", "");
+
+            if (!_settings.ContainsKey("SMTPServer"))
+                _settings.Add("SMTPServer", "");
+
+            if (!_settings.ContainsKey("SMTPSecureConnection"))
+                _settings.Add("SMTPSecureConnection", "False");
         }
 
         #endregion
@@ -277,7 +368,7 @@ namespace GhostService.GhostServicePlugin
 
             foreach (string s in _settings.Keys)
             {
-                if (s.Equals("proxypassword",StringComparison.CurrentCultureIgnoreCase))
+                if (s.ToLower().Contains("password"))
                     xmlWriter.WriteElementString(s, string.Concat("@@",Utilities.Encrypt(_settings[s])));
                 else                    
                     xmlWriter.WriteElementString(s, _settings[s]);
@@ -315,7 +406,7 @@ namespace GhostService.GhostServicePlugin
                     {
                         foreach (XmlNode innerNode in node.ChildNodes)
                         {
-                            if (innerNode.Name.Equals("proxypassword", StringComparison.CurrentCultureIgnoreCase))
+                            if (innerNode.Name.ToLower().Contains("password"))
                             {
                                 if (node[innerNode.Name].InnerText.StartsWith("@@"))
                                     _settings.Add(innerNode.Name, Utilities.Decrypt(node[innerNode.Name].InnerText.Substring(2)));

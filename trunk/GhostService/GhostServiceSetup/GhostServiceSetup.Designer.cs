@@ -42,9 +42,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 426);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(526, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(575, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -56,7 +56,7 @@
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.msMain.Size = new System.Drawing.Size(526, 24);
+            this.msMain.Size = new System.Drawing.Size(575, 24);
             this.msMain.TabIndex = 4;
             this.msMain.Text = "menuStrip2";
             // 
@@ -100,14 +100,14 @@
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 24);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(526, 402);
+            this.pnlMain.Size = new System.Drawing.Size(575, 424);
             this.pnlMain.TabIndex = 5;
             // 
             // GhostServiceSetupF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 448);
+            this.ClientSize = new System.Drawing.Size(575, 470);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.msMain);
