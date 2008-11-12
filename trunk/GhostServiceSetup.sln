@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationUpdateDescriptio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Korbitec.AutoUpdate.ClientUpdates", "..\..\AutoUpdate\ClientUpdates\Korbitec.AutoUpdate.ClientUpdates.csproj", "{3078D8C6-AB50-4A43-A9FF-B5BC07190CCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostServicePluginTest1", "GhostService\GhostServicePluginTest1\GhostServicePluginTest1.csproj", "{C1EF33BD-11DB-4589-83BA-C25FC872166F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,12 @@ Global
 		{3078D8C6-AB50-4A43-A9FF-B5BC07190CCE}.LimitedClient|Any CPU.Build.0 = Release|Any CPU
 		{3078D8C6-AB50-4A43-A9FF-B5BC07190CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3078D8C6-AB50-4A43-A9FF-B5BC07190CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.LimitedClient|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.LimitedClient|Any CPU.Build.0 = Release|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EF33BD-11DB-4589-83BA-C25FC872166F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

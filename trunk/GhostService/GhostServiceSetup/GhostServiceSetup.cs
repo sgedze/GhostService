@@ -32,7 +32,15 @@ namespace GhostService
 
         public GhostServiceSetupF()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            try
+            {
+                this.Text = string.Format("{0} ({1})", this.Text, Utilities.GhostServiceVersionFromFile());
+            }
+            catch (Exception e)
+            {
+                TraceLog.Log(e);
+            }
         }
 
         #region For load up

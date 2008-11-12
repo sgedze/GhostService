@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.IO;
 using System.Reflection;
 using ICSharpCode.SharpZipLib.Zip;
-using System.Security.AccessControl;
-using System.Security.Principal;
 using System.Net;
 using System.Security.Cryptography;
 using Korbitec.Components.Messaging;
@@ -124,6 +121,7 @@ namespace GhostService.GhostServicePlugin
         public const int MAX_RANDOM_SEED = 2;//15;
         public const string EMAIL_TEST_SUBJECT = "Test email (from GhostService)";
         public const string EMAIL_TEST_MESSAGE = "Test email created at: {0}";
+        public const string GS_VERSION_TXT = "GSVersion.txt";
 
         #endregion
 
@@ -585,6 +583,18 @@ namespace GhostService.GhostServicePlugin
             }
 
             return true;
+        }
+        
+        #endregion
+
+        #region GS specific constants
+        public static string GhostServiceVersionFile()
+        {
+            return Path.Combine(CallingAssemblyPath(), Utilities.GS_VERSION_TXT);
+        }
+        public static string GhostServiceVersionFromFile()
+        {
+            return File.ReadAllText(GhostServiceVersionFile());
         }
         
         #endregion

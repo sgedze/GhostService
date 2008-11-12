@@ -62,7 +62,7 @@ namespace GhostServicePluginGSUpdates
             Status("Checking for update: " + this.Key);
 
             if (clientUpdater.UpdateAvailable())
-            {
+            {                
                 /*try
                 {
                     DoAnyNotificationWork();
@@ -120,6 +120,10 @@ namespace GhostServicePluginGSUpdates
             {
                 Status("There is no update available for: " + this.Key);
             }
+
+            try
+            { File.WriteAllText(Utilities.GhostServiceVersionFile(), clientUpdater.ProductVersion.ToString()); }
+            catch (Exception e) { TraceLog.Log(e); }
         }
         public override void BuildNewPluginSettings(ref PluginSettings currentSettings, string name, string fileName)
         {

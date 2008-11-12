@@ -29,7 +29,7 @@ namespace GhostServicePluginGCUpdates
         private const bool STEP_BY_STEP_REPORTS_EMAIL = false;
         private const string NOTIFICATION_EMAIL_ADDRESS = "";
         private const PluginRunType RUNTYPE = PluginRunType.OnceADay;
-
+        
         #endregion                                  
 
         protected ClientNotifier _clientNotifier;
@@ -53,7 +53,7 @@ namespace GhostServicePluginGCUpdates
         {
             get { return _settings["MakeCopyPath"]; }
             set { _settings["MakeCopyPath"] = value; }
-        }
+        }        
         protected string AutoUpdateServer
         {
             get
@@ -237,7 +237,7 @@ namespace GhostServicePluginGCUpdates
                 if (downLoadUpdate)
                 {
                     Status(string.Format("Downloading update: {0}", this.Key), dbName);
-                    SendStatusEmail(string.Format("Downloading update for {0} current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString()), "Downloading");
+                    SendStatusEmail(string.Format("Downloading update for {0}([{2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(),dbName), "Downloading");
 
                     if (windowedInstance)
                     {
@@ -256,13 +256,13 @@ namespace GhostServicePluginGCUpdates
                 else
                 {
                     Status(string.Format("There is an update available for: {0}", this.Key), dbName);
-                    SendStatusEmail(string.Format("There is an update available for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(),clientNotifier.LatestVersion().ToString()), "Available");
+                    SendStatusEmail(string.Format("There is an update available for {0}([{2}) current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString(), dbName), "Available");
                 }
             }
             else
             {
                 Status(string.Format("There is no update available for: {0}", this.Key), dbName);
-                SendStatusEmail(string.Format("There is no update available for {0} current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString()), "Not available");
+                SendStatusEmail(string.Format("There is no update available for {0}([{2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), dbName), "Not available");
                 if (clientNotifier.UpdateAvailable())
                     _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = true;
             }
@@ -334,14 +334,14 @@ namespace GhostServicePluginGCUpdates
                     //clientUpdater.ApplyUpdate(null);  //msi
 
                     Status(string.Format("Update applied: {0}", this.Key), ghostConveyServerInstall.DbName);
-                    SendStatusEmail(string.Format("Update applied for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString()), "Applied");
+                    SendStatusEmail(string.Format("Update applied for {0}({3}) current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString(), ghostConveyServerInstall.DbName), "Applied");
 
                     return success;
                 }
                 else
                 {
                     Status(string.Format("Update downloaded: {0}", this.Key), ghostConveyServerInstall.DbName);
-                    SendStatusEmail(string.Format("Update downloaded for {0} current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString()), "Downloaded");
+                    SendStatusEmail(string.Format("Update downloaded for {0}({3}) current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString(), ghostConveyServerInstall.DbName), "Downloaded");
                 }
             }
             return false;
