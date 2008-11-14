@@ -215,7 +215,7 @@ namespace GhostServicePluginGCUpdates
                 new ApplicationUpdateDescription();
 
             Status(string.Format("Checking for update: {0}", this.Key), dbName);
-            SendStatusEmail(string.Format("Checking for update,  {0} current version:{1}", this.Key,ghostConveyServerInstall.GCVersionFromFile.ToString()), "Checking");
+            SendStatusEmail(string.Format("Checking for update {0}({2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), dbName), "Checking");
 
             if (updateApplicable)
             {
@@ -237,7 +237,7 @@ namespace GhostServicePluginGCUpdates
                 if (downLoadUpdate)
                 {
                     Status(string.Format("Downloading update: {0}", this.Key), dbName);
-                    SendStatusEmail(string.Format("Downloading update for {0}([{2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(),dbName), "Downloading");
+                    SendStatusEmail(string.Format("Downloading update for {0}({2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(),dbName), "Downloading");
 
                     if (windowedInstance)
                     {
@@ -256,13 +256,13 @@ namespace GhostServicePluginGCUpdates
                 else
                 {
                     Status(string.Format("There is an update available for: {0}", this.Key), dbName);
-                    SendStatusEmail(string.Format("There is an update available for {0}([{2}) current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString(), dbName), "Available");
+                    SendStatusEmail(string.Format("There is an update available for {0}({2}) current version:{1}({2})", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), clientNotifier.LatestVersion().ToString(), dbName), "Available");
                 }
             }
             else
             {
                 Status(string.Format("There is no update available for: {0}", this.Key), dbName);
-                SendStatusEmail(string.Format("There is no update available for {0}([{2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), dbName), "Not available");
+                SendStatusEmail(string.Format("There is no update available for {0}({2}) current version:{1}", this.Key, ghostConveyServerInstall.GCVersionFromFile.ToString(), dbName), "Not available");
                 if (clientNotifier.UpdateAvailable())
                     _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = true;
             }
