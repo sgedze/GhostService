@@ -16,6 +16,7 @@ namespace GhostService.GhostServicePlugin
         protected PluginSettings _settings;
         protected PluginServerInformation _serverInformation;
         protected Control _parent;
+        protected bool _busyLoadingSettingsToUI;
 
         public delegate void ActivateOrDeactivate(object sender, EventArgs e);
 
@@ -211,11 +212,16 @@ namespace GhostService.GhostServicePlugin
         {
             try
             {
+                this._busyLoadingSettingsToUI = true;
                 HandleSettings(true);
             }
             catch (Exception ex)
             {
                 LogErrorToEventLog(ex, "_Load");
+            }
+            finally
+            {
+                this._busyLoadingSettingsToUI = false;
             }
         }
         private void Deactivate(object sender, EventArgs e)

@@ -39,15 +39,23 @@ namespace GhostService
             TraceLog.TraceLogFileName = _serverInformation.TraceFileName;
 
             //System.Windows.Forms.MessageBox.Show("DEBUG DLL version: " + Assembly.GetExecutingAssembly().FullName);
-            TraceLog.Log("Service started version: " + Assembly.GetExecutingAssembly().FullName);
+            TraceLog.Log(String.Format("Service started version: {0}, TestMode: {1}",Assembly.GetExecutingAssembly().FullName,_serverInformation.ServiceSettingsTest.ToString()));
 
-            LoadRunnablePlugins(Utilities.RelativePluginDirectory(Assembly.GetExecutingAssembly().Location), Utilities.PLUGIN_FILTER_NAME);
+            if (_serverInformation.ServiceSettingsTest)
+            {
+                RunInTestMode();
+            }
+            else
+            {
 
-            minuteTimer = new System.Timers.Timer();//new TimerCallback(TimerTick), null, 100, 60000); 
-            minuteTimer.Interval = 60000; //minute
-            minuteTimer.Elapsed += TimerTick;            
+                LoadRunnablePlugins(Utilities.RelativePluginDirectory(Assembly.GetExecutingAssembly().Location), Utilities.PLUGIN_FILTER_NAME);
 
-            minuteTimer.Start();
+                minuteTimer = new System.Timers.Timer();//new TimerCallback(TimerTick), null, 100, 60000); 
+                minuteTimer.Interval = 60000; //minute
+                minuteTimer.Elapsed += TimerTick;
+
+                minuteTimer.Start();
+            }
         }
 
         private void RebuildDebugProcessList()
@@ -138,9 +146,13 @@ namespace GhostService
 
         protected override void OnStop()
         {
-            minuteTimer.Dispose();
-            //this might cause problems
-            _threadList.KillThreadsNow();
+            if (!_serverInformation.ServiceSettingsTest)
+            {
+                minuteTimer.Dispose();
+                //this might cause problems
+                _threadList.KillThreadsNow();                
+            }
+            
             TraceLog.Log("Service stopped version: " + Assembly.GetExecutingAssembly().FullName);
         }
 
@@ -268,6 +280,13 @@ namespace GhostService
                     return false;
                 }
             }
+        }
+
+        private void RunInTestMode()
+        {
+            TraceLog.Log(string.Format("Service Tests Passed: {0}",
+            Utilities.DoOnSiteTests(_serverInformation).ToString()));
+            this.Stop();
         }
 
     }

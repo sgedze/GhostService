@@ -23,7 +23,7 @@ namespace GhostService
             SetTraceFile(psi.TraceFileName);
             SetStartupDelay(psi.StartupDelay);
             SetUseDefaultProxySettings(psi.ProxySet, psi.UseDefaultProxySettings, psi.ProxyCachedCredentials);
-            SetSMTPFrameDetails(psi.UseMAPI, psi.SMTPServer, psi.SMTPDefaultFromAddress, psi.SMTPUsername, psi.SMTPPassword, psi.SMTPSecureConnection);
+            SetSMTPFrameDetails(psi.SMTPServer, psi.SMTPDefaultFromAddress, psi.SMTPUsername, psi.SMTPPassword, psi.SMTPSecureConnection);
             SetProxySettings(psi.ProxyUserName, psi.ProxyPassword, psi.ProxyDomain, psi.ProxyServer, psi.ProxyPort);           
             elGhostService.Source = Utilities.SERVICE_NAME;
             this.Text = "Service Manager";
@@ -58,7 +58,7 @@ namespace GhostService
                         {
                             ButtonStatus(false, true, true);
                             ResetProgressbar();
-                            lblServiceName.Text = string.Format("{0} is running.", Utilities.SERVICE_NAME);
+                            lblServiceName.Text = string.Format("{0} is running. Cannot make changes to settings, stop it first.", Utilities.SERVICE_NAME);
                             lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
                             break;
                         }
@@ -74,7 +74,7 @@ namespace GhostService
                         {
                             ButtonStatus(false, false, false);
                             ProgressbarStep();
-                            lblServiceName.Text = string.Format("{0} is busy stopping ...", Utilities.SERVICE_NAME);
+                            lblServiceName.Text = string.Format("{0} is busy stopping ... Cannot make changes to settings yet.", Utilities.SERVICE_NAME);
                             lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
                             break;
                         }
@@ -82,7 +82,7 @@ namespace GhostService
                         {
                             ButtonStatus(false, false, false);
                             ProgressbarStep();
-                            lblServiceName.Text = string.Format("{0} is busy starting ...", Utilities.SERVICE_NAME);
+                            lblServiceName.Text = string.Format("{0} is busy starting ... Cannot make changes to settings, stop it first.", Utilities.SERVICE_NAME);
                             lblServiceStatus.Text = string.Format("Stop service ({0}), to use reset option.", Utilities.SERVICE_NAME);
                             break;
                         }
@@ -102,15 +102,20 @@ namespace GhostService
             }
         }
 
-        private void ButtonStatus(bool Start, bool Stop, bool Restart)
+        private void ButtonStatus(bool start, bool stop, bool restart)
         {            
-            btnStart.Enabled = Start;
-            btnStop.Enabled = Stop;
+            btnStart.Enabled = start;
+            btnStop.Enabled = stop;
             //maybe later
             //btnRestart.Enabled = Restart;
-            pbStartStop.Visible = !Start && !Stop;
+            pbStartStop.Visible = !start && !stop;
 
-            btnReset.Enabled = Start;
+            btnReset.Enabled = start;
+
+            gbTrace.Enabled = start;
+            gbServiceOpt.Enabled = start;
+
+            btnTest.Enabled = start;
         }
 
         private void SetTraceFile(string fileName)
@@ -168,10 +173,8 @@ namespace GhostService
             gbProxyUser.Enabled = (proxySet && cbCachedCreds.Enabled && !cbCachedCreds.Checked);
         }
 
-        private void SetSMTPFrameDetails(bool useMAPI, string sMTPServer, string defaultFromAddress, string sMTPUsername, string sMTPPassword, bool secureConnection)
+        private void SetSMTPFrameDetails(string sMTPServer, string defaultFromAddress, string sMTPUsername, string sMTPPassword, bool secureConnection)
         {
-            _serverInformation.UseMAPI = useMAPI;
-            cbUseMAPI.Checked = useMAPI;
             _serverInformation.SMTPDefaultFromAddress = defaultFromAddress;
             tbDefaultAddress.Text = defaultFromAddress;
             _serverInformation.SMTPPassword = sMTPPassword;
@@ -184,9 +187,9 @@ namespace GhostService
             tbSMTPUser.Text = sMTPUsername;            
             _serverInformation.SaveToSameXML();
 
-            gbEmailOptions.Enabled = !useMAPI;
+            /*gbEmailOptions.Enabled = !useMAPI;
             gbSMTP.Enabled = !useMAPI;
-            gbSMTPUser.Enabled = !useMAPI;            
+            gbSMTPUser.Enabled = !useMAPI;*/            
         }
 
         private void ProxySettingsChanged()
@@ -318,7 +321,13 @@ namespace GhostService
             if ((edtTraceFile.Text.Length > 0))
                 MessageBox.Show("Please note leaving GhostService in trace mode will effect its speed.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
-            if (_restartService)
+            if ((scGS.Status == ServiceControllerStatus.Stopped))
+            {
+                DialogResult dr = MessageBox.Show("The service is not running, try and start it?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                    btnStart_Click(sender, e);
+            }
+            else if (_restartService)
             {
                 PromptRestartService();
                 _restartService = false;
@@ -411,7 +420,8 @@ namespace GhostService
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            scGS.Start();
+            _serverInformation.SaveToSameXML();
+            scGS.Start();            
             _restartService = false;
         }
         private void btnRestart_Click(object sender, EventArgs e)
@@ -429,10 +439,9 @@ namespace GhostService
         }
         private void cbSMTPDefault_Click(object sender, EventArgs e)
         {
-            SetSMTPFrameDetails(cbUseMAPI.Checked, tbSMTPServer.Text, tbDefaultAddress.Text, tbSMTPUser.Text, tbSMTPPassword.Text, cbSecureConn.Checked);
+            SetSMTPFrameDetails(tbSMTPServer.Text, tbDefaultAddress.Text, tbSMTPUser.Text, tbSMTPPassword.Text, cbSecureConn.Checked);
             _restartService = true;
         }       
-
         private void tbProxyServer_TextChanged(object sender, EventArgs e)
         {
             ProxySettingsChanged();
@@ -446,11 +455,37 @@ namespace GhostService
         {
             ReadEventLogAndDisplay();
         }
-        #endregion 
-
         private void tbSMTPTest_Click(object sender, EventArgs e)
-        {            
-            Utilities.SendTestEmail(_serverInformation, tbDefaultAddress.Text);            
+        {
+            Utilities.SendTestEmail(_serverInformation, tbDefaultAddress.Text);
         }
+        private void tpPluginOptions_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if ((e.TabPage == tpProxy) || (e.TabPage == tpEmail))
+            {
+                if (scGS.Status != ServiceControllerStatus.Stopped)
+                {
+                    MessageBox.Show("Before changes can be made please stop the service.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    e.Cancel = true;
+                }
+            }
+
+        }
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            _serverInformation.ServiceSettingsTest = true;
+            try
+            {
+                btnStart_Click(sender, e);
+            }
+            finally
+            {
+                _serverInformation.ServiceSettingsTest = false;
+            }
+
+        }
+        #endregion         
+
+        
     }
 }

@@ -36,7 +36,7 @@ namespace GhostService.GhostServicePlugin
         {
             get
             {
-                return false;
+                return true;
             }
             set
             {

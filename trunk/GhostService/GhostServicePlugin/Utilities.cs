@@ -7,6 +7,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using System.Net;
 using System.Security.Cryptography;
 using Korbitec.Components.Messaging;
+using Korbitec.AutoUpdate.ClientUpdates;
 
 namespace GhostService.GhostServicePlugin
 {
@@ -122,6 +123,9 @@ namespace GhostService.GhostServicePlugin
         public const string EMAIL_TEST_SUBJECT = "Test email (from GhostService)";
         public const string EMAIL_TEST_MESSAGE = "Test email created at: {0}";
         public const string GS_VERSION_TXT = "GSVersion.txt";
+        public const string MAKE_COPY_SETTING_NAME = "MakeCopyOfFile";
+        public const string MAKE_COPY_PATH_SETTING_NAME = "MakeCopyPath";
+        public const string AUTOUPDATE_SERVER_URL = @"http://autoupdate.korbitec.com/AutoUpdateServer/Service.svc";
 
         #endregion
 
@@ -539,7 +543,7 @@ namespace GhostService.GhostServicePlugin
 
         public static bool SendTestEmail(PluginServerInformation pluginServerInformation, string emailTo)
         {
-            return SendEmail(pluginServerInformation.UseMAPI,
+            return SendEmail(false,
                     pluginServerInformation.SMTPServer,
                     pluginServerInformation.SMTPDefaultFromAddress,
                     pluginServerInformation.SMTPUsername,
@@ -551,7 +555,7 @@ namespace GhostService.GhostServicePlugin
 
         public static bool SendEmail(PluginServerInformation pluginServerInformation, string emailMessage, string emailSubject, string emailTo)
         {            
-            return SendEmail(pluginServerInformation.UseMAPI,
+            return SendEmail(false,
                     pluginServerInformation.SMTPServer,
                     pluginServerInformation.SMTPDefaultFromAddress,
                     pluginServerInformation.SMTPUsername,
@@ -597,6 +601,129 @@ namespace GhostService.GhostServicePlugin
             return File.ReadAllText(GhostServiceVersionFile());
         }
         
+        #endregion
+
+        #region On Site Testing
+
+        public static bool DoOnSiteTests(PluginServerInformation pluginServerInformation)
+        {
+            bool status = true;
+            
+            ServiceTestForm testForm = new ServiceTestForm();
+
+            #region email
+            testForm.Add("Email:");
+            try
+            {
+                Utilities.SendTestEmail(pluginServerInformation, pluginServerInformation.SMTPDefaultFromAddress);
+                testForm.Add("     Email sent to " + pluginServerInformation.SMTPDefaultFromAddress);
+                testForm.Add("   ... No Errors.");
+            }
+            catch (Exception e)
+            {
+                testForm.Add("   " + e.Message);
+                status = false;
+            }
+            #endregion 
+
+            #region databases
+            testForm.Add("Databases:");
+            try
+            {
+                string testSql;
+                GhostConveySQLs.GC_USR_firm_GetLicenseSQL(out testSql);
+                foreach (Db database in pluginServerInformation.DBs)
+                {
+                    if (database is GhostConveyServerInstall)
+                    {
+                        (database as GhostConveyServerInstall).RunQueryStr(testSql);
+                        //if (database.IsSQLModule)
+                            testForm.Add("     Checking DB " + database.ConfigFilePath);
+                        //else
+                        //    testForm.Add("     Checking DB " + database.DbName);
+                    }
+                }
+                testForm.Add("   ... No Errors.");
+            }
+            catch (Exception e)
+            {
+                testForm.Add("   " + e.Message);
+                status = false;
+            }
+            #endregion 
+
+            #region internet connection
+            testForm.Add("Internet:");
+            string fileName = "";
+            try
+            {
+                ClientUpdater clientUpdater = new ClientUpdater("GhostService",
+                    Utilities.AUTOUPDATE_SERVER_URL);
+
+                //use later.
+                fileName = clientUpdater.BasePath;
+
+                TraceLog.Log(string.Format("Created ClientNotifier for {0}.", clientUpdater.ProductFamily));
+
+                if (pluginServerInformation.ProxySet)
+                {
+                    clientUpdater.Proxy = Utilities.GetProxy(pluginServerInformation);
+                    if (clientUpdater.Proxy == null)
+                        clientUpdater.Proxy = WebRequest.DefaultWebProxy;
+                    testForm.Add("     Using proxy.");
+                }
+                else
+                    testForm.Add("     Using no proxy.");
+
+                testForm.Add("     Checking update site " + Utilities.AUTOUPDATE_SERVER_URL);
+                clientUpdater.UpdateAvailable();
+                testForm.Add("   ... No Errors.");
+            }
+            catch (Exception e)
+            {
+                testForm.Add("   " + e.Message);
+                status = false;
+            }
+            #endregion
+
+            #region directory rights
+            testForm.Add("Rights:");
+            try
+            {
+                string fileNameGC = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "GhostServicePluginGCUpdates.dll.xml");
+
+                if (File.Exists(fileNameGC))
+                {
+                    PluginSettings settings = new PluginSettings(fileNameGC);
+                    settings.LoadFromXML(fileNameGC);
+                    if (settings[Utilities.MAKE_COPY_SETTING_NAME].Equals("True",StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        testForm.Add(string.Format("     Checking path {0}.", settings[Utilities.MAKE_COPY_PATH_SETTING_NAME]));
+                        Directory.CreateDirectory(Path.Combine(settings[Utilities.MAKE_COPY_PATH_SETTING_NAME],"Test"));
+                        Directory.Delete(Path.Combine(settings[Utilities.MAKE_COPY_PATH_SETTING_NAME],"Test"));
+                    }
+                }
+
+                testForm.Add(string.Format("     Checking path {0}.", fileName));
+                Directory.CreateDirectory(Path.Combine(fileName, "Test"));
+                Directory.Delete(Path.Combine(fileName, "Test"));
+
+                testForm.Add("   ... No Errors.");
+            }
+            catch (Exception e)
+            {
+                testForm.Add("   " + e.Message);
+                status = false;
+            }
+            #endregion
+
+            testForm.Status("Done");
+            //should wait here
+            testForm.ShowDialog();
+
+            return status; 
+        }
+
         #endregion
 
         /* testing 

@@ -38,6 +38,7 @@
             this.lbDBs = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbStepbyStep = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cbEmailNotify = new System.Windows.Forms.CheckBox();
@@ -50,6 +51,7 @@
             this.cbGCNotify = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.gbDloadPath = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.bnBrowse = new System.Windows.Forms.Button();
             this.tbDownloadPath = new System.Windows.Forms.TextBox();
             this.cbCopy = new System.Windows.Forms.CheckBox();
@@ -61,7 +63,6 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.cbStepbyStep = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -190,6 +191,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Notification via Email";
             // 
+            // cbStepbyStep
+            // 
+            this.cbStepbyStep.AutoSize = true;
+            this.cbStepbyStep.Location = new System.Drawing.Point(31, 140);
+            this.cbStepbyStep.Name = "cbStepbyStep";
+            this.cbStepbyStep.Size = new System.Drawing.Size(190, 17);
+            this.cbStepbyStep.TabIndex = 7;
+            this.cbStepbyStep.Text = "Include step by step status reports.";
+            this.cbStepbyStep.UseVisualStyleBackColor = true;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -301,15 +312,26 @@
             // 
             // gbDloadPath
             // 
+            this.gbDloadPath.Controls.Add(this.label16);
             this.gbDloadPath.Controls.Add(this.bnBrowse);
             this.gbDloadPath.Controls.Add(this.tbDownloadPath);
             this.gbDloadPath.Controls.Add(this.cbCopy);
             this.gbDloadPath.Location = new System.Drawing.Point(25, 88);
             this.gbDloadPath.Name = "gbDloadPath";
-            this.gbDloadPath.Size = new System.Drawing.Size(377, 100);
+            this.gbDloadPath.Size = new System.Drawing.Size(377, 121);
             this.gbDloadPath.TabIndex = 7;
             this.gbDloadPath.TabStop = false;
             this.gbDloadPath.Text = "Download options";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(19, 85);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(156, 12);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "Do NOT make use of mapped drives.";
             // 
             // bnBrowse
             // 
@@ -337,6 +359,7 @@
             this.cbCopy.TabIndex = 5;
             this.cbCopy.Text = "Make a copy of downloaded file ...";
             this.cbCopy.UseVisualStyleBackColor = true;
+            this.cbCopy.CheckedChanged += new System.EventHandler(this.cbCopy_CheckedChanged);
             // 
             // cbNoApply
             // 
@@ -401,16 +424,6 @@
             this.textBox2.Size = new System.Drawing.Size(276, 20);
             this.textBox2.TabIndex = 6;
             // 
-            // cbStepbyStep
-            // 
-            this.cbStepbyStep.AutoSize = true;
-            this.cbStepbyStep.Location = new System.Drawing.Point(31, 140);
-            this.cbStepbyStep.Name = "cbStepbyStep";
-            this.cbStepbyStep.Size = new System.Drawing.Size(190, 17);
-            this.cbStepbyStep.TabIndex = 7;
-            this.cbStepbyStep.Text = "Include step by step status reports.";
-            this.cbStepbyStep.UseVisualStyleBackColor = true;
-            // 
             // GCUpdateVPlugin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,6 +485,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox cbStepbyStep;
+        private System.Windows.Forms.Label label16;
 
     }
 }

@@ -41,12 +41,13 @@
             this.lblServiceStatus = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbServiceOpt = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nudDelay = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnTest = new System.Windows.Forms.Button();
             this.pbStartStop = new System.Windows.Forms.ProgressBar();
             this.btnStart = new System.Windows.Forms.Button();
             this.lblServiceName = new System.Windows.Forms.Label();
@@ -78,7 +79,7 @@
             this.lvEvents = new System.Windows.Forms.ListView();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnEventsRefresh = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpProxy = new System.Windows.Forms.TabPage();
             this.cbCachedCreds = new System.Windows.Forms.CheckBox();
             this.cbSetProxy = new System.Windows.Forms.CheckBox();
             this.gbProxyUser = new System.Windows.Forms.GroupBox();
@@ -96,8 +97,8 @@
             this.cbDefault = new System.Windows.Forms.CheckBox();
             this.tpEmail = new System.Windows.Forms.TabPage();
             this.tbSMTPTest = new System.Windows.Forms.Button();
-            this.cbUseMAPI = new System.Windows.Forms.CheckBox();
             this.gbEmailOptions = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.cbSecureConn = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tbDefaultAddress = new System.Windows.Forms.TextBox();
@@ -112,13 +113,12 @@
             this.elGhostService = new System.Diagnostics.EventLog();
             this.dataSet1 = new System.Data.DataSet();
             this.dataSet2 = new System.Data.DataSet();
-            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sfwTraceFile)).BeginInit();
             this.panel1.SuspendLayout();
             this.tpPluginOptions.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbServiceOpt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbTrace.SuspendLayout();
@@ -135,7 +135,7 @@
             this.tpAppEvents.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tpProxy.SuspendLayout();
             this.gbProxyUser.SuspendLayout();
             this.gbManual.SuspendLayout();
             this.tpEmail.SuspendLayout();
@@ -176,7 +176,7 @@
             this.tpPluginOptions.Controls.Add(this.tabPage3);
             this.tpPluginOptions.Controls.Add(this.tabPage1);
             this.tpPluginOptions.Controls.Add(this.tpAppEvents);
-            this.tpPluginOptions.Controls.Add(this.tabPage2);
+            this.tpPluginOptions.Controls.Add(this.tpProxy);
             this.tpPluginOptions.Controls.Add(this.tpEmail);
             this.tpPluginOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tpPluginOptions.Location = new System.Drawing.Point(0, 0);
@@ -184,11 +184,12 @@
             this.tpPluginOptions.SelectedIndex = 0;
             this.tpPluginOptions.Size = new System.Drawing.Size(615, 478);
             this.tpPluginOptions.TabIndex = 11;
+            this.tpPluginOptions.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tpPluginOptions_Selecting);
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.gbServiceOpt);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.gbTrace);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -251,18 +252,18 @@
             this.label11.Text = "This will reset and rebuild the settings files for all plugins. Make use of this " +
                 "when the XML";
             // 
-            // groupBox2
+            // gbServiceOpt
             // 
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.nudDelay);
-            this.groupBox2.Location = new System.Drawing.Point(38, 28);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(457, 93);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Service Options";
+            this.gbServiceOpt.Controls.Add(this.label8);
+            this.gbServiceOpt.Controls.Add(this.label7);
+            this.gbServiceOpt.Controls.Add(this.label6);
+            this.gbServiceOpt.Controls.Add(this.nudDelay);
+            this.gbServiceOpt.Location = new System.Drawing.Point(38, 173);
+            this.gbServiceOpt.Name = "gbServiceOpt";
+            this.gbServiceOpt.Size = new System.Drawing.Size(457, 93);
+            this.gbServiceOpt.TabIndex = 7;
+            this.gbServiceOpt.TabStop = false;
+            this.gbServiceOpt.Text = "Service Options";
             // 
             // label8
             // 
@@ -316,17 +317,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnTest);
             this.groupBox1.Controls.Add(this.pbStartStop);
             this.groupBox1.Controls.Add(this.btnStart);
             this.groupBox1.Controls.Add(this.lblServiceName);
             this.groupBox1.Controls.Add(this.btnStop);
             this.groupBox1.Controls.Add(this.btnRestart);
-            this.groupBox1.Location = new System.Drawing.Point(38, 217);
+            this.groupBox1.Location = new System.Drawing.Point(38, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(457, 125);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Service Status";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(202, 81);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 5;
+            this.btnTest.Text = "Save && Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // pbStartStop
             // 
@@ -342,7 +354,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Save && Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -367,7 +379,7 @@
             // 
             // btnRestart
             // 
-            this.btnRestart.Location = new System.Drawing.Point(202, 81);
+            this.btnRestart.Location = new System.Drawing.Point(300, 81);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(75, 23);
             this.btnRestart.TabIndex = 2;
@@ -382,7 +394,7 @@
             this.gbTrace.Controls.Add(this.btnBrowse);
             this.gbTrace.Controls.Add(this.edtTraceFile);
             this.gbTrace.Controls.Add(this.label1);
-            this.gbTrace.Location = new System.Drawing.Point(38, 136);
+            this.gbTrace.Location = new System.Drawing.Point(38, 281);
             this.gbTrace.Name = "gbTrace";
             this.gbTrace.Size = new System.Drawing.Size(457, 61);
             this.gbTrace.TabIndex = 5;
@@ -637,29 +649,29 @@
             this.btnEventsRefresh.UseVisualStyleBackColor = true;
             this.btnEventsRefresh.Click += new System.EventHandler(this.btnEventsRefresh_Click);
             // 
-            // tabPage2
+            // tpProxy
             // 
-            this.tabPage2.Controls.Add(this.cbCachedCreds);
-            this.tabPage2.Controls.Add(this.cbSetProxy);
-            this.tabPage2.Controls.Add(this.gbProxyUser);
-            this.tabPage2.Controls.Add(this.gbManual);
-            this.tabPage2.Controls.Add(this.cbDefault);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(607, 452);
-            this.tabPage2.TabIndex = 5;
-            this.tabPage2.Text = "Proxy Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpProxy.Controls.Add(this.cbCachedCreds);
+            this.tpProxy.Controls.Add(this.cbSetProxy);
+            this.tpProxy.Controls.Add(this.gbProxyUser);
+            this.tpProxy.Controls.Add(this.gbManual);
+            this.tpProxy.Controls.Add(this.cbDefault);
+            this.tpProxy.Location = new System.Drawing.Point(4, 22);
+            this.tpProxy.Name = "tpProxy";
+            this.tpProxy.Padding = new System.Windows.Forms.Padding(3);
+            this.tpProxy.Size = new System.Drawing.Size(607, 452);
+            this.tpProxy.TabIndex = 5;
+            this.tpProxy.Text = "Proxy Settings";
+            this.tpProxy.UseVisualStyleBackColor = true;
             // 
             // cbCachedCreds
             // 
             this.cbCachedCreds.AutoSize = true;
             this.cbCachedCreds.Location = new System.Drawing.Point(36, 186);
             this.cbCachedCreds.Name = "cbCachedCreds";
-            this.cbCachedCreds.Size = new System.Drawing.Size(323, 17);
+            this.cbCachedCreds.Size = new System.Drawing.Size(381, 17);
             this.cbCachedCreds.TabIndex = 6;
-            this.cbCachedCreds.Text = "Use cached credentials (might require changes to service user)";
+            this.cbCachedCreds.Text = "Use cached credentials (Service must NOT be started with built-in account)";
             this.cbCachedCreds.UseVisualStyleBackColor = true;
             this.cbCachedCreds.Click += new System.EventHandler(this.cbDefault_Click);
             // 
@@ -794,16 +806,15 @@
             this.cbDefault.AutoSize = true;
             this.cbDefault.Location = new System.Drawing.Point(36, 61);
             this.cbDefault.Name = "cbDefault";
-            this.cbDefault.Size = new System.Drawing.Size(284, 17);
+            this.cbDefault.Size = new System.Drawing.Size(304, 17);
             this.cbDefault.TabIndex = 2;
-            this.cbDefault.Text = "Use default settings (GhostService will settings from IE)";
+            this.cbDefault.Text = "Use default settings (GhostService will use settings from IE)";
             this.cbDefault.UseVisualStyleBackColor = true;
             this.cbDefault.Click += new System.EventHandler(this.cbDefault_Click);
             // 
             // tpEmail
             // 
             this.tpEmail.Controls.Add(this.tbSMTPTest);
-            this.tpEmail.Controls.Add(this.cbUseMAPI);
             this.tpEmail.Controls.Add(this.gbEmailOptions);
             this.tpEmail.Controls.Add(this.gbSMTP);
             this.tpEmail.Controls.Add(this.gbSMTPUser);
@@ -817,7 +828,7 @@
             // 
             // tbSMTPTest
             // 
-            this.tbSMTPTest.Location = new System.Drawing.Point(392, 29);
+            this.tbSMTPTest.Location = new System.Drawing.Point(392, 348);
             this.tbSMTPTest.Name = "tbSMTPTest";
             this.tbSMTPTest.Size = new System.Drawing.Size(101, 22);
             this.tbSMTPTest.TabIndex = 2;
@@ -825,29 +836,28 @@
             this.tbSMTPTest.UseVisualStyleBackColor = true;
             this.tbSMTPTest.Click += new System.EventHandler(this.tbSMTPTest_Click);
             // 
-            // cbUseMAPI
-            // 
-            this.cbUseMAPI.AutoSize = true;
-            this.cbUseMAPI.Location = new System.Drawing.Point(36, 29);
-            this.cbUseMAPI.Name = "cbUseMAPI";
-            this.cbUseMAPI.Size = new System.Drawing.Size(259, 17);
-            this.cbUseMAPI.TabIndex = 1;
-            this.cbUseMAPI.Text = "Use MAPI (might require changes to service user)";
-            this.cbUseMAPI.UseVisualStyleBackColor = true;
-            this.cbUseMAPI.Click += new System.EventHandler(this.cbSMTPDefault_Click);
-            // 
             // gbEmailOptions
             // 
             this.gbEmailOptions.Controls.Add(this.label16);
             this.gbEmailOptions.Controls.Add(this.cbSecureConn);
             this.gbEmailOptions.Controls.Add(this.label19);
             this.gbEmailOptions.Controls.Add(this.tbDefaultAddress);
-            this.gbEmailOptions.Location = new System.Drawing.Point(36, 62);
+            this.gbEmailOptions.Location = new System.Drawing.Point(36, 29);
             this.gbEmailOptions.Name = "gbEmailOptions";
             this.gbEmailOptions.Size = new System.Drawing.Size(457, 95);
             this.gbEmailOptions.TabIndex = 3;
             this.gbEmailOptions.TabStop = false;
             this.gbEmailOptions.Text = "Email Options";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(121, 44);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(169, 12);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "(Also used as To address for test email.)";
             // 
             // cbSecureConn
             // 
@@ -881,7 +891,7 @@
             // 
             this.gbSMTP.Controls.Add(this.label20);
             this.gbSMTP.Controls.Add(this.tbSMTPServer);
-            this.gbSMTP.Location = new System.Drawing.Point(36, 173);
+            this.gbSMTP.Location = new System.Drawing.Point(36, 140);
             this.gbSMTP.Name = "gbSMTP";
             this.gbSMTP.Size = new System.Drawing.Size(457, 69);
             this.gbSMTP.TabIndex = 6;
@@ -912,7 +922,7 @@
             this.gbSMTPUser.Controls.Add(this.tbSMTPPassword);
             this.gbSMTPUser.Controls.Add(this.label18);
             this.gbSMTPUser.Controls.Add(this.tbSMTPUser);
-            this.gbSMTPUser.Location = new System.Drawing.Point(36, 264);
+            this.gbSMTPUser.Location = new System.Drawing.Point(36, 231);
             this.gbSMTPUser.Name = "gbSMTPUser";
             this.gbSMTPUser.Size = new System.Drawing.Size(457, 99);
             this.gbSMTPUser.TabIndex = 8;
@@ -967,16 +977,6 @@
             // 
             this.dataSet2.DataSetName = "NewDataSet";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(121, 44);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(111, 12);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "(Also To address for test.)";
-            // 
             // ServiceMaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -991,8 +991,8 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbServiceOpt.ResumeLayout(false);
+            this.gbServiceOpt.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDelay)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1014,14 +1014,13 @@
             this.tpAppEvents.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tpProxy.ResumeLayout(false);
+            this.tpProxy.PerformLayout();
             this.gbProxyUser.ResumeLayout(false);
             this.gbProxyUser.PerformLayout();
             this.gbManual.ResumeLayout(false);
             this.gbManual.PerformLayout();
             this.tpEmail.ResumeLayout(false);
-            this.tpEmail.PerformLayout();
             this.gbEmailOptions.ResumeLayout(false);
             this.gbEmailOptions.PerformLayout();
             this.gbSMTP.ResumeLayout(false);
@@ -1050,7 +1049,7 @@
         private System.Windows.Forms.Label lblServiceStatus;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbServiceOpt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -1089,7 +1088,7 @@
         private System.Data.DataSet dataSet2;
         private System.Windows.Forms.ListView lvWork;
         private System.Windows.Forms.ListView lvThreads;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpProxy;
         private System.Windows.Forms.GroupBox gbManual;
         private System.Windows.Forms.CheckBox cbDefault;
         private System.Windows.Forms.TextBox tbProxyServer;
@@ -1118,8 +1117,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox tbDefaultAddress;
         private System.Windows.Forms.CheckBox cbSecureConn;
-        private System.Windows.Forms.CheckBox cbUseMAPI;
         private System.Windows.Forms.Button tbSMTPTest;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnTest;
     }
 }

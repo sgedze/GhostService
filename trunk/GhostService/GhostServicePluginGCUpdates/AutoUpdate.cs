@@ -34,7 +34,7 @@ namespace GhostServicePluginGCUpdates
 
         protected ClientNotifier _clientNotifier;
         protected Version _productVersion;
-        private GhostConveyServerInstall _ghostConveyServerInstall;
+        private GhostConveyServerInstall _ghostConveyServerInstall;        
 
         #region Properties
         private bool NotificationActiveGC
@@ -128,8 +128,9 @@ namespace GhostServicePluginGCUpdates
         }
         private void bnBrowse_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                tbDownloadPath.Text = folderBrowserDialog1.SelectedPath;
+            if (!_busyLoadingSettingsToUI)
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                    tbDownloadPath.Text = folderBrowserDialog1.SelectedPath;
         }
         private void cbNoDLoad_Click(object sender, EventArgs e)
         {
@@ -141,7 +142,18 @@ namespace GhostServicePluginGCUpdates
             cbStepbyStep.Enabled = cbEmailNotify.Checked;
             tbEmailAddress.Enabled = cbEmailNotify.Checked;
         }
-                
+        private void cbCopy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbCopy.Checked && String.IsNullOrEmpty(tbDownloadPath.Text))
+            {
+                bnBrowse_Click(sender, e);
+            }
+
+            if (cbCopy.Checked && String.IsNullOrEmpty(tbDownloadPath.Text))
+            {
+                tbDownloadPath.Text = Utilities.CallingAssemblyPath();
+            }
+        }                
         #endregion 
 
         #region Work (utils)
@@ -400,10 +412,10 @@ namespace GhostServicePluginGCUpdates
                 currentSettings.Add("RunType", RUNTYPE.ToString());
             if (currentSettings.PluginSettingNotExists("AutoUpdateServer"))
                 currentSettings.Add("AutoUpdateServer", AUTO_UPDATE_SERVER.ToString());
-            if (currentSettings.PluginSettingNotExists("MakeCopyOfFile"))
-                currentSettings.Add("MakeCopyOfFile", MAKE_COPY_OF_FILE.ToString());
-            if (currentSettings.PluginSettingNotExists("MakeCopyPath"))
-                currentSettings.Add("MakeCopyPath", MAKE_COPY_PATH.ToString());
+            if (currentSettings.PluginSettingNotExists(Utilities.MAKE_COPY_SETTING_NAME))
+                currentSettings.Add(Utilities.MAKE_COPY_SETTING_NAME, MAKE_COPY_OF_FILE.ToString());
+            if (currentSettings.PluginSettingNotExists(Utilities.MAKE_COPY_PATH_SETTING_NAME))
+                currentSettings.Add(Utilities.MAKE_COPY_PATH_SETTING_NAME, MAKE_COPY_PATH.ToString());
             if (currentSettings.PluginSettingNotExists("NotificationActive"))
                 currentSettings.Add("NotificationActive", NOTIFICATION_ACTIVE_GC.ToString());
             if (currentSettings.PluginSettingNotExists("CalculateIntervalFromBase"))
@@ -426,14 +438,14 @@ namespace GhostServicePluginGCUpdates
             pbDownload.Value = position;
         }
         public override void HandleSettings(bool load)
-        {
+        {            
             if (load)
             {
                 cbNoDLoad.Checked = _settings["DownLoadUpdate"].Equals("False");
                 cbNoApply.Checked = _settings["ApplyDownloadedUpdate"].Equals("False",StringComparison.CurrentCultureIgnoreCase);
-                cbCopy.Checked = _settings["MakeCopyOfFile"].Equals("True");
-                cbGCNotify.Checked = _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
                 tbDownloadPath.Text = _settings["MakeCopyPath"];
+                cbCopy.Checked = _settings["MakeCopyOfFile"].Equals("True");
+                cbGCNotify.Checked = _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);                
                 cbEmailNotify.Checked = _settings["NotificationActiveEmail"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
                 tbEmailAddress.Text = _settings["NotificationEmailAddress"];
                 cbStepbyStep.Checked = _settings["StepByStepReportsEmail"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
@@ -474,7 +486,10 @@ namespace GhostServicePluginGCUpdates
         {
             TraceLog.Log(String.Concat(this.Name," Start ",DateTime.Now.ToString()));
             if (windowedInstance)
-            { 
+            {
+                if (lbDBs.Items.Count == 1)
+                    lbDBs.SelectedIndex = 0;
+                
                 if (lbDBs.SelectedItems.Count < 1)
                 {
                     Status("Please select a database (GhostConvey Install).");
@@ -535,7 +550,6 @@ namespace GhostServicePluginGCUpdates
             }
         }
 
-        #endregion
-                
+        #endregion               
     }
 }

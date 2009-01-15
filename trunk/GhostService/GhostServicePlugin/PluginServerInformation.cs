@@ -192,18 +192,6 @@ namespace GhostService.GhostServicePlugin
                 _settings["ProxyDomain"] = value;
             }
         }
-        public bool UseMAPI
-        {
-            get
-            {
-                return _settings["UseMAPI"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
-            }
-
-            set
-            {
-                _settings["UseMAPI"] = value.ToString();
-            }
-        }
         public bool SMTPSecureConnection
         {
             get
@@ -264,7 +252,18 @@ namespace GhostService.GhostServicePlugin
                 _settings["SMTPServer"] = value;
             }
         }
+        public bool ServiceSettingsTest
+        {
+            get
+            {
+                return _settings["ServiceSettingsTest"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+            }
 
+            set
+            {
+                _settings["ServiceSettingsTest"] = value.ToString();
+            }
+        }
 
         #endregion 
 
@@ -288,6 +287,7 @@ namespace GhostService.GhostServicePlugin
         }*/
         private void AddNewSettings()
         {
+            //add settings            
             if (!_settings.ContainsKey("TraceFilename"))
                 _settings.Add("TraceFilename", "");
 
@@ -321,9 +321,6 @@ namespace GhostService.GhostServicePlugin
             if (!_settings.ContainsKey("ProxyCachedCredentials"))
                 _settings.Add("ProxyCachedCredentials", "False");
 
-            if (!_settings.ContainsKey("UseMAPI"))
-                _settings.Add("UseMAPI", "False");
-
             if (!_settings.ContainsKey("SMTPDefaultFromAddress"))
                 _settings.Add("SMTPDefaultFromAddress", "");
 
@@ -338,6 +335,13 @@ namespace GhostService.GhostServicePlugin
 
             if (!_settings.ContainsKey("SMTPSecureConnection"))
                 _settings.Add("SMTPSecureConnection", "False");
+
+            if (!_settings.ContainsKey("ServiceSettingsTest"))
+                _settings.Add("ServiceSettingsTest", "False");
+
+            //remove settings
+            if (_settings.ContainsKey("UseMAPI"))
+                _settings.Remove("UseMAPI");
         }
 
         #endregion
