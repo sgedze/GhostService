@@ -134,7 +134,7 @@ namespace GhostServicePluginGCUpdates
         }
         private void cbNoDLoad_Click(object sender, EventArgs e)
         {
-            gbDloadPath.Enabled = !cbNoDLoad.Checked;
+            gbDloadPath.Enabled = cbDLoad.Checked;
             cbCopy.Checked = gbDloadPath.Enabled ? cbCopy.Checked : false;
         }
         private void cbEmailNotify_Click(object sender, EventArgs e)
@@ -358,7 +358,7 @@ namespace GhostServicePluginGCUpdates
             }
             return false;
         }
-        private void CheckGCInstallUpdate(GhostConveyServerInstall ghostConveyServerInstall)
+        private void CheckGCInstallUpdate(GhostConveyServerInstall ghostConveyServerInstall, bool bypassPluginSettings)
         {
             _productVersion = ghostConveyServerInstall.GCVersionFromFile;
 
@@ -367,9 +367,13 @@ namespace GhostServicePluginGCUpdates
             //maybe later - does not seem to work now.
             _clientNotifier.UserId = ghostConveyServerInstall.GCLicenseCode;
 
-            CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
-                _settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase),
-                ghostConveyServerInstall, _clientNotifier);
+            if (bypassPluginSettings)
+                CheckForUpdatesNow(true,true,
+                    ghostConveyServerInstall, _clientNotifier);
+            else
+                CheckForUpdatesNow(_settings["DownLoadUpdate"].Equals("True", StringComparison.CurrentCultureIgnoreCase),
+                    _settings["ApplyDownloadedUpdate"].Equals("True", StringComparison.CurrentCultureIgnoreCase),
+                    ghostConveyServerInstall, _clientNotifier);
         }
         
         #endregion
@@ -441,8 +445,8 @@ namespace GhostServicePluginGCUpdates
         {            
             if (load)
             {
-                cbNoDLoad.Checked = _settings["DownLoadUpdate"].Equals("False");
-                cbNoApply.Checked = _settings["ApplyDownloadedUpdate"].Equals("False",StringComparison.CurrentCultureIgnoreCase);
+                cbDLoad.Checked = _settings["DownLoadUpdate"].Equals("True", StringComparison.CurrentCultureIgnoreCase);
+                cbApply.Checked = _settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase);
                 tbDownloadPath.Text = _settings["MakeCopyPath"];
                 cbCopy.Checked = _settings["MakeCopyOfFile"].Equals("True");
                 cbGCNotify.Checked = _settings["NotificationActive"].Equals("True",StringComparison.CurrentCultureIgnoreCase);                
@@ -452,8 +456,8 @@ namespace GhostServicePluginGCUpdates
             }
             else
             {
-                _settings["DownLoadUpdate"] = (!cbNoDLoad.Checked).ToString();
-                _settings["ApplyDownloadedUpdate"] = (!cbNoApply.Checked).ToString();
+                _settings["DownLoadUpdate"] = (cbDLoad.Checked).ToString();
+                _settings["ApplyDownloadedUpdate"] = (cbApply.Checked).ToString();
                 _settings["MakeCopyOfFile"] = cbCopy.Checked.ToString();
                 _settings["NotificationActive"] = cbGCNotify.Checked.ToString();
                 _settings["MakeCopyPath"] = tbDownloadPath.Text;
@@ -496,7 +500,11 @@ namespace GhostServicePluginGCUpdates
                     return;
                 }
 
-                CheckGCInstallUpdate(new GhostConveyServerInstall(lbDBs.SelectedItem.ToString()));
+                CheckGCInstallUpdate(new GhostConveyServerInstall(lbDBs.SelectedItem.ToString()),
+                    MessageBox.Show("Apply any available updates?", this.Text, 
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+                        MessageBoxDefaultButton.Button1) == DialogResult.Yes);
+
                 return;
             }
             
@@ -505,7 +513,7 @@ namespace GhostServicePluginGCUpdates
                 if (!(db is GhostConveyServerInstall))
                     continue;
 
-                CheckGCInstallUpdate((db as GhostConveyServerInstall));                
+                CheckGCInstallUpdate((db as GhostConveyServerInstall),false);                
             }
 
             //Utilities.DummyTestForm(140, this.Name);

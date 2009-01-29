@@ -50,19 +50,22 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbGCNotify = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.gbDloadPath = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.bnBrowse = new System.Windows.Forms.Button();
             this.tbDownloadPath = new System.Windows.Forms.TextBox();
             this.cbCopy = new System.Windows.Forms.CheckBox();
-            this.cbNoApply = new System.Windows.Forms.CheckBox();
-            this.cbNoDLoad = new System.Windows.Forms.CheckBox();
+            this.cbApply = new System.Windows.Forms.CheckBox();
+            this.cbDLoad = new System.Windows.Forms.CheckBox();
             this.ofdDatabases = new System.Windows.Forms.OpenFileDialog();
             this.cbCopyFile = new System.Windows.Forms.CheckBox();
             this.gbDownloadPath = new System.Windows.Forms.GroupBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cbNoDLoad = new System.Windows.Forms.CheckBox();
+            this.cbNoApply = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -300,15 +303,29 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.gbDloadPath);
-            this.tabPage3.Controls.Add(this.cbNoApply);
-            this.tabPage3.Controls.Add(this.cbNoDLoad);
+            this.tabPage3.Controls.Add(this.cbApply);
+            this.tabPage3.Controls.Add(this.cbDLoad);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(432, 351);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Update Settings";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.UseVisualStyleBackColor = true;            
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(23, 24);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(207, 17);
+            this.checkBox2.TabIndex = 8;
+            this.checkBox2.Text = "Notify me of new updates (mandatory).";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // gbDloadPath
             // 
@@ -316,7 +333,7 @@
             this.gbDloadPath.Controls.Add(this.bnBrowse);
             this.gbDloadPath.Controls.Add(this.tbDownloadPath);
             this.gbDloadPath.Controls.Add(this.cbCopy);
-            this.gbDloadPath.Location = new System.Drawing.Point(25, 88);
+            this.gbDloadPath.Location = new System.Drawing.Point(23, 100);
             this.gbDloadPath.Name = "gbDloadPath";
             this.gbDloadPath.Size = new System.Drawing.Size(377, 121);
             this.gbDloadPath.TabIndex = 7;
@@ -361,26 +378,26 @@
             this.cbCopy.UseVisualStyleBackColor = true;
             this.cbCopy.CheckedChanged += new System.EventHandler(this.cbCopy_CheckedChanged);
             // 
-            // cbNoApply
+            // cbApply
             // 
-            this.cbNoApply.AutoSize = true;
-            this.cbNoApply.Location = new System.Drawing.Point(25, 58);
-            this.cbNoApply.Name = "cbNoApply";
-            this.cbNoApply.Size = new System.Drawing.Size(267, 17);
-            this.cbNoApply.TabIndex = 4;
-            this.cbNoApply.Text = "Don\'t apply the update automatically, just notify me.";
-            this.cbNoApply.UseVisualStyleBackColor = true;
+            this.cbApply.AutoSize = true;
+            this.cbApply.Location = new System.Drawing.Point(23, 70);
+            this.cbApply.Name = "cbApply";
+            this.cbApply.Size = new System.Drawing.Size(221, 17);
+            this.cbApply.TabIndex = 4;
+            this.cbApply.Text = "Automatically apply downloaded updates.";
+            this.cbApply.UseVisualStyleBackColor = true;
             // 
-            // cbNoDLoad
+            // cbDLoad
             // 
-            this.cbNoDLoad.AutoSize = true;
-            this.cbNoDLoad.Location = new System.Drawing.Point(25, 35);
-            this.cbNoDLoad.Name = "cbNoDLoad";
-            this.cbNoDLoad.Size = new System.Drawing.Size(288, 17);
-            this.cbNoDLoad.TabIndex = 2;
-            this.cbNoDLoad.Text = "Don\'t download the update automatically, just notify me.";
-            this.cbNoDLoad.UseVisualStyleBackColor = true;
-            this.cbNoDLoad.Click += new System.EventHandler(this.cbNoDLoad_Click);
+            this.cbDLoad.AutoSize = true;
+            this.cbDLoad.Location = new System.Drawing.Point(23, 47);
+            this.cbDLoad.Name = "cbDLoad";
+            this.cbDLoad.Size = new System.Drawing.Size(181, 17);
+            this.cbDLoad.TabIndex = 2;
+            this.cbDLoad.Text = "Automatically download updates.";
+            this.cbDLoad.UseVisualStyleBackColor = true;
+            this.cbDLoad.Click += new System.EventHandler(this.cbNoDLoad_Click);
             // 
             // ofdDatabases
             // 
@@ -424,6 +441,27 @@
             this.textBox2.Size = new System.Drawing.Size(276, 20);
             this.textBox2.TabIndex = 6;
             // 
+            // cbNoDLoad
+            // 
+            this.cbNoDLoad.AutoSize = true;
+            this.cbNoDLoad.Location = new System.Drawing.Point(23, 47);
+            this.cbNoDLoad.Name = "cbNoDLoad";
+            this.cbNoDLoad.Size = new System.Drawing.Size(184, 17);
+            this.cbNoDLoad.TabIndex = 2;
+            this.cbNoDLoad.Text = "Automatically download  updates.";
+            this.cbNoDLoad.UseVisualStyleBackColor = true;
+            this.cbNoDLoad.Click += new System.EventHandler(this.cbNoDLoad_Click);
+            // 
+            // cbNoApply
+            // 
+            this.cbNoApply.AutoSize = true;
+            this.cbNoApply.Location = new System.Drawing.Point(23, 70);
+            this.cbNoApply.Name = "cbNoApply";
+            this.cbNoApply.Size = new System.Drawing.Size(221, 17);
+            this.cbNoApply.TabIndex = 4;
+            this.cbNoApply.Text = "Automatically apply downloaded updates.";
+            this.cbNoApply.UseVisualStyleBackColor = true;
+            // 
             // GCUpdateVPlugin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +493,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.CheckBox cbNoDLoad;
+        private System.Windows.Forms.CheckBox cbDLoad;
         private System.Windows.Forms.TextBox tbEmailAddress;
         private System.Windows.Forms.CheckBox cbEmailNotify;
         private System.Windows.Forms.CheckBox cbGCNotify;
@@ -468,7 +506,7 @@
         private System.Windows.Forms.OpenFileDialog ofdDatabases;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbDBs;
-        private System.Windows.Forms.CheckBox cbNoApply;
+        private System.Windows.Forms.CheckBox cbApply;
         private System.Windows.Forms.CheckBox cbCopyFile;
         private System.Windows.Forms.GroupBox gbDloadPath;
         private System.Windows.Forms.GroupBox gbDownloadPath;
@@ -486,6 +524,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox cbStepbyStep;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cbNoDLoad;
+        private System.Windows.Forms.CheckBox cbNoApply;
 
     }
 }
