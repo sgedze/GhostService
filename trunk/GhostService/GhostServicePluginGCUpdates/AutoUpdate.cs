@@ -34,7 +34,8 @@ namespace GhostServicePluginGCUpdates
 
         protected ClientNotifier _clientNotifier;
         protected Version _productVersion;
-        private GhostConveyServerInstall _ghostConveyServerInstall;        
+        private GhostConveyServerInstall _ghostConveyServerInstall;    
+        private bool _bypassPluginSettings = false;
 
         #region Properties
         private bool NotificationActiveGC
@@ -261,7 +262,7 @@ namespace GhostServicePluginGCUpdates
                     {
                         clientNotifier.DownloadLatestUpdate();
                         _applicationUpdateDescription[ghostConveyServerInstall.ConfigReference] = 
-                            ApplyDownloadedZipUpdate(_clientNotifier, ghostConveyServerInstall);
+                            ApplyDownloadedZipUpdate(_clientNotifier, ghostConveyServerInstall, false);
                     }
 
                 }
@@ -326,7 +327,7 @@ namespace GhostServicePluginGCUpdates
                 return false;
             }
         }
-        private bool ApplyDownloadedZipUpdate(ClientNotifier clientNotifier, GhostConveyServerInstall ghostConveyServerInstall)
+        private bool ApplyDownloadedZipUpdate(ClientNotifier clientNotifier, GhostConveyServerInstall ghostConveyServerInstall, bool bypassPluginSettings)
         {
             bool success = true;
 
@@ -337,7 +338,7 @@ namespace GhostServicePluginGCUpdates
                 if (_settings["MakeCopyOfFile"].Equals("True",StringComparison.CurrentCultureIgnoreCase))
                     MakeCopyOfDownload(clientNotifier, DownloadPath);
 
-                if (_settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase))
+                if (_settings["ApplyDownloadedUpdate"].Equals("True",StringComparison.CurrentCultureIgnoreCase) || _bypassPluginSettings)
                 {
                     Status(string.Format("Applying update: {0}", this.Key), ghostConveyServerInstall.DbName);
                     
@@ -475,7 +476,7 @@ namespace GhostServicePluginGCUpdates
                     Status("Download Complete!");
                     if (windowedInstance)
                     {
-                        if (!ApplyDownloadedZipUpdate((ClientNotifier)sender, _ghostConveyServerInstall))
+                        if (!ApplyDownloadedZipUpdate((ClientNotifier)sender, _ghostConveyServerInstall,_bypassPluginSettings))
                             Status("File access problem, please see eventlog.");
                     }
                 }
@@ -500,10 +501,13 @@ namespace GhostServicePluginGCUpdates
                     return;
                 }
 
-                CheckGCInstallUpdate(new GhostConveyServerInstall(lbDBs.SelectedItem.ToString()),
-                    MessageBox.Show("Apply any available updates?", this.Text, 
+                
+                _bypassPluginSettings = (MessageBox.Show("Apply any available updates?", this.Text, 
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
                         MessageBoxDefaultButton.Button1) == DialogResult.Yes);
+                
+                CheckGCInstallUpdate(new GhostConveyServerInstall(lbDBs.SelectedItem.ToString()),
+                    _bypassPluginSettings);
 
                 return;
             }
